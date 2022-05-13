@@ -27,6 +27,7 @@ class RunModel:
                  cls_to_use: List[str] = None,
                  model_name: str = 'alexnet',
                  epochs: int = 200,
+                 resize_method: str = 'long',
                  batch_size: int = 128,
                  val_size: float = 1,
                  num_workers: int = 4,
@@ -82,6 +83,7 @@ class RunModel:
         self.batch_size = batch_size
         self.val_size = val_size
         self.epochs = epochs
+        self.resize_method = resize_method
         self.n_folds = n_folds
         self.num_workers = num_workers
         self.model_name = model_name
@@ -143,7 +145,7 @@ class RunModel:
                 np.random.seed(self.random_seed)
                 np.random.shuffle(indices)
                 val_dataset = torch.utils.data.Subset(val_dataset, indices[:int(
-                    np.ceil(self.val_size * len(val_dataset)))])
+                                                                np.ceil(self.val_size * len(val_dataset)))])
                 val_datasets.append((target_distances, val_dataset))
 
             self.num_classes = len(test_datasets[0][1].classes)
@@ -220,9 +222,8 @@ class RunModel:
                     np.random.seed(self.random_seed)
                     np.random.shuffle(indices)
                     indices_dataset = np.array_split(indices, len(self.target_distances))
-                    train_datasets = [(str([f'random{i}' for i in range(len(indices_dataset))]),
-                                       [(f'random{i}', torch.utils.data.Subset(combined_datasets, idx))
-                                        for i, idx in enumerate(indices_dataset)])]
+                    train_datasets = [(str([f'random{i}' for i in range(len(indices_dataset))]), [(f'random{i}', torch.utils.data.Subset(combined_datasets, idx))
+                                                  for i, idx in enumerate(indices_dataset)])]
 
                 elif self.training_mode == 'llo':
                     for i in range(len(self.target_distances)):
@@ -242,8 +243,7 @@ class RunModel:
                         np.random.seed(self.random_seed)
                         np.random.shuffle(indices)
                         indices_dataset = np.array_split(indices, len(self.target_distances) - 1)
-                        sub_sequence = [(f'llo_{self.target_distances[i]}_random{j}',
-                                         torch.utils.data.Subset(combined_datasets, idx))
+                        sub_sequence = [(f'llo_{self.target_distances[i]}_random{j}', torch.utils.data.Subset(combined_datasets, idx))
                                         for j, idx in enumerate(indices_dataset)]
 
                         last_loader = VOCDistancingImageLoader(self.size, p=self.target_distances[i],
@@ -266,6 +266,26 @@ class RunModel:
                 elif self.training_mode == 'random-permute':
                     shuffler = np.random.default_rng(40)
 
+                elif self.training_mode == 'as_is':
+                    sub_sequence = []
+                    for train_distance in self.target_distances:
+                        train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
+                                                                background_generator=self.background,
+                                                                resize_method=self.resize_method,
+                                                                annotation_root_path=train_annotation_root_path)
+                        train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
+                                                       transform=transform, loader=train_loader)
+                        val_loader = VOCDistancingImageLoader(self.size, p=train_distance,
+                                                              background_generator=self.background,
+                                                              resize_method=self.resize_method,
+                                                              annotation_root_path=val_annotation_root_path)
+                        val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
+                                                     transform=transform, loader=val_loader)
+                        train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])
+                        sub_sequence.append((train_distance, train_dataset))
+                    train_datasets.append((str(self.target_distances), sub_sequence))
+
+
                 self.train_datasets = train_datasets
                 self.val_datasets = val_datasets
                 self.test_datasets = test_datasets
@@ -280,7 +300,8 @@ class RunModel:
             optimizer_object: Callable,
             early_stopping: bool = True,
             patience: int = 2,
-            **kwargs) -> None:
+            val_target: str = 'avg',
+            optim_kwargs: dict= None) -> None:
         """
 
         :param patience: tolerance for loss increase before early stopping
@@ -293,13 +314,14 @@ class RunModel:
         assert self.train_datasets is not None and self.test_datasets is not None and self.num_classes is not None, \
             "Datasets is None. Please run RunModel.load_datasets() first "
 
+
         best_state_dict = {}
         for name, sequence in self.train_datasets:
             print(f"----- Training {self.model_name} with sequence: {name} -----")
             model = eval('models.' + self.model_name + f'(num_classes={self.num_classes}, pretrained={False})')
             model = model.to(self.device)
             criterion = criterion_object()
-            optimizer = optimizer_object(model.parameters(), **kwargs)
+            optimizer = optimizer_object(model.parameters(), **optim_kwargs)
 
             self.all_training_loss[str(name)] = []
             self.all_val_loss[str(name)] = []
@@ -327,9 +349,7 @@ class RunModel:
                                               shuffle=True,
                                               num_workers=self.num_workers)
 
-                    sub_training_loss, sub_val_loss, val_top1_acc = [], {d[0]: [] for d in self.val_datasets}, {d[0]: []
-                                                                                                                for d in
-                                                                                                                self.val_datasets}
+                    sub_training_loss, sub_val_loss, val_top1_acc = [], {d[0]: [] for d in self.val_datasets}, {d[0]: [] for d in self.val_datasets}
                     sub_val_loss['avg'], val_top1_acc['avg'] = [], []
 
                     # current group's best losses
@@ -398,15 +418,13 @@ class RunModel:
 
                         print('Epoch [{}/{}], Training Loss: {:.4f}, Validation Loss: {:.4f}, Validation Top1 '
                               'Accuracy: {:.4f}'
-                              .format(epoch + 1, epochs_per_distance, training_loss_per_pass, val_loss_avg,
-                                      val_top1acc_avg))
+                              .format(epoch + 1, epochs_per_distance, training_loss_per_pass, val_loss_avg, val_top1acc_avg))
                         if val_loss_avg <= best_val_loss:
                             best_val_loss = val_loss_avg
-                            best_state_dict[str(distances_seq[:seq_idx + 1])] = (
-                            model.state_dict(), optimizer.state_dict())
+                            best_state_dict[str(distances_seq[:seq_idx + 1])] = (model.state_dict(), optimizer.state_dict())
 
                             patience_count = 0
-                            best_epoch = epoch + 1
+                            best_epoch = epoch+1
                             best_val_acc = val_top1acc_avg
                         else:
                             patience_count += 1
