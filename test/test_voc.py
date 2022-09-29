@@ -7,8 +7,8 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 
-from utils.data_utils import CIFARLoader, GenerateBackground
-from datasets_legacy import CIFAR10Dataset
+from utils.data_utils import ResizeImageLoader, GenerateBackground
+from datasets_legacy import VOCDataset
 from utils import metrics
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Test')
@@ -22,7 +22,8 @@ parser.add_argument('--n_folds', default=5, type=int, help='number of folds')
 parser.add_argument('--n_folds_to_use', default=1, type=int, help='number of folds to use')
 
 # data path
-parser.add_argument('--path', default='./datasets/cifar10', help='path to cifar dataset')
+parser.add_argument('--path', default='./datasets/VOC2012/VOC2012_filtered', help='path to cifar dataset')
+
 args = parser.parse_args()
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
@@ -41,36 +42,46 @@ transform_test = transforms.Compose([
     transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
 ])
 
-train_root, test_root = os.path.join(args.path, 'train'), os.path.join(args.path, 'test')
+train_root, test_root = os.path.join(args.path, 'train'), os.path.join(args.path, '')
 
-train_loader = CIFARLoader(size=(32, 32), p=1,
-                           background_generator=GenerateBackground(bg_type='color', bg_color=(0, 0, 0)),
-                           resize_method='long')
-train_dataset = CIFAR10Dataset(root=train_root,
-                               transform=transform_train,
-                               loader=None,  #train_loader,
-                               download=True,
-                               train=True)
+train_loader = ResizeImageLoader(size=(150, 150), p=1,
+                                 background_generator=GenerateBackground(bg_type='color', bg_color=(0, 0, 0)),
+                                 dataset_name='VOC',
+                                 annotation_root_path=os.path.join(args.path, 'train', 'annotations'),
+                                 resize_method='long')
+train_dataset = VOCDataset(cls_to_use=None, root=os.path.join(args.path, 'train', 'root'),
+                           transform=transform_train, loader=train_loader)
+val_loader = ResizeImageLoader(size=(150, 150), p=1,
+                               background_generator=GenerateBackground(bg_type='color', bg_color=(0, 0, 0)),
+                               dataset_name='VOC',
+                               annotation_root_path=os.path.join(args.path, 'val', 'annotations'),
+                               resize_method='long')
+val_dataset = VOCDataset(cls_to_use=None, root=os.path.join(args.path, 'val', 'root'),
+                         transform=transform_train, loader=val_loader)
 
-test_loader = CIFARLoader(size=(32, 32), p=1,
-                          background_generator=GenerateBackground(bg_type='color', bg_color=(0, 0, 0)),
-                          resize_method='long')
-test_dataset = CIFAR10Dataset(root=test_root,
-                              transform=transform_train,
-                              loader=None,  #test_loader,
-                              download=True,
-                              train=False)
+train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])
+
+test_loader = ResizeImageLoader(size=(150, 150), p=1,
+                                background_generator=GenerateBackground(bg_type='color', bg_color=(0, 0, 0)),
+                                dataset_name='VOC',
+                                annotation_root_path=os.path.join(args.path, '', 'annotations'),
+                                resize_method='long')
+test_dataset = VOCDataset(cls_to_use=None, root=os.path.join(args.path, '', 'root'),
+                          transform=transform_train, loader=test_loader)
+
 test_dataloader = torch.utils.data.DataLoader(
-        test_dataset, batch_size=100, shuffle=False, num_workers=args.num_workers, pin_memory=True)
+    test_dataset, batch_size=100, shuffle=False, num_workers=args.num_workers, pin_memory=True)
 
 training_len = len(train_dataset)
-num_train = training_len
+cv_indices = list(range(training_len))
+num_train = 5000#training_len
 val_size = 1 / args.n_folds
 
-cv_indices = list(range(num_train))
+
 np.random.seed(40)
 np.random.shuffle(cv_indices)
 
+cv_indices = cv_indices[:num_train]
 split = int(np.floor(val_size * num_train))
 
 
@@ -130,8 +141,6 @@ for fold in range(args.n_folds):
     val_idx = cv_indices[split1:split2]
     train_idx = np.append(cv_indices[:split1], cv_indices[split2:])
     train_idx = train_idx.astype('int32')
-    train_size = 5000  # num_train
-    train_idx = train_idx[:train_size]
     train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
     val_sampler = torch.utils.data.SubsetRandomSampler(val_idx)
 
@@ -143,15 +152,16 @@ for fold in range(args.n_folds):
     val_dataloader = torch.utils.data.DataLoader(
         train_dataset, batch_size=100, sampler=val_sampler, num_workers=args.num_workers, pin_memory=True)
 
-    net = eval('torchvision.models.' + args.model + f'(num_classes=10)')
+    net = eval('torchvision.models.' + args.model + f'(num_classes=20)')
     net.to(device)
     criterion = nn.CrossEntropyLoss()
     sgd = optim.SGD(net.parameters(), lr=args.lr,
-                          momentum=0.9, weight_decay=5e-4)
+                    momentum=0.9, weight_decay=5e-4)
 
     # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=args.lr_patience, min_lr=args.min_lr)
 
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(sgd, T_max=args.epoch)
+    steps_per_epoch = 200 # math.floor(len(train_sampler) / 128)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(sgd, T_max=steps_per_epoch)
 
     best_val_loss = np.inf
 
@@ -164,13 +174,14 @@ for fold in range(args.n_folds):
             best_epoch = epoch + 1
             best_val_acc = validation_acc
             best_val_loss = validation_loss
-
-        print("Epoch [{}/{}], Train Loss: {:.4f} Val Loss: {:.4f} Val Acc@1: {:.3f} lr: {:.5f} best_epoch: {}, best_val_loss: {:.4f}"
-              .format(epoch + 1, args.epoch, train_loss, validation_loss, validation_acc,
-                      sgd.state_dict()['param_groups'][0]['lr'], best_epoch, best_val_loss))
+        test_loss, test_acc = val(net, test_dataloader)
+        print(
+            "Epoch [{}/{}], Train Loss: {:.4f} Val Loss: {:.4f} Val Acc@1: {:.3f} lr: {:.5f} test_acc: {:.5f}"
+                .format(epoch + 1, args.epoch, train_loss, validation_loss, validation_acc,
+                        sgd.state_dict()['param_groups'][0]['lr'], test_acc))
         scheduler.step()
 
-    net = eval('torchvision.models.' + args.model + f'(num_classes=10)')
+    net = eval('torchvision.models.' + args.model + f'(num_classes=20)')
     net.load_state_dict(best_state)
     net.to(device)
     test_loss, test_acc = val(net, test_dataloader)
@@ -179,7 +190,3 @@ for fold in range(args.n_folds):
     print('test acc: ', test_acc)
 
     print('-' * 50)
-
-
-
-

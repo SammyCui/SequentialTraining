@@ -235,6 +235,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                     print('\n')
             record_dict[sequence_name] = record_list
 
+            # testing
             test_list = []
             for test_dataloader in test_dataloaders:
                 acc_1 = 0
@@ -257,6 +258,10 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
         test_result.append(test_df)
         records.append(record_dict)
 
+    print("Test results:")
+    for fold, df in enumerate(test_result):
+        print(f"Fold {fold}")
+        print(df)
     result = {'config': config,
               'train': records,
               'test': test_result}
@@ -275,10 +280,12 @@ def main():
         train_indices = indices[:int((1 - config.test_size) * len(indices))]
         test_indices = indices[int((1 - config.test_size) * len(indices)):]
         for regimen in config.regimens:
+            print(f'==>Training {regimen}')
             train_regimen(regimen=regimen, train_indices=train_indices, test_indices=test_indices)
 
     else:
         for regimen in config.regimens:
+            print(f'==>Training {regimen}')
             train_regimen(regimen=regimen)
 
 
