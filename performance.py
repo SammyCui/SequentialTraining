@@ -113,3 +113,9 @@ def visualize(path):
 
 
 
+if __name__ == '__main__':
+    acc_path = '/Users/xuanmingcui/Downloads/acc_n_loss.json'
+    import json
+    with open(acc_path, 'r') as handle:
+        rec = json.load(handle)
+    print(json.dumps(rec, indent=4))

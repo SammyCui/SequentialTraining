@@ -8,20 +8,14 @@
 from pathlib import Path
 
 import torch
-import torchvision
 import torchvision.transforms as transforms
-from torchvision import models
 import torchvision.datasets
-import matplotlib.pyplot as plt
 import numpy as np
 import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim as optim
 import os
-import sys
-import scipy
 from torch.utils.data.sampler import SubsetRandomSampler
-from data_utils import VOCDistancingImageLoader, GenerateBackground
+from utils.data_utils import ResizeImageLoader, GenerateBackground
 from torch_datasets import VOCImageFolder
 
 if __name__ == '__main__':
@@ -55,9 +49,9 @@ if __name__ == '__main__':
                 mean=[0.485, 0.456, 0.406],
                 std=[0.229, 0.224, 0.225]
             )])
-        train_loader = VOCDistancingImageLoader(size, p=distance,
-                                                background_generator=background,
-                                                annotation_root_path=train_annotation_root_path)
+        train_loader = ResizeImageLoader(size, p=distance,
+                                         background_generator=background,
+                                         annotation_root_path=train_annotation_root_path)
 
         train_dataset = VOCImageFolder(root=data_dir, cls_to_use=cats, loader=train_loader, transform=transform)
         valid_dataset = VOCImageFolder(root=data_dir, cls_to_use=cats, loader=train_loader, transform=transform)

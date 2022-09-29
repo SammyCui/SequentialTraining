@@ -18,6 +18,13 @@ def resnet18(num_classes: int, pretrained: bool = False):
     return model
 
 
+def resnet50(num_classes: int, pretrained: bool = False):
+    model = torchvision.models.resnet50(pretrained=pretrained)
+    model.num_classes = num_classes
+    model.fc = torch.nn.Linear(in_features=2048, out_features=num_classes, bias=True)
+    return model
+
+
 def alexnet(num_classes: int, pretrained: bool = False):
     model = torchvision.models.alexnet(pretrained=pretrained)
     model.num_classes = num_classes

@@ -4,13 +4,12 @@ from pathlib import Path
 
 import torch
 import torchvision
-from typing import Tuple, Optional, Callable, Any, List, Dict, Iterable, Union
-from data_utils import GenerateBackground, VOCDistancingImageLoader
+from typing import Tuple, Callable, List
+from utils.data_utils import GenerateBackground, ResizeImageLoader
 from torch_datasets import VOCImageFolder
 import numpy as np
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader
 import json
-from models import models
 
 
 class RunModel:
@@ -126,18 +125,18 @@ class RunModel:
             # get test data loaders
 
             for target_distances in self.target_distances:
-                test_loader = VOCDistancingImageLoader(self.size, p=target_distances,
-                                                       background_generator=self.background,
-                                                       annotation_root_path=test_annotation_root_path)
+                test_loader = ResizeImageLoader(self.size, p=target_distances,
+                                                background_generator=self.background,
+                                                annotation_root_path=test_annotation_root_path)
                 test_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=test_image_root_path,
                                               transform=transform,
                                               loader=test_loader)
                 test_datasets.append(
                     (str(target_distances), test_dataset))
 
-                val_loader = VOCDistancingImageLoader(self.size, p=target_distances,
-                                                      background_generator=self.background,
-                                                      annotation_root_path=val_annotation_root_path)
+                val_loader = ResizeImageLoader(self.size, p=target_distances,
+                                               background_generator=self.background,
+                                               annotation_root_path=val_annotation_root_path)
                 val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
                                              transform=transform, loader=val_loader)
 
@@ -156,9 +155,9 @@ class RunModel:
                         train_distances_sequence = self.target_distances[i:]
                         sub_sequence = []
                         for train_distance in train_distances_sequence:
-                            train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                    background_generator=self.background,
-                                                                    annotation_root_path=train_annotation_root_path)
+                            train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                             background_generator=self.background,
+                                                             annotation_root_path=train_annotation_root_path)
                             train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                            transform=transform, loader=train_loader)
 
@@ -171,9 +170,9 @@ class RunModel:
                         train_distances_sequence = self.target_distances[:i + 1]
                         sub_sequence = []
                         for train_distance in train_distances_sequence:
-                            train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                    background_generator=self.background,
-                                                                    annotation_root_path=train_annotation_root_path)
+                            train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                             background_generator=self.background,
+                                                             annotation_root_path=train_annotation_root_path)
                             train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                            transform=transform, loader=train_loader)
 
@@ -185,9 +184,9 @@ class RunModel:
                         train_distances_sequence = self.target_distances[i:]
                         sub_sequence = []
                         for train_distance in train_distances_sequence:
-                            train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                    background_generator=self.background,
-                                                                    annotation_root_path=train_annotation_root_path)
+                            train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                             background_generator=self.background,
+                                                             annotation_root_path=train_annotation_root_path)
                             train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                            transform=transform, loader=train_loader)
                             sub_sequence.append((str(train_distance), train_dataset))
@@ -198,9 +197,9 @@ class RunModel:
                         train_distances_sequence = self.target_distances[:i + 1]
                         sub_sequence = []
                         for train_distance in train_distances_sequence:
-                            train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                    background_generator=self.background,
-                                                                    annotation_root_path=train_annotation_root_path)
+                            train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                             background_generator=self.background,
+                                                             annotation_root_path=train_annotation_root_path)
                             train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                            transform=transform, loader=train_loader)
                             sub_sequence.append((str(train_distance), train_dataset))
@@ -209,9 +208,9 @@ class RunModel:
                     datasets = []
 
                     for train_distance in self.target_distances:
-                        train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                background_generator=self.background,
-                                                                annotation_root_path=train_annotation_root_path)
+                        train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                         background_generator=self.background,
+                                                         annotation_root_path=train_annotation_root_path)
                         train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                        transform=transform, loader=train_loader)
 
@@ -230,9 +229,9 @@ class RunModel:
                         random_distances = self.target_distances[:i] + self.target_distances[i + 1:]
                         datasets = []
                         for random_distance in random_distances:
-                            random_loader = VOCDistancingImageLoader(self.size, p=random_distance,
-                                                                     background_generator=self.background,
-                                                                     annotation_root_path=train_annotation_root_path)
+                            random_loader = ResizeImageLoader(self.size, p=random_distance,
+                                                              background_generator=self.background,
+                                                              annotation_root_path=train_annotation_root_path)
                             random_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                             transform=transform, loader=random_loader)
 
@@ -246,9 +245,9 @@ class RunModel:
                         sub_sequence = [(f'llo_{self.target_distances[i]}_random{j}', torch.utils.data.Subset(combined_datasets, idx))
                                         for j, idx in enumerate(indices_dataset)]
 
-                        last_loader = VOCDistancingImageLoader(self.size, p=self.target_distances[i],
-                                                               background_generator=self.background,
-                                                               annotation_root_path=train_annotation_root_path)
+                        last_loader = ResizeImageLoader(self.size, p=self.target_distances[i],
+                                                        background_generator=self.background,
+                                                        annotation_root_path=train_annotation_root_path)
                         last_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                       transform=transform, loader=last_loader)
                         sub_sequence.append((str(self.target_distances[i]), last_dataset))
@@ -256,8 +255,8 @@ class RunModel:
 
                 elif self.training_mode == 'single':
                     for i in self.target_distances:
-                        train_loader = VOCDistancingImageLoader(self.size, p=i, background_generator=self.background,
-                                                                annotation_root_path=train_annotation_root_path)
+                        train_loader = ResizeImageLoader(self.size, p=i, background_generator=self.background,
+                                                         annotation_root_path=train_annotation_root_path)
                         train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                        transform=transform, loader=train_loader)
                         sub_sequence = [(str(i), train_dataset)]
@@ -269,16 +268,16 @@ class RunModel:
                 elif self.training_mode == 'as_is':
                     sub_sequence = []
                     for train_distance in self.target_distances:
-                        train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                background_generator=self.background,
-                                                                resize_method=self.resize_method,
-                                                                annotation_root_path=train_annotation_root_path)
+                        train_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                         background_generator=self.background,
+                                                         resize_method=self.resize_method,
+                                                         annotation_root_path=train_annotation_root_path)
                         train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                        transform=transform, loader=train_loader)
-                        val_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                              background_generator=self.background,
-                                                              resize_method=self.resize_method,
-                                                              annotation_root_path=val_annotation_root_path)
+                        val_loader = ResizeImageLoader(self.size, p=train_distance,
+                                                       background_generator=self.background,
+                                                       resize_method=self.resize_method,
+                                                       annotation_root_path=val_annotation_root_path)
                         val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
                                                      transform=transform, loader=val_loader)
                         train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])

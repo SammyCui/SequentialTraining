@@ -4,13 +4,12 @@ from pathlib import Path
 
 import torch
 import torchvision
-from typing import Tuple, Optional, Callable, Any, List, Dict, Iterable, Union
-from data_utils import GenerateBackground, VOCDistancingImageLoader
+from typing import Tuple, Callable, List
+from utils.data_utils import GenerateBackground, ResizeImageLoader
 from torch_datasets import VOCImageFolder
 import numpy as np
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader
 import json
-from models import models
 
 
 class RunModel:
@@ -124,9 +123,9 @@ class RunModel:
             for target_distances in self.target_distances:
 
                 # save testing dataset for each distance
-                test_loader = VOCDistancingImageLoader(self.size, p=target_distances,
-                                                       background_generator=self.background,
-                                                       annotation_root_path=test_annotation_root_path)
+                test_loader = ResizeImageLoader(self.size, p=target_distances,
+                                                background_generator=self.background,
+                                                annotation_root_path=test_annotation_root_path)
                 test_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=test_image_root_path,
                                               transform=transform,
                                               loader=test_loader)
@@ -139,9 +138,9 @@ class RunModel:
                 # For validation set, use the mixed distances
 
                 # TODO: consider using separate validation set for each distance?
-                val_loader = VOCDistancingImageLoader(self.size, p=target_distances,
-                                                      background_generator=self.background,
-                                                      annotation_root_path=val_annotation_root_path)
+                val_loader = ResizeImageLoader(self.size, p=target_distances,
+                                               background_generator=self.background,
+                                               annotation_root_path=val_annotation_root_path)
                 val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
                                              transform=transform, loader=val_loader)
 
@@ -149,9 +148,9 @@ class RunModel:
 
 
                 # save training dataset objects for each distance
-                train_loader = VOCDistancingImageLoader(self.size, p=target_distances,
-                                                        background_generator=self.background,
-                                                        annotation_root_path=train_annotation_root_path)
+                train_loader = ResizeImageLoader(self.size, p=target_distances,
+                                                 background_generator=self.background,
+                                                 annotation_root_path=train_annotation_root_path)
                 train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                transform=transform, loader=train_loader)
                 if self.training_mode == 'llo' or self.training_mode == 'random':
