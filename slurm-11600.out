@@ -1,0 +1,1034 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+device = cuda:0
+gaussian
+----------
+
+FOLD 1:
+Start training on blur window of 0.2
+[10,    16] loss: 0.325
+[20,    16] loss: 0.320
+[30,    16] loss: 0.320
+[40,    16] loss: 0.319
+[50,    16] loss: 0.318
+[60,    16] loss: 0.318
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,    16] loss: 0.315
+[20,    16] loss: 0.311
+[30,    16] loss: 0.301
+[40,    16] loss: 0.293
+[50,    16] loss: 0.286
+[60,    16] loss: 0.280
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.269
+[20,    16] loss: 0.261
+[30,    16] loss: 0.252
+[40,    16] loss: 0.232
+[50,    16] loss: 0.206
+[60,    16] loss: 0.182
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.179
+[20,    16] loss: 0.153
+[30,    16] loss: 0.098
+[40,    16] loss: 0.096
+[50,    16] loss: 0.038
+[60,    16] loss: 0.066
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.156
+[20,    16] loss: 0.081
+[30,    16] loss: 0.060
+[40,    16] loss: 0.046
+[50,    16] loss: 0.014
+[60,    16] loss: 0.018
+Finished Training on gaussian with blur window of 1
+Accuracy: 23.045267 %
+Accuracy: 22.222222 %
+Accuracy: 29.012346 %
+Accuracy: 37.037037 %
+Accuracy: 56.584362 %
+Start training on blur window of 0.25
+[10,    16] loss: 0.320
+[20,    16] loss: 0.320
+[30,    16] loss: 0.319
+[40,    16] loss: 0.319
+[50,    16] loss: 0.318
+[60,    16] loss: 0.315
+[70,    16] loss: 0.314
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.299
+[20,    16] loss: 0.292
+[30,    16] loss: 0.284
+[40,    16] loss: 0.269
+[50,    16] loss: 0.261
+[60,    16] loss: 0.242
+[70,    16] loss: 0.225
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.222
+[20,    16] loss: 0.190
+[30,    16] loss: 0.180
+[40,    16] loss: 0.143
+[50,    16] loss: 0.128
+[60,    16] loss: 0.092
+[70,    16] loss: 0.050
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.147
+[20,    16] loss: 0.092
+[30,    16] loss: 0.056
+[40,    16] loss: 0.023
+[50,    16] loss: 0.017
+[60,    16] loss: 0.010
+[70,    16] loss: 0.015
+Finished Training on gaussian with blur window of 1
+Accuracy: 19.753086 %
+Accuracy: 19.958848 %
+Accuracy: 28.806584 %
+Accuracy: 37.448560 %
+Accuracy: 57.613169 %
+Start training on blur window of 0.333
+[10,    16] loss: 0.321
+[20,    16] loss: 0.320
+[30,    16] loss: 0.318
+[40,    16] loss: 0.317
+[50,    16] loss: 0.317
+[60,    16] loss: 0.314
+[70,    16] loss: 0.306
+[80,    16] loss: 0.298
+[90,    16] loss: 0.291
+[100,    16] loss: 0.275
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.271
+[20,    16] loss: 0.256
+[30,    16] loss: 0.242
+[40,    16] loss: 0.215
+[50,    16] loss: 0.203
+[60,    16] loss: 0.180
+[70,    16] loss: 0.153
+[80,    16] loss: 0.122
+[90,    16] loss: 0.094
+[100,    16] loss: 0.079
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.151
+[20,    16] loss: 0.105
+[30,    16] loss: 0.056
+[40,    16] loss: 0.038
+[50,    16] loss: 0.022
+[60,    16] loss: 0.005
+[70,    16] loss: 0.044
+[80,    16] loss: 0.003
+[90,    16] loss: 0.002
+[100,    16] loss: 0.002
+Finished Training on gaussian with blur window of 1
+Accuracy: 15.432099 %
+Accuracy: 17.283951 %
+Accuracy: 23.251029 %
+Accuracy: 34.979424 %
+Accuracy: 58.847737 %
+Start training on blur window of 0.5
+[10,    16] loss: 0.320
+[20,    16] loss: 0.319
+[30,    16] loss: 0.317
+[40,    16] loss: 0.313
+[50,    16] loss: 0.301
+[60,    16] loss: 0.293
+[70,    16] loss: 0.280
+[80,    16] loss: 0.264
+[90,    16] loss: 0.249
+[100,    16] loss: 0.242
+[110,    16] loss: 0.227
+[120,    16] loss: 0.209
+[130,    16] loss: 0.191
+[140,    16] loss: 0.165
+[150,    16] loss: 0.163
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.170
+[20,    16] loss: 0.146
+[30,    16] loss: 0.104
+[40,    16] loss: 0.083
+[50,    16] loss: 0.066
+[60,    16] loss: 0.032
+[70,    16] loss: 0.028
+[80,    16] loss: 0.010
+[90,    16] loss: 0.003
+[100,    16] loss: 0.002
+[110,    16] loss: 0.048
+[120,    16] loss: 0.002
+[130,    16] loss: 0.005
+[140,    16] loss: 0.006
+[150,    16] loss: 0.001
+Finished Training on gaussian with blur window of 1
+Accuracy: 17.283951 %
+Accuracy: 20.370370 %
+Accuracy: 23.456790 %
+Accuracy: 33.127572 %
+Accuracy: 59.670782 %
+Start training on blur window of 1
+[10,    16] loss: 0.323
+[20,    16] loss: 0.317
+[30,    16] loss: 0.308
+[40,    16] loss: 0.296
+[50,    16] loss: 0.267
+[60,    16] loss: 0.249
+[70,    16] loss: 0.234
+[80,    16] loss: 0.224
+[90,    16] loss: 0.203
+[100,    16] loss: 0.186
+[110,    16] loss: 0.172
+[120,    16] loss: 0.161
+[130,    16] loss: 0.153
+[140,    16] loss: 0.142
+[150,    16] loss: 0.121
+[160,    16] loss: 0.117
+[170,    16] loss: 0.096
+[180,    16] loss: 0.085
+[190,    16] loss: 0.055
+[200,    16] loss: 0.052
+[210,    16] loss: 0.018
+[220,    16] loss: 0.005
+[230,    16] loss: 0.040
+[240,    16] loss: 0.004
+[250,    16] loss: 0.001
+[260,    16] loss: 0.001
+[270,    16] loss: 0.003
+[280,    16] loss: 0.001
+[290,    16] loss: 0.000
+[300,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 19.341564 %
+Accuracy: 20.781893 %
+Accuracy: 25.514403 %
+Accuracy: 34.362140 %
+Accuracy: 62.345679 %
+
+FOLD 2:
+Start training on blur window of 0.2
+[10,    16] loss: 0.320
+[20,    16] loss: 0.319
+[30,    16] loss: 0.317
+[40,    16] loss: 0.317
+[50,    16] loss: 0.318
+[60,    16] loss: 0.315
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,    16] loss: 0.316
+[20,    16] loss: 0.312
+[30,    16] loss: 0.305
+[40,    16] loss: 0.293
+[50,    16] loss: 0.285
+[60,    16] loss: 0.278
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.267
+[20,    16] loss: 0.266
+[30,    16] loss: 0.248
+[40,    16] loss: 0.228
+[50,    16] loss: 0.206
+[60,    16] loss: 0.199
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.195
+[20,    16] loss: 0.165
+[30,    16] loss: 0.129
+[40,    16] loss: 0.103
+[50,    16] loss: 0.074
+[60,    16] loss: 0.037
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.153
+[20,    16] loss: 0.095
+[30,    16] loss: 0.059
+[40,    16] loss: 0.028
+[50,    16] loss: 0.035
+[60,    16] loss: 0.011
+Finished Training on gaussian with blur window of 1
+Accuracy: 22.427984 %
+Accuracy: 25.925926 %
+Accuracy: 25.925926 %
+Accuracy: 36.419753 %
+Accuracy: 53.086420 %
+Start training on blur window of 0.25
+[10,    16] loss: 0.322
+[20,    16] loss: 0.319
+[30,    16] loss: 0.317
+[40,    16] loss: 0.316
+[50,    16] loss: 0.317
+[60,    16] loss: 0.315
+[70,    16] loss: 0.313
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.300
+[20,    16] loss: 0.292
+[30,    16] loss: 0.276
+[40,    16] loss: 0.270
+[50,    16] loss: 0.262
+[60,    16] loss: 0.255
+[70,    16] loss: 0.238
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.216
+[20,    16] loss: 0.202
+[30,    16] loss: 0.166
+[40,    16] loss: 0.165
+[50,    16] loss: 0.112
+[60,    16] loss: 0.083
+[70,    16] loss: 0.106
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.162
+[20,    16] loss: 0.084
+[30,    16] loss: 0.045
+[40,    16] loss: 0.028
+[50,    16] loss: 0.009
+[60,    16] loss: 0.016
+[70,    16] loss: 0.002
+Finished Training on gaussian with blur window of 1
+Accuracy: 18.106996 %
+Accuracy: 21.399177 %
+Accuracy: 27.777778 %
+Accuracy: 37.860082 %
+Accuracy: 54.115226 %
+Start training on blur window of 0.333
+[10,    16] loss: 0.319
+[20,    16] loss: 0.318
+[30,    16] loss: 0.317
+[40,    16] loss: 0.316
+[50,    16] loss: 0.312
+[60,    16] loss: 0.311
+[70,    16] loss: 0.299
+[80,    16] loss: 0.288
+[90,    16] loss: 0.271
+[100,    16] loss: 0.259
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.266
+[20,    16] loss: 0.230
+[30,    16] loss: 0.218
+[40,    16] loss: 0.205
+[50,    16] loss: 0.193
+[60,    16] loss: 0.169
+[70,    16] loss: 0.139
+[80,    16] loss: 0.127
+[90,    16] loss: 0.076
+[100,    16] loss: 0.056
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.158
+[20,    16] loss: 0.106
+[30,    16] loss: 0.067
+[40,    16] loss: 0.029
+[50,    16] loss: 0.033
+[60,    16] loss: 0.008
+[70,    16] loss: 0.003
+[80,    16] loss: 0.002
+[90,    16] loss: 0.008
+[100,    16] loss: 0.006
+Finished Training on gaussian with blur window of 1
+Accuracy: 21.193416 %
+Accuracy: 24.074074 %
+Accuracy: 27.160494 %
+Accuracy: 39.094650 %
+Accuracy: 53.497942 %
+Start training on blur window of 0.5
+[10,    16] loss: 0.319
+[20,    16] loss: 0.315
+[30,    16] loss: 0.315
+[40,    16] loss: 0.312
+[50,    16] loss: 0.308
+[60,    16] loss: 0.296
+[70,    16] loss: 0.272
+[80,    16] loss: 0.255
+[90,    16] loss: 0.247
+[100,    16] loss: 0.227
+[110,    16] loss: 0.212
+[120,    16] loss: 0.184
+[130,    16] loss: 0.183
+[140,    16] loss: 0.145
+[150,    16] loss: 0.118
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.161
+[20,    16] loss: 0.130
+[30,    16] loss: 0.091
+[40,    16] loss: 0.075
+[50,    16] loss: 0.065
+[60,    16] loss: 0.018
+[70,    16] loss: 0.015
+[80,    16] loss: 0.047
+[90,    16] loss: 0.008
+[100,    16] loss: 0.001
+[110,    16] loss: 0.001
+[120,    16] loss: 0.000
+[130,    16] loss: 0.000
+[140,    16] loss: 0.000
+[150,    16] loss: 0.001
+Finished Training on gaussian with blur window of 1
+Accuracy: 17.283951 %
+Accuracy: 22.222222 %
+Accuracy: 27.983539 %
+Accuracy: 36.008230 %
+Accuracy: 54.320988 %
+Start training on blur window of 1
+[10,    16] loss: 0.320
+[20,    16] loss: 0.315
+[30,    16] loss: 0.307
+[40,    16] loss: 0.293
+[50,    16] loss: 0.271
+[60,    16] loss: 0.242
+[70,    16] loss: 0.223
+[80,    16] loss: 0.210
+[90,    16] loss: 0.196
+[100,    16] loss: 0.183
+[110,    16] loss: 0.170
+[120,    16] loss: 0.154
+[130,    16] loss: 0.138
+[140,    16] loss: 0.127
+[150,    16] loss: 0.106
+[160,    16] loss: 0.086
+[170,    16] loss: 0.069
+[180,    16] loss: 0.081
+[190,    16] loss: 0.028
+[200,    16] loss: 0.017
+[210,    16] loss: 0.013
+[220,    16] loss: 0.023
+[230,    16] loss: 0.002
+[240,    16] loss: 0.015
+[250,    16] loss: 0.001
+[260,    16] loss: 0.003
+[270,    16] loss: 0.001
+[280,    16] loss: 0.000
+[290,    16] loss: 0.000
+[300,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 14.197531 %
+Accuracy: 17.078189 %
+Accuracy: 20.370370 %
+Accuracy: 33.539095 %
+Accuracy: 55.555556 %
+
+FOLD 3:
+Start training on blur window of 0.2
+[10,    16] loss: 0.322
+[20,    16] loss: 0.320
+[30,    16] loss: 0.319
+[40,    16] loss: 0.320
+[50,    16] loss: 0.318
+[60,    16] loss: 0.317
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,    16] loss: 0.316
+[20,    16] loss: 0.311
+[30,    16] loss: 0.300
+[40,    16] loss: 0.293
+[50,    16] loss: 0.285
+[60,    16] loss: 0.273
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.268
+[20,    16] loss: 0.257
+[30,    16] loss: 0.239
+[40,    16] loss: 0.222
+[50,    16] loss: 0.211
+[60,    16] loss: 0.194
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.185
+[20,    16] loss: 0.156
+[30,    16] loss: 0.116
+[40,    16] loss: 0.094
+[50,    16] loss: 0.044
+[60,    16] loss: 0.030
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.157
+[20,    16] loss: 0.100
+[30,    16] loss: 0.057
+[40,    16] loss: 0.045
+[50,    16] loss: 0.015
+[60,    16] loss: 0.015
+Finished Training on gaussian with blur window of 1
+Accuracy: 17.489712 %
+Accuracy: 21.193416 %
+Accuracy: 26.954733 %
+Accuracy: 37.448560 %
+Accuracy: 55.349794 %
+Start training on blur window of 0.25
+[10,    16] loss: 0.321
+[20,    16] loss: 0.320
+[30,    16] loss: 0.319
+[40,    16] loss: 0.319
+[50,    16] loss: 0.319
+[60,    16] loss: 0.317
+[70,    16] loss: 0.315
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.299
+[20,    16] loss: 0.294
+[30,    16] loss: 0.280
+[40,    16] loss: 0.272
+[50,    16] loss: 0.260
+[60,    16] loss: 0.245
+[70,    16] loss: 0.233
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.220
+[20,    16] loss: 0.182
+[30,    16] loss: 0.157
+[40,    16] loss: 0.120
+[50,    16] loss: 0.103
+[60,    16] loss: 0.063
+[70,    16] loss: 0.048
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.178
+[20,    16] loss: 0.113
+[30,    16] loss: 0.057
+[40,    16] loss: 0.044
+[50,    16] loss: 0.011
+[60,    16] loss: 0.010
+[70,    16] loss: 0.005
+Finished Training on gaussian with blur window of 1
+Accuracy: 16.872428 %
+Accuracy: 19.135802 %
+Accuracy: 24.485597 %
+Accuracy: 36.625514 %
+Accuracy: 58.024691 %
+Start training on blur window of 0.333
+[10,    16] loss: 0.321
+[20,    16] loss: 0.318
+[30,    16] loss: 0.319
+[40,    16] loss: 0.317
+[50,    16] loss: 0.315
+[60,    16] loss: 0.313
+[70,    16] loss: 0.308
+[80,    16] loss: 0.296
+[90,    16] loss: 0.287
+[100,    16] loss: 0.275
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.261
+[20,    16] loss: 0.261
+[30,    16] loss: 0.231
+[40,    16] loss: 0.218
+[50,    16] loss: 0.223
+[60,    16] loss: 0.182
+[70,    16] loss: 0.147
+[80,    16] loss: 0.114
+[90,    16] loss: 0.111
+[100,    16] loss: 0.042
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.152
+[20,    16] loss: 0.098
+[30,    16] loss: 0.061
+[40,    16] loss: 0.051
+[50,    16] loss: 0.011
+[60,    16] loss: 0.022
+[70,    16] loss: 0.007
+[80,    16] loss: 0.012
+[90,    16] loss: 0.009
+[100,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 16.666667 %
+Accuracy: 17.489712 %
+Accuracy: 22.222222 %
+Accuracy: 35.185185 %
+Accuracy: 59.465021 %
+Start training on blur window of 0.5
+[10,    16] loss: 0.322
+[20,    16] loss: 0.319
+[30,    16] loss: 0.317
+[40,    16] loss: 0.313
+[50,    16] loss: 0.305
+[60,    16] loss: 0.293
+[70,    16] loss: 0.284
+[80,    16] loss: 0.268
+[90,    16] loss: 0.253
+[100,    16] loss: 0.243
+[110,    16] loss: 0.225
+[120,    16] loss: 0.215
+[130,    16] loss: 0.200
+[140,    16] loss: 0.169
+[150,    16] loss: 0.130
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.165
+[20,    16] loss: 0.129
+[30,    16] loss: 0.097
+[40,    16] loss: 0.059
+[50,    16] loss: 0.036
+[60,    16] loss: 0.025
+[70,    16] loss: 0.015
+[80,    16] loss: 0.014
+[90,    16] loss: 0.033
+[100,    16] loss: 0.007
+[110,    16] loss: 0.002
+[120,    16] loss: 0.000
+[130,    16] loss: 0.000
+[140,    16] loss: 0.000
+[150,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 16.255144 %
+Accuracy: 19.547325 %
+Accuracy: 22.016461 %
+Accuracy: 38.271605 %
+Accuracy: 60.082305 %
+Start training on blur window of 1
+[10,    16] loss: 0.322
+[20,    16] loss: 0.315
+[30,    16] loss: 0.310
+[40,    16] loss: 0.292
+[50,    16] loss: 0.261
+[60,    16] loss: 0.232
+[70,    16] loss: 0.220
+[80,    16] loss: 0.198
+[90,    16] loss: 0.186
+[100,    16] loss: 0.188
+[110,    16] loss: 0.166
+[120,    16] loss: 0.156
+[130,    16] loss: 0.136
+[140,    16] loss: 0.131
+[150,    16] loss: 0.116
+[160,    16] loss: 0.096
+[170,    16] loss: 0.088
+[180,    16] loss: 0.061
+[190,    16] loss: 0.036
+[200,    16] loss: 0.026
+[210,    16] loss: 0.028
+[220,    16] loss: 0.025
+[230,    16] loss: 0.005
+[240,    16] loss: 0.004
+[250,    16] loss: 0.001
+[260,    16] loss: 0.060
+[270,    16] loss: 0.002
+[280,    16] loss: 0.001
+[290,    16] loss: 0.001
+[300,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 17.078189 %
+Accuracy: 19.753086 %
+Accuracy: 22.016461 %
+Accuracy: 37.654321 %
+Accuracy: 59.259259 %
+
+FOLD 4:
+Start training on blur window of 0.2
+[10,    16] loss: 0.321
+[20,    16] loss: 0.320
+[30,    16] loss: 0.319
+[40,    16] loss: 0.317
+[50,    16] loss: 0.317
+[60,    16] loss: 0.316
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,    16] loss: 0.312
+[20,    16] loss: 0.308
+[30,    16] loss: 0.298
+[40,    16] loss: 0.291
+[50,    16] loss: 0.279
+[60,    16] loss: 0.270
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.263
+[20,    16] loss: 0.250
+[30,    16] loss: 0.245
+[40,    16] loss: 0.220
+[50,    16] loss: 0.204
+[60,    16] loss: 0.171
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.190
+[20,    16] loss: 0.165
+[30,    16] loss: 0.131
+[40,    16] loss: 0.089
+[50,    16] loss: 0.075
+[60,    16] loss: 0.028
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.168
+[20,    16] loss: 0.109
+[30,    16] loss: 0.059
+[40,    16] loss: 0.029
+[50,    16] loss: 0.025
+[60,    16] loss: 0.013
+Finished Training on gaussian with blur window of 1
+Accuracy: 20.987654 %
+Accuracy: 22.633745 %
+Accuracy: 23.045267 %
+Accuracy: 36.213992 %
+Accuracy: 51.028807 %
+Start training on blur window of 0.25
+[10,    16] loss: 0.322
+[20,    16] loss: 0.319
+[30,    16] loss: 0.318
+[40,    16] loss: 0.316
+[50,    16] loss: 0.317
+[60,    16] loss: 0.314
+[70,    16] loss: 0.310
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.291
+[20,    16] loss: 0.274
+[30,    16] loss: 0.263
+[40,    16] loss: 0.247
+[50,    16] loss: 0.231
+[60,    16] loss: 0.220
+[70,    16] loss: 0.208
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.192
+[20,    16] loss: 0.166
+[30,    16] loss: 0.149
+[40,    16] loss: 0.141
+[50,    16] loss: 0.077
+[60,    16] loss: 0.079
+[70,    16] loss: 0.037
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.184
+[20,    16] loss: 0.132
+[30,    16] loss: 0.098
+[40,    16] loss: 0.047
+[50,    16] loss: 0.034
+[60,    16] loss: 0.015
+[70,    16] loss: 0.005
+Finished Training on gaussian with blur window of 1
+Accuracy: 20.987654 %
+Accuracy: 22.839506 %
+Accuracy: 25.308642 %
+Accuracy: 34.979424 %
+Accuracy: 54.526749 %
+Start training on blur window of 0.333
+[10,    16] loss: 0.319
+[20,    16] loss: 0.318
+[30,    16] loss: 0.318
+[40,    16] loss: 0.316
+[50,    16] loss: 0.312
+[60,    16] loss: 0.313
+[70,    16] loss: 0.303
+[80,    16] loss: 0.288
+[90,    16] loss: 0.279
+[100,    16] loss: 0.258
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.253
+[20,    16] loss: 0.237
+[30,    16] loss: 0.209
+[40,    16] loss: 0.196
+[50,    16] loss: 0.184
+[60,    16] loss: 0.153
+[70,    16] loss: 0.127
+[80,    16] loss: 0.103
+[90,    16] loss: 0.089
+[100,    16] loss: 0.042
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.145
+[20,    16] loss: 0.092
+[30,    16] loss: 0.046
+[40,    16] loss: 0.029
+[50,    16] loss: 0.006
+[60,    16] loss: 0.027
+[70,    16] loss: 0.007
+[80,    16] loss: 0.002
+[90,    16] loss: 0.009
+[100,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 18.106996 %
+Accuracy: 17.901235 %
+Accuracy: 22.839506 %
+Accuracy: 35.185185 %
+Accuracy: 55.349794 %
+Start training on blur window of 0.5
+[10,    16] loss: 0.318
+[20,    16] loss: 0.316
+[30,    16] loss: 0.313
+[40,    16] loss: 0.311
+[50,    16] loss: 0.303
+[60,    16] loss: 0.288
+[70,    16] loss: 0.268
+[80,    16] loss: 0.256
+[90,    16] loss: 0.238
+[100,    16] loss: 0.220
+[110,    16] loss: 0.203
+[120,    16] loss: 0.194
+[130,    16] loss: 0.184
+[140,    16] loss: 0.146
+[150,    16] loss: 0.115
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.158
+[20,    16] loss: 0.116
+[30,    16] loss: 0.100
+[40,    16] loss: 0.062
+[50,    16] loss: 0.050
+[60,    16] loss: 0.014
+[70,    16] loss: 0.020
+[80,    16] loss: 0.004
+[90,    16] loss: 0.003
+[100,    16] loss: 0.025
+[110,    16] loss: 0.001
+[120,    16] loss: 0.001
+[130,    16] loss: 0.000
+[140,    16] loss: 0.000
+[150,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 18.518519 %
+Accuracy: 20.781893 %
+Accuracy: 24.691358 %
+Accuracy: 33.333333 %
+Accuracy: 57.818930 %
+Start training on blur window of 1
+[10,    16] loss: 0.321
+[20,    16] loss: 0.315
+[30,    16] loss: 0.308
+[40,    16] loss: 0.296
+[50,    16] loss: 0.270
+[60,    16] loss: 0.246
+[70,    16] loss: 0.223
+[80,    16] loss: 0.204
+[90,    16] loss: 0.184
+[100,    16] loss: 0.176
+[110,    16] loss: 0.171
+[120,    16] loss: 0.154
+[130,    16] loss: 0.142
+[140,    16] loss: 0.127
+[150,    16] loss: 0.110
+[160,    16] loss: 0.093
+[170,    16] loss: 0.074
+[180,    16] loss: 0.055
+[190,    16] loss: 0.072
+[200,    16] loss: 0.031
+[210,    16] loss: 0.029
+[220,    16] loss: 0.013
+[230,    16] loss: 0.003
+[240,    16] loss: 0.002
+[250,    16] loss: 0.003
+[260,    16] loss: 0.002
+[270,    16] loss: 0.001
+[280,    16] loss: 0.000
+[290,    16] loss: 0.000
+[300,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 19.753086 %
+Accuracy: 20.576132 %
+Accuracy: 24.279835 %
+Accuracy: 33.950617 %
+Accuracy: 60.082305 %
+
+FOLD 5:
+Start training on blur window of 0.2
+[10,    16] loss: 0.323
+[20,    16] loss: 0.320
+[30,    16] loss: 0.320
+[40,    16] loss: 0.319
+[50,    16] loss: 0.319
+[60,    16] loss: 0.318
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,    16] loss: 0.316
+[20,    16] loss: 0.314
+[30,    16] loss: 0.304
+[40,    16] loss: 0.299
+[50,    16] loss: 0.291
+[60,    16] loss: 0.274
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.271
+[20,    16] loss: 0.263
+[30,    16] loss: 0.253
+[40,    16] loss: 0.240
+[50,    16] loss: 0.217
+[60,    16] loss: 0.209
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.196
+[20,    16] loss: 0.171
+[30,    16] loss: 0.161
+[40,    16] loss: 0.092
+[50,    16] loss: 0.078
+[60,    16] loss: 0.069
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.147
+[20,    16] loss: 0.099
+[30,    16] loss: 0.060
+[40,    16] loss: 0.034
+[50,    16] loss: 0.014
+[60,    16] loss: 0.025
+Finished Training on gaussian with blur window of 1
+Accuracy: 16.255144 %
+Accuracy: 17.078189 %
+Accuracy: 22.016461 %
+Accuracy: 29.629630 %
+Accuracy: 51.028807 %
+Start training on blur window of 0.25
+[10,    16] loss: 0.321
+[20,    16] loss: 0.320
+[30,    16] loss: 0.319
+[40,    16] loss: 0.318
+[50,    16] loss: 0.318
+[60,    16] loss: 0.317
+[70,    16] loss: 0.315
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,    16] loss: 0.305
+[20,    16] loss: 0.293
+[30,    16] loss: 0.277
+[40,    16] loss: 0.272
+[50,    16] loss: 0.259
+[60,    16] loss: 0.248
+[70,    16] loss: 0.225
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.216
+[20,    16] loss: 0.190
+[30,    16] loss: 0.194
+[40,    16] loss: 0.154
+[50,    16] loss: 0.116
+[60,    16] loss: 0.085
+[70,    16] loss: 0.052
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.152
+[20,    16] loss: 0.090
+[30,    16] loss: 0.045
+[40,    16] loss: 0.041
+[50,    16] loss: 0.014
+[60,    16] loss: 0.008
+[70,    16] loss: 0.007
+Finished Training on gaussian with blur window of 1
+Accuracy: 19.341564 %
+Accuracy: 22.222222 %
+Accuracy: 24.691358 %
+Accuracy: 34.567901 %
+Accuracy: 53.909465 %
+Start training on blur window of 0.333
+[10,    16] loss: 0.322
+[20,    16] loss: 0.320
+[30,    16] loss: 0.320
+[40,    16] loss: 0.317
+[50,    16] loss: 0.316
+[60,    16] loss: 0.314
+[70,    16] loss: 0.306
+[80,    16] loss: 0.292
+[90,    16] loss: 0.281
+[100,    16] loss: 0.267
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,    16] loss: 0.259
+[20,    16] loss: 0.238
+[30,    16] loss: 0.221
+[40,    16] loss: 0.212
+[50,    16] loss: 0.197
+[60,    16] loss: 0.171
+[70,    16] loss: 0.156
+[80,    16] loss: 0.122
+[90,    16] loss: 0.118
+[100,    16] loss: 0.064
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.155
+[20,    16] loss: 0.111
+[30,    16] loss: 0.054
+[40,    16] loss: 0.029
+[50,    16] loss: 0.014
+[60,    16] loss: 0.008
+[70,    16] loss: 0.009
+[80,    16] loss: 0.011
+[90,    16] loss: 0.015
+[100,    16] loss: 0.001
+Finished Training on gaussian with blur window of 1
+Accuracy: 15.637860 %
+Accuracy: 18.106996 %
+Accuracy: 21.810700 %
+Accuracy: 34.156379 %
+Accuracy: 60.699588 %
+Start training on blur window of 0.5
+[10,    16] loss: 0.321
+[20,    16] loss: 0.317
+[30,    16] loss: 0.317
+[40,    16] loss: 0.314
+[50,    16] loss: 0.310
+[60,    16] loss: 0.300
+[70,    16] loss: 0.274
+[80,    16] loss: 0.260
+[90,    16] loss: 0.245
+[100,    16] loss: 0.229
+[110,    16] loss: 0.220
+[120,    16] loss: 0.193
+[130,    16] loss: 0.180
+[140,    16] loss: 0.162
+[150,    16] loss: 0.148
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,    16] loss: 0.172
+[20,    16] loss: 0.141
+[30,    16] loss: 0.106
+[40,    16] loss: 0.074
+[50,    16] loss: 0.081
+[60,    16] loss: 0.026
+[70,    16] loss: 0.018
+[80,    16] loss: 0.009
+[90,    16] loss: 0.004
+[100,    16] loss: 0.015
+[110,    16] loss: 0.001
+[120,    16] loss: 0.000
+[130,    16] loss: 0.000
+[140,    16] loss: 0.000
+[150,    16] loss: 0.002
+Finished Training on gaussian with blur window of 1
+Accuracy: 20.781893 %
+Accuracy: 20.781893 %
+Accuracy: 26.337449 %
+Accuracy: 38.683128 %
+Accuracy: 56.584362 %
+Start training on blur window of 1
+[10,    16] loss: 0.322
+[20,    16] loss: 0.317
+[30,    16] loss: 0.311
+[40,    16] loss: 0.297
+[50,    16] loss: 0.271
+[60,    16] loss: 0.248
+[70,    16] loss: 0.225
+[80,    16] loss: 0.216
+[90,    16] loss: 0.192
+[100,    16] loss: 0.188
+[110,    16] loss: 0.173
+[120,    16] loss: 0.152
+[130,    16] loss: 0.145
+[140,    16] loss: 0.135
+[150,    16] loss: 0.121
+[160,    16] loss: 0.123
+[170,    16] loss: 0.088
+[180,    16] loss: 0.081
+[190,    16] loss: 0.054
+[200,    16] loss: 0.014
+[210,    16] loss: 0.012
+[220,    16] loss: 0.010
+[230,    16] loss: 0.054
+[240,    16] loss: 0.002
+[250,    16] loss: 0.001
+[260,    16] loss: 0.001
+[270,    16] loss: 0.003
+[280,    16] loss: 0.000
+[290,    16] loss: 0.000
+[300,    16] loss: 0.000
+Finished Training on gaussian with blur window of 1
+Accuracy: 15.020576 %
+Accuracy: 17.901235 %
+Accuracy: 20.370370 %
+Accuracy: 34.156379 %
+Accuracy: 60.082305 %

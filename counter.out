@@ -1,0 +1,11 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+cuda:0
+Initializing indices ...
+{0: 372, 1: 438, 2: 276, 3: 305, 4: 415, 5: 296, 6: 307, 7: 288, 8: 357, 9: 250, 10: 270, 11: 325, 12: 328, 13: 430, 14: 336, 15: 256, 16: 350, 17: 344, 18: 225, 19: 340, 20: 332, 21: 348, 22: 284, 23: 329, 24: 319, 25: 272, 26: 312, 27: 247, 28: 328, 29: 219, 30: 312, 31: 500, 32: 219, 33: 389, 34: 307, 35: 393, 36: 202, 37: 328, 38: 387, 39: 479}
+number of train:  10411
+number of test:  2603

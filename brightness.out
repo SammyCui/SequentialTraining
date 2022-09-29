@@ -1,0 +1,7 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+{'diningtable': 102.5327754112936, 'bird': 116.64567236394275, 'train': 116.55242152511384, 'aeroplane': 130.38959265824022, 'sheep': 115.07361021723086, 'dog': 111.87339248724327, 'tvmonitor': 99.60074922620488, 'chair': 106.75421563817463, 'horse': 116.1677231399282, 'bottle': 100.86548129513235, 'pottedplant': 110.04021088809426, 'sofa': 106.60221694754455, 'car': 108.54879844876992, 'bus': 114.59347225928106, 'motorbike': 113.42667874236794, 'cat': 110.55270976002811, 'bicycle': 111.85269117717162, 'boat': 124.62859736705245, 'cow': 117.30926493499436, 'person': 104.15572448556951}

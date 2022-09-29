@@ -1,0 +1,1493 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+Run:  0
+ # ------------------ Running pipeline on bts_startsame color run_0 -------------------- #
+cuda:0
+ ------ Pipeline with following parameters ------
+training_root_path :  /u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/train
+val_root_path :  /u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/val
+test_root_path :  /u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/test
+dataset_name :  VOC
+target_distances :  [0.2, 0.4, 0.6, 0.8, 1]
+training_mode :  bts_startsame
+training_size :  None
+background :  color
+size :  (150, 150)
+cls_to_use :  ['aeroplane', 'bicycle', 'bird', 'boat', 'car', 'cat', 'train', 'tvmonitor']
+batch_size :  128
+epochs :  400
+resize_method :  long
+n_folds :  5
+num_workers :  16
+model_name :  resnet18
+device :  cuda:0
+random_seed :  40
+result_dirpath :  /u/erdos/students/xcui32/cnslab/results/VOC8R18BlackCURbts
+save_checkpoints :  False
+save_progress_checkpoints :  False
+verbose :  0
+ ---  Loading datasets ---
+ ---  Running  ---
+Parameters: --------------------
+{'scheduler_kwargs': {'mode': 'min', 'factor': 0.1, 'patience': 5}, 'optim_kwargs': {'lr': 0.001, 'momentum': 0.9}, 'max_norm': None, 'val_target': 'current', 'patience': 30, 'early_stopping': True, 'scheduler_object': None, 'optimizer_object': <class 'torch.optim.sgd.SGD'>, 'criterion_object': <class 'torch.nn.modules.loss.CrossEntropyLoss'>, 'self': <pipelineCV2.RunModel object at 0x2aac7872bd68>}
+--------------------
+Fold: 0
+----- Training resnet18 with sequence: [1] -----
+Current group: 1
+Epoch [1/400], Training Loss: 40.5105, Validation Loss Current: 9.9045, Validation Loss AVG: 10.0124, lr: 0.001
+Epoch [2/400], Training Loss: 38.5284, Validation Loss Current: 9.5290, Validation Loss AVG: 9.8241, lr: 0.001
+Epoch [3/400], Training Loss: 37.7803, Validation Loss Current: 9.2708, Validation Loss AVG: 9.8800, lr: 0.001
+Epoch [4/400], Training Loss: 35.5883, Validation Loss Current: 8.9489, Validation Loss AVG: 9.5722, lr: 0.001
+Epoch [5/400], Training Loss: 34.3445, Validation Loss Current: 8.6149, Validation Loss AVG: 10.2848, lr: 0.001
+Epoch [6/400], Training Loss: 32.5765, Validation Loss Current: 8.4178, Validation Loss AVG: 10.1000, lr: 0.001
+Epoch [7/400], Training Loss: 32.6375, Validation Loss Current: 8.1235, Validation Loss AVG: 9.2029, lr: 0.001
+Epoch [8/400], Training Loss: 31.2686, Validation Loss Current: 7.8712, Validation Loss AVG: 9.9312, lr: 0.001
+Epoch [9/400], Training Loss: 29.4666, Validation Loss Current: 7.8355, Validation Loss AVG: 9.1943, lr: 0.001
+Epoch [10/400], Training Loss: 28.5881, Validation Loss Current: 7.3484, Validation Loss AVG: 8.6401, lr: 0.001
+Epoch [11/400], Training Loss: 27.9364, Validation Loss Current: 7.7046, Validation Loss AVG: 11.0013, lr: 0.001
+Epoch [12/400], Training Loss: 27.1839, Validation Loss Current: 7.4474, Validation Loss AVG: 10.4167, lr: 0.001
+Epoch [13/400], Training Loss: 26.0336, Validation Loss Current: 6.7475, Validation Loss AVG: 8.7244, lr: 0.001
+Epoch [14/400], Training Loss: 25.1610, Validation Loss Current: 7.1051, Validation Loss AVG: 9.1406, lr: 0.001
+Epoch [15/400], Training Loss: 24.3038, Validation Loss Current: 7.0006, Validation Loss AVG: 11.7133, lr: 0.001
+Epoch [16/400], Training Loss: 24.3124, Validation Loss Current: 6.4250, Validation Loss AVG: 9.5571, lr: 0.001
+Epoch [17/400], Training Loss: 23.7416, Validation Loss Current: 6.3648, Validation Loss AVG: 8.5078, lr: 0.001
+Epoch [18/400], Training Loss: 22.0820, Validation Loss Current: 6.1729, Validation Loss AVG: 8.8181, lr: 0.001
+Epoch [19/400], Training Loss: 21.8644, Validation Loss Current: 6.0097, Validation Loss AVG: 9.4359, lr: 0.001
+Epoch [20/400], Training Loss: 21.5739, Validation Loss Current: 9.8695, Validation Loss AVG: 19.9186, lr: 0.001
+Epoch [21/400], Training Loss: 26.4832, Validation Loss Current: 7.4061, Validation Loss AVG: 10.5496, lr: 0.001
+Epoch [22/400], Training Loss: 24.0881, Validation Loss Current: 6.5982, Validation Loss AVG: 8.7083, lr: 0.001
+Epoch [23/400], Training Loss: 22.3909, Validation Loss Current: 6.4652, Validation Loss AVG: 9.0729, lr: 0.001
+Epoch [24/400], Training Loss: 20.6677, Validation Loss Current: 5.9825, Validation Loss AVG: 8.4498, lr: 0.001
+Epoch [25/400], Training Loss: 19.7924, Validation Loss Current: 6.0531, Validation Loss AVG: 9.3990, lr: 0.001
+Epoch [26/400], Training Loss: 19.0131, Validation Loss Current: 5.8979, Validation Loss AVG: 8.7042, lr: 0.001
+Epoch [27/400], Training Loss: 20.0018, Validation Loss Current: 6.3202, Validation Loss AVG: 8.2603, lr: 0.001
+Epoch [28/400], Training Loss: 20.3476, Validation Loss Current: 6.1639, Validation Loss AVG: 9.5173, lr: 0.001
+Epoch [29/400], Training Loss: 19.2351, Validation Loss Current: 6.1337, Validation Loss AVG: 8.6443, lr: 0.001
+Epoch [30/400], Training Loss: 16.4755, Validation Loss Current: 6.0906, Validation Loss AVG: 9.8234, lr: 0.001
+Epoch [31/400], Training Loss: 16.8278, Validation Loss Current: 6.1349, Validation Loss AVG: 8.8324, lr: 0.001
+Epoch [32/400], Training Loss: 16.3190, Validation Loss Current: 5.7626, Validation Loss AVG: 8.3844, lr: 0.001
+Epoch [33/400], Training Loss: 14.6607, Validation Loss Current: 6.1853, Validation Loss AVG: 8.4666, lr: 0.001
+Epoch [34/400], Training Loss: 13.5035, Validation Loss Current: 5.5326, Validation Loss AVG: 8.2251, lr: 0.001
+Epoch [35/400], Training Loss: 15.3218, Validation Loss Current: 6.4406, Validation Loss AVG: 8.6594, lr: 0.001
+Epoch [36/400], Training Loss: 13.6537, Validation Loss Current: 5.9592, Validation Loss AVG: 8.4193, lr: 0.001
+Epoch [37/400], Training Loss: 12.4669, Validation Loss Current: 7.1948, Validation Loss AVG: 11.0702, lr: 0.001
+Epoch [38/400], Training Loss: 11.5270, Validation Loss Current: 5.6854, Validation Loss AVG: 8.8919, lr: 0.001
+Epoch [39/400], Training Loss: 11.2622, Validation Loss Current: 7.1288, Validation Loss AVG: 8.6477, lr: 0.001
+Epoch [40/400], Training Loss: 11.7087, Validation Loss Current: 6.0309, Validation Loss AVG: 8.1560, lr: 0.001
+Epoch [41/400], Training Loss: 9.9736, Validation Loss Current: 5.9314, Validation Loss AVG: 9.4121, lr: 0.001
+Epoch [42/400], Training Loss: 10.0672, Validation Loss Current: 6.1713, Validation Loss AVG: 11.1023, lr: 0.001
+Epoch [43/400], Training Loss: 13.8320, Validation Loss Current: 6.5283, Validation Loss AVG: 9.8200, lr: 0.001
+Epoch [44/400], Training Loss: 10.6799, Validation Loss Current: 6.0628, Validation Loss AVG: 10.9910, lr: 0.001
+Epoch [45/400], Training Loss: 11.7267, Validation Loss Current: 6.8911, Validation Loss AVG: 12.9500, lr: 0.001
+Epoch [46/400], Training Loss: 10.6468, Validation Loss Current: 6.0266, Validation Loss AVG: 8.9102, lr: 0.001
+Epoch [47/400], Training Loss: 8.7106, Validation Loss Current: 6.9732, Validation Loss AVG: 11.7398, lr: 0.001
+Epoch [48/400], Training Loss: 8.2807, Validation Loss Current: 6.2132, Validation Loss AVG: 12.1295, lr: 0.001
+Epoch [49/400], Training Loss: 6.1239, Validation Loss Current: 6.4971, Validation Loss AVG: 12.4464, lr: 0.001
+Epoch [50/400], Training Loss: 7.0740, Validation Loss Current: 5.6947, Validation Loss AVG: 9.4378, lr: 0.001
+Epoch [51/400], Training Loss: 5.2442, Validation Loss Current: 6.3949, Validation Loss AVG: 9.7699, lr: 0.001
+Epoch [52/400], Training Loss: 4.7383, Validation Loss Current: 7.6097, Validation Loss AVG: 13.1819, lr: 0.001
+Epoch [53/400], Training Loss: 5.9404, Validation Loss Current: 6.5902, Validation Loss AVG: 11.6526, lr: 0.001
+Epoch [54/400], Training Loss: 4.8555, Validation Loss Current: 6.3635, Validation Loss AVG: 11.5599, lr: 0.001
+Epoch [55/400], Training Loss: 4.0191, Validation Loss Current: 6.3720, Validation Loss AVG: 10.7163, lr: 0.001
+Epoch [56/400], Training Loss: 3.9585, Validation Loss Current: 7.0712, Validation Loss AVG: 10.8620, lr: 0.001
+Epoch [57/400], Training Loss: 5.1988, Validation Loss Current: 6.5693, Validation Loss AVG: 10.7171, lr: 0.001
+Epoch [58/400], Training Loss: 5.7738, Validation Loss Current: 7.1103, Validation Loss AVG: 11.7696, lr: 0.001
+Epoch [59/400], Training Loss: 4.5209, Validation Loss Current: 6.9712, Validation Loss AVG: 10.6732, lr: 0.001
+Epoch [60/400], Training Loss: 4.4351, Validation Loss Current: 7.4944, Validation Loss AVG: 10.2981, lr: 0.001
+Epoch [61/400], Training Loss: 6.4680, Validation Loss Current: 7.2184, Validation Loss AVG: 14.3099, lr: 0.001
+Epoch [62/400], Training Loss: 6.3848, Validation Loss Current: 8.7989, Validation Loss AVG: 16.9321, lr: 0.001
+Epoch [63/400], Training Loss: 4.7739, Validation Loss Current: 7.6363, Validation Loss AVG: 14.7763, lr: 0.001
+Epoch [64/400], Training Loss: 3.5989, Validation Loss Current: 7.1456, Validation Loss AVG: 15.6360, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 1 finished training. Best epoch: 34 Best val accuracy: [0.28618421052631576, 0.2911184210526316, 0.3042763157894737, 0.3470394736842105, 0.38980263157894735, 0.39144736842105265, 0.4161184210526316, 0.4588815789473684, 0.40131578947368424, 0.4621710526315789, 0.4506578947368421, 0.4654605263157895, 0.5082236842105263, 0.5049342105263158, 0.5148026315789473, 0.5723684210526315, 0.5740131578947368, 0.5723684210526315, 0.5789473684210527, 0.4342105263157895, 0.48519736842105265, 0.5345394736842105, 0.5411184210526315, 0.5822368421052632, 0.5855263157894737, 0.5707236842105263, 0.5707236842105263, 0.5674342105263158, 0.5740131578947368, 0.5789473684210527, 0.5904605263157895, 0.6019736842105263, 0.5904605263157895, 0.6167763157894737, 0.5756578947368421, 0.59375, 0.5411184210526315, 0.6101973684210527, 0.5197368421052632, 0.6052631578947368, 0.600328947368421, 0.5805921052631579, 0.555921052631579, 0.6085526315789473, 0.5625, 0.5822368421052632, 0.5526315789473685, 0.6019736842105263, 0.5773026315789473, 0.6101973684210527, 0.5888157894736842, 0.5855263157894737, 0.6019736842105263, 0.6069078947368421, 0.6381578947368421, 0.6036184210526315, 0.6118421052631579, 0.5805921052631579, 0.6036184210526315, 0.5970394736842105, 0.587171052631579, 0.4934210526315789, 0.5608552631578947, 0.600328947368421] Best val loss: 5.532606661319733
+
+
+----- Training resnet18 with sequence: [1, 0.8] -----
+Sequence [1] already in state dictionary, jumped
+Loaded best state dict for [1]
+Current group: 0.8
+Epoch [1/200], Training Loss: 21.7181, Validation Loss Current: 12.0908, Validation Loss AVG: 12.0908, lr: 0.001
+Epoch [2/200], Training Loss: 15.9384, Validation Loss Current: 10.9119, Validation Loss AVG: 10.9119, lr: 0.001
+Epoch [3/200], Training Loss: 13.0343, Validation Loss Current: 9.6385, Validation Loss AVG: 9.6385, lr: 0.001
+Epoch [4/200], Training Loss: 11.7330, Validation Loss Current: 9.4242, Validation Loss AVG: 9.4242, lr: 0.001
+Epoch [5/200], Training Loss: 10.3689, Validation Loss Current: 9.2505, Validation Loss AVG: 9.2505, lr: 0.001
+Epoch [6/200], Training Loss: 9.2170, Validation Loss Current: 19.4551, Validation Loss AVG: 19.4551, lr: 0.001
+Epoch [7/200], Training Loss: 8.3358, Validation Loss Current: 9.2629, Validation Loss AVG: 9.2629, lr: 0.001
+Epoch [8/200], Training Loss: 9.2032, Validation Loss Current: 11.7134, Validation Loss AVG: 11.7134, lr: 0.001
+Epoch [9/200], Training Loss: 10.4512, Validation Loss Current: 10.6431, Validation Loss AVG: 10.6431, lr: 0.001
+Epoch [10/200], Training Loss: 6.2150, Validation Loss Current: 9.7797, Validation Loss AVG: 9.7797, lr: 0.001
+Epoch [11/200], Training Loss: 6.9757, Validation Loss Current: 11.0404, Validation Loss AVG: 11.0404, lr: 0.001
+Epoch [12/200], Training Loss: 9.3538, Validation Loss Current: 10.6626, Validation Loss AVG: 10.6626, lr: 0.001
+Epoch [13/200], Training Loss: 8.9566, Validation Loss Current: 13.9434, Validation Loss AVG: 13.9434, lr: 0.001
+Epoch [14/200], Training Loss: 10.3969, Validation Loss Current: 12.7808, Validation Loss AVG: 12.7808, lr: 0.001
+Epoch [15/200], Training Loss: 6.7861, Validation Loss Current: 9.9498, Validation Loss AVG: 9.9498, lr: 0.001
+Epoch [16/200], Training Loss: 4.3450, Validation Loss Current: 9.0118, Validation Loss AVG: 9.0118, lr: 0.001
+Epoch [17/200], Training Loss: 3.8251, Validation Loss Current: 10.6456, Validation Loss AVG: 10.6456, lr: 0.001
+Epoch [18/200], Training Loss: 3.6696, Validation Loss Current: 10.2254, Validation Loss AVG: 10.2254, lr: 0.001
+Epoch [19/200], Training Loss: 3.6208, Validation Loss Current: 9.6467, Validation Loss AVG: 9.6467, lr: 0.001
+Epoch [20/200], Training Loss: 5.3099, Validation Loss Current: 13.1935, Validation Loss AVG: 13.1935, lr: 0.001
+Epoch [21/200], Training Loss: 5.3598, Validation Loss Current: 11.8687, Validation Loss AVG: 11.8687, lr: 0.001
+Epoch [22/200], Training Loss: 9.2404, Validation Loss Current: 11.3125, Validation Loss AVG: 11.3125, lr: 0.001
+Epoch [23/200], Training Loss: 4.5432, Validation Loss Current: 11.8622, Validation Loss AVG: 11.8622, lr: 0.001
+Epoch [24/200], Training Loss: 4.6327, Validation Loss Current: 9.6782, Validation Loss AVG: 9.6782, lr: 0.001
+Epoch [25/200], Training Loss: 2.3863, Validation Loss Current: 9.7633, Validation Loss AVG: 9.7633, lr: 0.001
+Epoch [26/200], Training Loss: 2.2867, Validation Loss Current: 10.0383, Validation Loss AVG: 10.0383, lr: 0.001
+Epoch [27/200], Training Loss: 3.9453, Validation Loss Current: 11.6421, Validation Loss AVG: 11.6421, lr: 0.001
+Epoch [28/200], Training Loss: 4.5638, Validation Loss Current: 11.0886, Validation Loss AVG: 11.0886, lr: 0.001
+Epoch [29/200], Training Loss: 5.3886, Validation Loss Current: 10.4742, Validation Loss AVG: 10.4742, lr: 0.001
+Epoch [30/200], Training Loss: 3.1061, Validation Loss Current: 11.7566, Validation Loss AVG: 11.7566, lr: 0.001
+Epoch [31/200], Training Loss: 1.5217, Validation Loss Current: 10.9365, Validation Loss AVG: 10.9365, lr: 0.001
+Epoch [32/200], Training Loss: 1.7121, Validation Loss Current: 11.1614, Validation Loss AVG: 11.1614, lr: 0.001
+Epoch [33/200], Training Loss: 2.0234, Validation Loss Current: 10.8908, Validation Loss AVG: 10.8908, lr: 0.001
+Epoch [34/200], Training Loss: 1.7329, Validation Loss Current: 13.5862, Validation Loss AVG: 13.5862, lr: 0.001
+Epoch [35/200], Training Loss: 2.6494, Validation Loss Current: 11.1322, Validation Loss AVG: 11.1322, lr: 0.001
+Epoch [36/200], Training Loss: 4.5236, Validation Loss Current: 13.4612, Validation Loss AVG: 13.4612, lr: 0.001
+Epoch [37/200], Training Loss: 5.8916, Validation Loss Current: 16.9378, Validation Loss AVG: 16.9378, lr: 0.001
+Epoch [38/200], Training Loss: 6.4052, Validation Loss Current: 13.2761, Validation Loss AVG: 13.2761, lr: 0.001
+Epoch [39/200], Training Loss: 2.6443, Validation Loss Current: 11.6841, Validation Loss AVG: 11.6841, lr: 0.001
+Epoch [40/200], Training Loss: 2.5668, Validation Loss Current: 11.6690, Validation Loss AVG: 11.6690, lr: 0.001
+Epoch [41/200], Training Loss: 2.4684, Validation Loss Current: 12.2029, Validation Loss AVG: 12.2029, lr: 0.001
+Epoch [42/200], Training Loss: 2.9780, Validation Loss Current: 11.5190, Validation Loss AVG: 11.5190, lr: 0.001
+Epoch [43/200], Training Loss: 7.8385, Validation Loss Current: 13.2936, Validation Loss AVG: 13.2936, lr: 0.001
+Epoch [44/200], Training Loss: 5.9400, Validation Loss Current: 11.7485, Validation Loss AVG: 11.7485, lr: 0.001
+Epoch [45/200], Training Loss: 6.2407, Validation Loss Current: 12.2535, Validation Loss AVG: 12.2535, lr: 0.001
+Epoch [46/200], Training Loss: 5.9254, Validation Loss Current: 13.3347, Validation Loss AVG: 13.3347, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.8 finished training. Best epoch: 16 Best val accuracy: [0.40559210526315786, 0.42072368421052636, 0.4319078947368421, 0.4549342105263158, 0.4391447368421053, 0.33125, 0.4582236842105264, 0.40756578947368427, 0.4407894736842105, 0.4026315789473684, 0.44868421052631574, 0.44868421052631574, 0.34342105263157896, 0.42434210526315785, 0.4654605263157895, 0.47006578947368416, 0.4618421052631579, 0.4671052631578948, 0.4605263157894736, 0.4286184210526316, 0.41578947368421054, 0.4, 0.40625, 0.44703947368421054, 0.4648026315789474, 0.45921052631578946, 0.45592105263157895, 0.46578947368421053, 0.43815789473684214, 0.4273026315789473, 0.46940789473684214, 0.45361842105263167, 0.4605263157894736, 0.39835526315789477, 0.45296052631578954, 0.41447368421052627, 0.3680921052631579, 0.43059210526315794, 0.4463815789473685, 0.4671052631578947, 0.43322368421052637, 0.4256578947368421, 0.41907894736842105, 0.43519736842105267, 0.44506578947368425, 0.40131578947368424] Best val loss: 9.011821150779724
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8]
+Current group: 0.6
+Epoch [1/134], Training Loss: 26.2819, Validation Loss Current: 13.9775, Validation Loss AVG: 13.9775, lr: 0.001
+Epoch [2/134], Training Loss: 17.1046, Validation Loss Current: 14.6482, Validation Loss AVG: 14.6482, lr: 0.001
+Epoch [3/134], Training Loss: 15.1418, Validation Loss Current: 13.0502, Validation Loss AVG: 13.0502, lr: 0.001
+Epoch [4/134], Training Loss: 18.1805, Validation Loss Current: 10.1020, Validation Loss AVG: 10.1020, lr: 0.001
+Epoch [5/134], Training Loss: 12.9114, Validation Loss Current: 14.8026, Validation Loss AVG: 14.8026, lr: 0.001
+Epoch [6/134], Training Loss: 10.8759, Validation Loss Current: 10.1480, Validation Loss AVG: 10.1480, lr: 0.001
+Epoch [7/134], Training Loss: 6.7493, Validation Loss Current: 8.8377, Validation Loss AVG: 8.8377, lr: 0.001
+Epoch [8/134], Training Loss: 6.3776, Validation Loss Current: 11.6497, Validation Loss AVG: 11.6497, lr: 0.001
+Epoch [9/134], Training Loss: 7.6487, Validation Loss Current: 12.4085, Validation Loss AVG: 12.4085, lr: 0.001
+Epoch [10/134], Training Loss: 5.3753, Validation Loss Current: 9.3873, Validation Loss AVG: 9.3873, lr: 0.001
+Epoch [11/134], Training Loss: 4.8733, Validation Loss Current: 11.0478, Validation Loss AVG: 11.0478, lr: 0.001
+Epoch [12/134], Training Loss: 4.6003, Validation Loss Current: 9.4892, Validation Loss AVG: 9.4892, lr: 0.001
+Epoch [13/134], Training Loss: 6.5076, Validation Loss Current: 10.0743, Validation Loss AVG: 10.0743, lr: 0.001
+Epoch [14/134], Training Loss: 5.4983, Validation Loss Current: 11.0071, Validation Loss AVG: 11.0071, lr: 0.001
+Epoch [15/134], Training Loss: 6.9936, Validation Loss Current: 10.1557, Validation Loss AVG: 10.1557, lr: 0.001
+Epoch [16/134], Training Loss: 5.5810, Validation Loss Current: 9.8055, Validation Loss AVG: 9.8055, lr: 0.001
+Epoch [17/134], Training Loss: 5.9367, Validation Loss Current: 11.3881, Validation Loss AVG: 11.3881, lr: 0.001
+Epoch [18/134], Training Loss: 4.5506, Validation Loss Current: 12.8401, Validation Loss AVG: 12.8401, lr: 0.001
+Epoch [19/134], Training Loss: 3.6331, Validation Loss Current: 10.6699, Validation Loss AVG: 10.6699, lr: 0.001
+Epoch [20/134], Training Loss: 4.9330, Validation Loss Current: 12.1203, Validation Loss AVG: 12.1203, lr: 0.001
+Epoch [21/134], Training Loss: 8.4905, Validation Loss Current: 11.3243, Validation Loss AVG: 11.3243, lr: 0.001
+Epoch [22/134], Training Loss: 6.6260, Validation Loss Current: 15.0792, Validation Loss AVG: 15.0792, lr: 0.001
+Epoch [23/134], Training Loss: 10.8032, Validation Loss Current: 16.0525, Validation Loss AVG: 16.0525, lr: 0.001
+Epoch [24/134], Training Loss: 5.2983, Validation Loss Current: 11.6915, Validation Loss AVG: 11.6915, lr: 0.001
+Epoch [25/134], Training Loss: 4.3606, Validation Loss Current: 10.1779, Validation Loss AVG: 10.1779, lr: 0.001
+Epoch [26/134], Training Loss: 5.5046, Validation Loss Current: 11.3922, Validation Loss AVG: 11.3922, lr: 0.001
+Epoch [27/134], Training Loss: 5.1379, Validation Loss Current: 11.3412, Validation Loss AVG: 11.3412, lr: 0.001
+Epoch [28/134], Training Loss: 3.0988, Validation Loss Current: 10.4686, Validation Loss AVG: 10.4686, lr: 0.001
+Epoch [29/134], Training Loss: 5.0467, Validation Loss Current: 10.9721, Validation Loss AVG: 10.9721, lr: 0.001
+Epoch [30/134], Training Loss: 5.3147, Validation Loss Current: 13.7058, Validation Loss AVG: 13.7058, lr: 0.001
+Epoch [31/134], Training Loss: 2.5428, Validation Loss Current: 10.7613, Validation Loss AVG: 10.7613, lr: 0.001
+Epoch [32/134], Training Loss: 3.7720, Validation Loss Current: 14.3271, Validation Loss AVG: 14.3271, lr: 0.001
+Epoch [33/134], Training Loss: 5.1821, Validation Loss Current: 14.7051, Validation Loss AVG: 14.7051, lr: 0.001
+Epoch [34/134], Training Loss: 7.3909, Validation Loss Current: 10.7006, Validation Loss AVG: 10.7006, lr: 0.001
+Epoch [35/134], Training Loss: 3.6260, Validation Loss Current: 11.3904, Validation Loss AVG: 11.3904, lr: 0.001
+Epoch [36/134], Training Loss: 5.3000, Validation Loss Current: 12.7280, Validation Loss AVG: 12.7280, lr: 0.001
+Epoch [37/134], Training Loss: 3.8820, Validation Loss Current: 11.4174, Validation Loss AVG: 11.4174, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.6 finished training. Best epoch: 7 Best val accuracy: [0.39210526315789473, 0.43486842105263157, 0.3888157894736842, 0.42467105263157895, 0.33125, 0.43980263157894733, 0.5042763157894736, 0.4519736842105263, 0.4279605263157894, 0.4914473684210526, 0.4595394736842106, 0.4950657894736842, 0.480921052631579, 0.4305921052631579, 0.48848684210526316, 0.48190789473684215, 0.46907894736842104, 0.4476973684210527, 0.4697368421052632, 0.4549342105263158, 0.44506578947368425, 0.4305921052631579, 0.4286184210526316, 0.4483552631578947, 0.4838815789473684, 0.47269736842105264, 0.4891447368421053, 0.4766447368421053, 0.46743421052631573, 0.44144736842105264, 0.4809210526315789, 0.4516447368421052, 0.42631578947368415, 0.46414473684210533, 0.47335526315789467, 0.44572368421052627, 0.4934210526315789] Best val loss: 8.83768606185913
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6]
+Current group: 0.4
+Epoch [1/100], Training Loss: 33.3091, Validation Loss Current: 13.9530, Validation Loss AVG: 13.9530, lr: 0.001
+Epoch [2/100], Training Loss: 23.6994, Validation Loss Current: 15.5011, Validation Loss AVG: 15.5011, lr: 0.001
+Epoch [3/100], Training Loss: 16.1925, Validation Loss Current: 10.4315, Validation Loss AVG: 10.4315, lr: 0.001
+Epoch [4/100], Training Loss: 13.7451, Validation Loss Current: 10.8077, Validation Loss AVG: 10.8077, lr: 0.001
+Epoch [5/100], Training Loss: 10.0895, Validation Loss Current: 9.3106, Validation Loss AVG: 9.3106, lr: 0.001
+Epoch [6/100], Training Loss: 8.6640, Validation Loss Current: 11.1797, Validation Loss AVG: 11.1797, lr: 0.001
+Epoch [7/100], Training Loss: 11.6189, Validation Loss Current: 11.4673, Validation Loss AVG: 11.4673, lr: 0.001
+Epoch [8/100], Training Loss: 7.8565, Validation Loss Current: 11.4078, Validation Loss AVG: 11.4078, lr: 0.001
+Epoch [9/100], Training Loss: 6.9004, Validation Loss Current: 10.1821, Validation Loss AVG: 10.1821, lr: 0.001
+Epoch [10/100], Training Loss: 8.8228, Validation Loss Current: 12.1801, Validation Loss AVG: 12.1801, lr: 0.001
+Epoch [11/100], Training Loss: 5.5513, Validation Loss Current: 12.9966, Validation Loss AVG: 12.9966, lr: 0.001
+Epoch [12/100], Training Loss: 5.5807, Validation Loss Current: 11.0432, Validation Loss AVG: 11.0432, lr: 0.001
+Epoch [13/100], Training Loss: 4.0172, Validation Loss Current: 12.6027, Validation Loss AVG: 12.6027, lr: 0.001
+Epoch [14/100], Training Loss: 5.0215, Validation Loss Current: 11.4064, Validation Loss AVG: 11.4064, lr: 0.001
+Epoch [15/100], Training Loss: 3.3612, Validation Loss Current: 10.4561, Validation Loss AVG: 10.4561, lr: 0.001
+Epoch [16/100], Training Loss: 7.3038, Validation Loss Current: 12.7277, Validation Loss AVG: 12.7277, lr: 0.001
+Epoch [17/100], Training Loss: 5.0890, Validation Loss Current: 11.8864, Validation Loss AVG: 11.8864, lr: 0.001
+Epoch [18/100], Training Loss: 5.7770, Validation Loss Current: 12.6121, Validation Loss AVG: 12.6121, lr: 0.001
+Epoch [19/100], Training Loss: 5.6360, Validation Loss Current: 13.1680, Validation Loss AVG: 13.1680, lr: 0.001
+Epoch [20/100], Training Loss: 3.0562, Validation Loss Current: 12.5746, Validation Loss AVG: 12.5746, lr: 0.001
+Epoch [21/100], Training Loss: 6.0335, Validation Loss Current: 13.7758, Validation Loss AVG: 13.7758, lr: 0.001
+Epoch [22/100], Training Loss: 7.1652, Validation Loss Current: 13.1090, Validation Loss AVG: 13.1090, lr: 0.001
+Epoch [23/100], Training Loss: 5.1079, Validation Loss Current: 13.5307, Validation Loss AVG: 13.5307, lr: 0.001
+Epoch [24/100], Training Loss: 8.0653, Validation Loss Current: 13.1959, Validation Loss AVG: 13.1959, lr: 0.001
+Epoch [25/100], Training Loss: 6.9561, Validation Loss Current: 21.3930, Validation Loss AVG: 21.3930, lr: 0.001
+Epoch [26/100], Training Loss: 6.7942, Validation Loss Current: 12.7760, Validation Loss AVG: 12.7760, lr: 0.001
+Epoch [27/100], Training Loss: 7.0717, Validation Loss Current: 13.5485, Validation Loss AVG: 13.5485, lr: 0.001
+Epoch [28/100], Training Loss: 4.8424, Validation Loss Current: 14.1611, Validation Loss AVG: 14.1611, lr: 0.001
+Epoch [29/100], Training Loss: 3.6241, Validation Loss Current: 12.3247, Validation Loss AVG: 12.3247, lr: 0.001
+Epoch [30/100], Training Loss: 3.4864, Validation Loss Current: 12.4462, Validation Loss AVG: 12.4462, lr: 0.001
+Epoch [31/100], Training Loss: 1.6208, Validation Loss Current: 12.0966, Validation Loss AVG: 12.0966, lr: 0.001
+Epoch [32/100], Training Loss: 1.7916, Validation Loss Current: 13.9997, Validation Loss AVG: 13.9997, lr: 0.001
+Epoch [33/100], Training Loss: 1.0382, Validation Loss Current: 12.0881, Validation Loss AVG: 12.0881, lr: 0.001
+Epoch [34/100], Training Loss: 4.7432, Validation Loss Current: 13.2790, Validation Loss AVG: 13.2790, lr: 0.001
+Epoch [35/100], Training Loss: 3.8492, Validation Loss Current: 13.0452, Validation Loss AVG: 13.0452, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.4 finished training. Best epoch: 5 Best val accuracy: [0.45230263157894735, 0.40921052631578947, 0.4621710526315789, 0.4365131578947368, 0.5075657894736842, 0.45756578947368426, 0.4319078947368421, 0.4654605263157895, 0.4950657894736842, 0.41743421052631585, 0.39342105263157895, 0.4861842105263158, 0.4427631578947369, 0.4822368421052632, 0.49572368421052626, 0.4440789473684211, 0.4838815789473684, 0.46019736842105263, 0.42269736842105254, 0.4391447368421052, 0.46019736842105263, 0.45394736842105265, 0.4151315789473684, 0.4519736842105263, 0.34375, 0.47631578947368425, 0.44703947368421054, 0.43322368421052626, 0.45921052631578946, 0.46282894736842106, 0.46940789473684214, 0.4789473684210527, 0.47105263157894744, 0.4427631578947369, 0.4881578947368421] Best val loss: 9.31063756942749
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4, 0.2] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6, 0.4] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6, 0.4]
+Current group: 0.2
+Epoch [1/80], Training Loss: 44.3836, Validation Loss Current: 22.7156, Validation Loss AVG: 22.7156, lr: 0.001
+Epoch [2/80], Training Loss: 24.6517, Validation Loss Current: 17.9178, Validation Loss AVG: 17.9178, lr: 0.001
+Epoch [3/80], Training Loss: 19.9461, Validation Loss Current: 14.3267, Validation Loss AVG: 14.3267, lr: 0.001
+Epoch [4/80], Training Loss: 18.3148, Validation Loss Current: 23.6306, Validation Loss AVG: 23.6306, lr: 0.001
+Epoch [5/80], Training Loss: 16.2051, Validation Loss Current: 15.5182, Validation Loss AVG: 15.5182, lr: 0.001
+Epoch [6/80], Training Loss: 12.3758, Validation Loss Current: 17.9509, Validation Loss AVG: 17.9509, lr: 0.001
+Epoch [7/80], Training Loss: 9.5854, Validation Loss Current: 18.1300, Validation Loss AVG: 18.1300, lr: 0.001
+Epoch [8/80], Training Loss: 9.0489, Validation Loss Current: 16.6810, Validation Loss AVG: 16.6810, lr: 0.001
+Epoch [9/80], Training Loss: 12.4307, Validation Loss Current: 19.7305, Validation Loss AVG: 19.7305, lr: 0.001
+Epoch [10/80], Training Loss: 10.0746, Validation Loss Current: 16.7485, Validation Loss AVG: 16.7485, lr: 0.001
+Epoch [11/80], Training Loss: 9.4567, Validation Loss Current: 21.0526, Validation Loss AVG: 21.0526, lr: 0.001
+Epoch [12/80], Training Loss: 12.0127, Validation Loss Current: 18.2412, Validation Loss AVG: 18.2412, lr: 0.001
+Epoch [13/80], Training Loss: 7.8779, Validation Loss Current: 21.0173, Validation Loss AVG: 21.0173, lr: 0.001
+Epoch [14/80], Training Loss: 7.0769, Validation Loss Current: 23.3827, Validation Loss AVG: 23.3827, lr: 0.001
+Epoch [15/80], Training Loss: 7.2156, Validation Loss Current: 17.8361, Validation Loss AVG: 17.8361, lr: 0.001
+Epoch [16/80], Training Loss: 4.0812, Validation Loss Current: 19.8007, Validation Loss AVG: 19.8007, lr: 0.001
+Epoch [17/80], Training Loss: 4.0093, Validation Loss Current: 19.6710, Validation Loss AVG: 19.6710, lr: 0.001
+Epoch [18/80], Training Loss: 3.8634, Validation Loss Current: 19.8831, Validation Loss AVG: 19.8831, lr: 0.001
+Epoch [19/80], Training Loss: 3.2156, Validation Loss Current: 23.5894, Validation Loss AVG: 23.5894, lr: 0.001
+Epoch [20/80], Training Loss: 3.4485, Validation Loss Current: 18.2520, Validation Loss AVG: 18.2520, lr: 0.001
+Epoch [21/80], Training Loss: 2.1395, Validation Loss Current: 18.9667, Validation Loss AVG: 18.9667, lr: 0.001
+Epoch [22/80], Training Loss: 4.6039, Validation Loss Current: 19.4859, Validation Loss AVG: 19.4859, lr: 0.001
+Epoch [23/80], Training Loss: 7.8774, Validation Loss Current: 26.6241, Validation Loss AVG: 26.6241, lr: 0.001
+Epoch [24/80], Training Loss: 5.7908, Validation Loss Current: 21.3594, Validation Loss AVG: 21.3594, lr: 0.001
+Epoch [25/80], Training Loss: 5.7088, Validation Loss Current: 25.0343, Validation Loss AVG: 25.0343, lr: 0.001
+Epoch [26/80], Training Loss: 6.9731, Validation Loss Current: 22.5956, Validation Loss AVG: 22.5956, lr: 0.001
+Epoch [27/80], Training Loss: 4.2787, Validation Loss Current: 18.8695, Validation Loss AVG: 18.8695, lr: 0.001
+Epoch [28/80], Training Loss: 4.1544, Validation Loss Current: 19.9332, Validation Loss AVG: 19.9332, lr: 0.001
+Epoch [29/80], Training Loss: 6.7712, Validation Loss Current: 27.3994, Validation Loss AVG: 27.3994, lr: 0.001
+Epoch [30/80], Training Loss: 3.3843, Validation Loss Current: 20.5689, Validation Loss AVG: 20.5689, lr: 0.001
+Epoch [31/80], Training Loss: 8.2506, Validation Loss Current: 20.1017, Validation Loss AVG: 20.1017, lr: 0.001
+Epoch [32/80], Training Loss: 7.0663, Validation Loss Current: 19.7226, Validation Loss AVG: 19.7226, lr: 0.001
+Epoch [33/80], Training Loss: 7.0092, Validation Loss Current: 24.5618, Validation Loss AVG: 24.5618, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.2 finished training. Best epoch: 3 Best val accuracy: [0.29078947368421054, 0.33026315789473687, 0.3825657894736842, 0.2957236842105263, 0.3559210526315789, 0.33092105263157895, 0.39276315789473687, 0.3694078947368421, 0.3680921052631579, 0.35427631578947366, 0.3450657894736842, 0.3470394736842105, 0.29276315789473684, 0.3302631578947368, 0.43289473684210533, 0.3555921052631579, 0.35723684210526313, 0.38585526315789476, 0.29440789473684215, 0.4082236842105263, 0.38618421052631585, 0.4207236842105263, 0.24046052631578946, 0.3605263157894737, 0.36907894736842106, 0.325, 0.4026315789473684, 0.39440789473684207, 0.275328947368421, 0.35723684210526313, 0.3319078947368421, 0.3430921052631579, 0.2733552631578947] Best val loss: 14.326697659492492
+
+
+Fold: 1
+----- Training resnet18 with sequence: [1] -----
+Current group: 1
+Epoch [1/400], Training Loss: 39.8604, Validation Loss Current: 9.9491, Validation Loss AVG: 10.0833, lr: 0.001
+Epoch [2/400], Training Loss: 38.3062, Validation Loss Current: 9.5632, Validation Loss AVG: 9.8678, lr: 0.001
+Epoch [3/400], Training Loss: 36.0861, Validation Loss Current: 9.5135, Validation Loss AVG: 11.5645, lr: 0.001
+Epoch [4/400], Training Loss: 35.7933, Validation Loss Current: 8.7685, Validation Loss AVG: 9.5618, lr: 0.001
+Epoch [5/400], Training Loss: 34.9139, Validation Loss Current: 8.5323, Validation Loss AVG: 9.4818, lr: 0.001
+Epoch [6/400], Training Loss: 32.8984, Validation Loss Current: 8.2008, Validation Loss AVG: 9.2513, lr: 0.001
+Epoch [7/400], Training Loss: 32.3707, Validation Loss Current: 7.8905, Validation Loss AVG: 8.9723, lr: 0.001
+Epoch [8/400], Training Loss: 30.5557, Validation Loss Current: 7.6704, Validation Loss AVG: 9.0211, lr: 0.001
+Epoch [9/400], Training Loss: 29.0832, Validation Loss Current: 7.4894, Validation Loss AVG: 8.8913, lr: 0.001
+Epoch [10/400], Training Loss: 28.3932, Validation Loss Current: 7.3542, Validation Loss AVG: 8.9485, lr: 0.001
+Epoch [11/400], Training Loss: 27.1685, Validation Loss Current: 7.2289, Validation Loss AVG: 9.0574, lr: 0.001
+Epoch [12/400], Training Loss: 25.5059, Validation Loss Current: 6.8757, Validation Loss AVG: 9.1812, lr: 0.001
+Epoch [13/400], Training Loss: 24.6517, Validation Loss Current: 6.6599, Validation Loss AVG: 9.0435, lr: 0.001
+Epoch [14/400], Training Loss: 23.5631, Validation Loss Current: 6.6023, Validation Loss AVG: 9.0269, lr: 0.001
+Epoch [15/400], Training Loss: 23.9308, Validation Loss Current: 6.8803, Validation Loss AVG: 10.6322, lr: 0.001
+Epoch [16/400], Training Loss: 24.6879, Validation Loss Current: 6.9573, Validation Loss AVG: 9.1638, lr: 0.001
+Epoch [17/400], Training Loss: 24.2624, Validation Loss Current: 6.6323, Validation Loss AVG: 9.0033, lr: 0.001
+Epoch [18/400], Training Loss: 22.9567, Validation Loss Current: 6.1743, Validation Loss AVG: 8.7419, lr: 0.001
+Epoch [19/400], Training Loss: 21.4386, Validation Loss Current: 6.6596, Validation Loss AVG: 9.4566, lr: 0.001
+Epoch [20/400], Training Loss: 20.7480, Validation Loss Current: 6.8672, Validation Loss AVG: 10.6862, lr: 0.001
+Epoch [21/400], Training Loss: 21.9957, Validation Loss Current: 6.4574, Validation Loss AVG: 8.4769, lr: 0.001
+Epoch [22/400], Training Loss: 21.5104, Validation Loss Current: 6.2354, Validation Loss AVG: 9.3138, lr: 0.001
+Epoch [23/400], Training Loss: 18.4905, Validation Loss Current: 6.0449, Validation Loss AVG: 8.8497, lr: 0.001
+Epoch [24/400], Training Loss: 17.9097, Validation Loss Current: 5.9801, Validation Loss AVG: 10.7582, lr: 0.001
+Epoch [25/400], Training Loss: 18.0287, Validation Loss Current: 6.4749, Validation Loss AVG: 8.5168, lr: 0.001
+Epoch [26/400], Training Loss: 17.0212, Validation Loss Current: 6.2577, Validation Loss AVG: 10.9107, lr: 0.001
+Epoch [27/400], Training Loss: 15.6352, Validation Loss Current: 6.3407, Validation Loss AVG: 8.6023, lr: 0.001
+Epoch [28/400], Training Loss: 16.1785, Validation Loss Current: 9.1271, Validation Loss AVG: 13.2145, lr: 0.001
+Epoch [29/400], Training Loss: 16.6424, Validation Loss Current: 5.6786, Validation Loss AVG: 9.0713, lr: 0.001
+Epoch [30/400], Training Loss: 15.4728, Validation Loss Current: 5.9783, Validation Loss AVG: 9.6375, lr: 0.001
+Epoch [31/400], Training Loss: 13.3668, Validation Loss Current: 5.9185, Validation Loss AVG: 8.8533, lr: 0.001
+Epoch [32/400], Training Loss: 12.5534, Validation Loss Current: 5.7327, Validation Loss AVG: 10.0945, lr: 0.001
+Epoch [33/400], Training Loss: 11.6357, Validation Loss Current: 5.5256, Validation Loss AVG: 12.4196, lr: 0.001
+Epoch [34/400], Training Loss: 10.7323, Validation Loss Current: 5.7213, Validation Loss AVG: 10.6962, lr: 0.001
+Epoch [35/400], Training Loss: 11.6522, Validation Loss Current: 6.1569, Validation Loss AVG: 11.8544, lr: 0.001
+Epoch [36/400], Training Loss: 11.1392, Validation Loss Current: 5.7382, Validation Loss AVG: 10.3155, lr: 0.001
+Epoch [37/400], Training Loss: 12.8838, Validation Loss Current: 6.3375, Validation Loss AVG: 11.1200, lr: 0.001
+Epoch [38/400], Training Loss: 12.2477, Validation Loss Current: 5.9292, Validation Loss AVG: 9.3693, lr: 0.001
+Epoch [39/400], Training Loss: 10.0124, Validation Loss Current: 6.6009, Validation Loss AVG: 13.0546, lr: 0.001
+Epoch [40/400], Training Loss: 9.8853, Validation Loss Current: 6.0096, Validation Loss AVG: 10.4051, lr: 0.001
+Epoch [41/400], Training Loss: 9.4350, Validation Loss Current: 6.3275, Validation Loss AVG: 10.9586, lr: 0.001
+Epoch [42/400], Training Loss: 9.5245, Validation Loss Current: 6.3016, Validation Loss AVG: 11.9454, lr: 0.001
+Epoch [43/400], Training Loss: 9.4501, Validation Loss Current: 6.6026, Validation Loss AVG: 10.3794, lr: 0.001
+Epoch [44/400], Training Loss: 6.8945, Validation Loss Current: 5.8204, Validation Loss AVG: 10.8125, lr: 0.001
+Epoch [45/400], Training Loss: 6.0947, Validation Loss Current: 5.5533, Validation Loss AVG: 10.4894, lr: 0.001
+Epoch [46/400], Training Loss: 6.2707, Validation Loss Current: 6.3404, Validation Loss AVG: 9.8381, lr: 0.001
+Epoch [47/400], Training Loss: 6.6531, Validation Loss Current: 8.2313, Validation Loss AVG: 16.5872, lr: 0.001
+Epoch [48/400], Training Loss: 8.1719, Validation Loss Current: 6.9207, Validation Loss AVG: 12.8646, lr: 0.001
+Epoch [49/400], Training Loss: 9.0323, Validation Loss Current: 9.1420, Validation Loss AVG: 11.5047, lr: 0.001
+Epoch [50/400], Training Loss: 6.9638, Validation Loss Current: 6.5324, Validation Loss AVG: 13.3973, lr: 0.001
+Epoch [51/400], Training Loss: 5.8995, Validation Loss Current: 6.1660, Validation Loss AVG: 14.1147, lr: 0.001
+Epoch [52/400], Training Loss: 5.7748, Validation Loss Current: 7.9850, Validation Loss AVG: 17.1297, lr: 0.001
+Epoch [53/400], Training Loss: 7.1348, Validation Loss Current: 7.9387, Validation Loss AVG: 16.9224, lr: 0.001
+Epoch [54/400], Training Loss: 5.3258, Validation Loss Current: 8.4532, Validation Loss AVG: 16.3782, lr: 0.001
+Epoch [55/400], Training Loss: 3.3657, Validation Loss Current: 6.2474, Validation Loss AVG: 10.2019, lr: 0.001
+Epoch [56/400], Training Loss: 2.5969, Validation Loss Current: 6.6037, Validation Loss AVG: 16.0297, lr: 0.001
+Epoch [57/400], Training Loss: 4.2130, Validation Loss Current: 6.8078, Validation Loss AVG: 11.8485, lr: 0.001
+Epoch [58/400], Training Loss: 3.5137, Validation Loss Current: 7.0028, Validation Loss AVG: 14.5270, lr: 0.001
+Epoch [59/400], Training Loss: 3.1695, Validation Loss Current: 6.7686, Validation Loss AVG: 12.2757, lr: 0.001
+Epoch [60/400], Training Loss: 5.9409, Validation Loss Current: 10.2587, Validation Loss AVG: 14.2038, lr: 0.001
+Epoch [61/400], Training Loss: 6.6392, Validation Loss Current: 7.9616, Validation Loss AVG: 13.8640, lr: 0.001
+Epoch [62/400], Training Loss: 5.9612, Validation Loss Current: 6.8909, Validation Loss AVG: 12.0085, lr: 0.001
+Epoch [63/400], Training Loss: 6.4313, Validation Loss Current: 7.2446, Validation Loss AVG: 11.3686, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 1 finished training. Best epoch: 33 Best val accuracy: [0.2713815789473684, 0.3125, 0.3256578947368421, 0.37664473684210525, 0.3963815789473684, 0.41118421052631576, 0.45723684210526316, 0.45394736842105265, 0.49835526315789475, 0.4753289473684211, 0.48848684210526316, 0.5411184210526315, 0.5164473684210527, 0.5345394736842105, 0.5460526315789473, 0.5164473684210527, 0.5542763157894737, 0.5789473684210527, 0.555921052631579, 0.5263157894736842, 0.5493421052631579, 0.569078947368421, 0.5674342105263158, 0.5805921052631579, 0.5526315789473685, 0.5822368421052632, 0.5789473684210527, 0.4588815789473684, 0.6167763157894737, 0.5986842105263158, 0.5888157894736842, 0.6118421052631579, 0.6299342105263158, 0.5921052631578947, 0.5838815789473685, 0.6118421052631579, 0.5608552631578947, 0.587171052631579, 0.5822368421052632, 0.5805921052631579, 0.5904605263157895, 0.5625, 0.5789473684210527, 0.6101973684210527, 0.6069078947368421, 0.6167763157894737, 0.524671052631579, 0.5657894736842105, 0.48848684210526316, 0.5838815789473685, 0.59375, 0.5263157894736842, 0.537828947368421, 0.5608552631578947, 0.6085526315789473, 0.6069078947368421, 0.5888157894736842, 0.587171052631579, 0.5921052631578947, 0.49506578947368424, 0.5427631578947368, 0.5970394736842105, 0.5970394736842105] Best val loss: 5.525593996047974
+
+
+----- Training resnet18 with sequence: [1, 0.8] -----
+Sequence [1] already in state dictionary, jumped
+Loaded best state dict for [1]
+Current group: 0.8
+Epoch [1/200], Training Loss: 20.6704, Validation Loss Current: 10.7662, Validation Loss AVG: 10.7662, lr: 0.001
+Epoch [2/200], Training Loss: 17.9591, Validation Loss Current: 10.9966, Validation Loss AVG: 10.9966, lr: 0.001
+Epoch [3/200], Training Loss: 14.8571, Validation Loss Current: 11.1457, Validation Loss AVG: 11.1457, lr: 0.001
+Epoch [4/200], Training Loss: 18.4967, Validation Loss Current: 11.1114, Validation Loss AVG: 11.1114, lr: 0.001
+Epoch [5/200], Training Loss: 13.8623, Validation Loss Current: 10.9583, Validation Loss AVG: 10.9583, lr: 0.001
+Epoch [6/200], Training Loss: 10.9622, Validation Loss Current: 9.4334, Validation Loss AVG: 9.4334, lr: 0.001
+Epoch [7/200], Training Loss: 8.0262, Validation Loss Current: 11.3482, Validation Loss AVG: 11.3482, lr: 0.001
+Epoch [8/200], Training Loss: 7.5976, Validation Loss Current: 9.4082, Validation Loss AVG: 9.4082, lr: 0.001
+Epoch [9/200], Training Loss: 8.3968, Validation Loss Current: 9.6280, Validation Loss AVG: 9.6280, lr: 0.001
+Epoch [10/200], Training Loss: 6.8070, Validation Loss Current: 10.5539, Validation Loss AVG: 10.5539, lr: 0.001
+Epoch [11/200], Training Loss: 6.8447, Validation Loss Current: 11.3076, Validation Loss AVG: 11.3076, lr: 0.001
+Epoch [12/200], Training Loss: 6.4131, Validation Loss Current: 10.2283, Validation Loss AVG: 10.2283, lr: 0.001
+Epoch [13/200], Training Loss: 6.1350, Validation Loss Current: 9.4800, Validation Loss AVG: 9.4800, lr: 0.001
+Epoch [14/200], Training Loss: 4.2252, Validation Loss Current: 10.1944, Validation Loss AVG: 10.1944, lr: 0.001
+Epoch [15/200], Training Loss: 4.2314, Validation Loss Current: 11.5188, Validation Loss AVG: 11.5188, lr: 0.001
+Epoch [16/200], Training Loss: 3.8696, Validation Loss Current: 10.0949, Validation Loss AVG: 10.0949, lr: 0.001
+Epoch [17/200], Training Loss: 4.3780, Validation Loss Current: 12.0808, Validation Loss AVG: 12.0808, lr: 0.001
+Epoch [18/200], Training Loss: 4.4409, Validation Loss Current: 12.7541, Validation Loss AVG: 12.7541, lr: 0.001
+Epoch [19/200], Training Loss: 7.2736, Validation Loss Current: 11.6618, Validation Loss AVG: 11.6618, lr: 0.001
+Epoch [20/200], Training Loss: 5.8027, Validation Loss Current: 10.4551, Validation Loss AVG: 10.4551, lr: 0.001
+Epoch [21/200], Training Loss: 2.8911, Validation Loss Current: 12.0519, Validation Loss AVG: 12.0519, lr: 0.001
+Epoch [22/200], Training Loss: 3.1018, Validation Loss Current: 10.8840, Validation Loss AVG: 10.8840, lr: 0.001
+Epoch [23/200], Training Loss: 6.9875, Validation Loss Current: 13.9618, Validation Loss AVG: 13.9618, lr: 0.001
+Epoch [24/200], Training Loss: 4.1780, Validation Loss Current: 13.3280, Validation Loss AVG: 13.3280, lr: 0.001
+Epoch [25/200], Training Loss: 3.3035, Validation Loss Current: 11.6503, Validation Loss AVG: 11.6503, lr: 0.001
+Epoch [26/200], Training Loss: 5.1938, Validation Loss Current: 12.5118, Validation Loss AVG: 12.5118, lr: 0.001
+Epoch [27/200], Training Loss: 4.5349, Validation Loss Current: 13.5733, Validation Loss AVG: 13.5733, lr: 0.001
+Epoch [28/200], Training Loss: 6.7551, Validation Loss Current: 14.8002, Validation Loss AVG: 14.8002, lr: 0.001
+Epoch [29/200], Training Loss: 7.5217, Validation Loss Current: 13.1964, Validation Loss AVG: 13.1964, lr: 0.001
+Epoch [30/200], Training Loss: 3.1684, Validation Loss Current: 12.2993, Validation Loss AVG: 12.2993, lr: 0.001
+Epoch [31/200], Training Loss: 5.3797, Validation Loss Current: 12.4069, Validation Loss AVG: 12.4069, lr: 0.001
+Epoch [32/200], Training Loss: 3.1013, Validation Loss Current: 17.6280, Validation Loss AVG: 17.6280, lr: 0.001
+Epoch [33/200], Training Loss: 4.1059, Validation Loss Current: 11.2937, Validation Loss AVG: 11.2937, lr: 0.001
+Epoch [34/200], Training Loss: 4.0536, Validation Loss Current: 14.3799, Validation Loss AVG: 14.3799, lr: 0.001
+Epoch [35/200], Training Loss: 2.6592, Validation Loss Current: 13.7524, Validation Loss AVG: 13.7524, lr: 0.001
+Epoch [36/200], Training Loss: 4.4554, Validation Loss Current: 12.6280, Validation Loss AVG: 12.6280, lr: 0.001
+Epoch [37/200], Training Loss: 6.0165, Validation Loss Current: 13.5880, Validation Loss AVG: 13.5880, lr: 0.001
+Epoch [38/200], Training Loss: 4.1079, Validation Loss Current: 11.1730, Validation Loss AVG: 11.1730, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.8 finished training. Best epoch: 8 Best val accuracy: [0.4161184210526316, 0.43486842105263157, 0.4180921052631579, 0.4082236842105263, 0.39375, 0.4536184210526316, 0.41381578947368425, 0.4572368421052631, 0.4328947368421052, 0.44868421052631574, 0.4220394736842105, 0.4486842105263157, 0.4401315789473685, 0.46052631578947373, 0.41578947368421054, 0.4569078947368421, 0.4269736842105263, 0.41546052631578945, 0.4411184210526316, 0.437171052631579, 0.4358552631578948, 0.43125, 0.4180921052631579, 0.4207236842105263, 0.43486842105263157, 0.4384868421052632, 0.4207236842105263, 0.3575657894736842, 0.4203947368421052, 0.42960526315789477, 0.4328947368421052, 0.39078947368421046, 0.4407894736842105, 0.4026315789473684, 0.4197368421052632, 0.41381578947368425, 0.4220394736842105, 0.41907894736842105] Best val loss: 9.408245182037353
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8]
+Current group: 0.6
+Epoch [1/134], Training Loss: 25.6435, Validation Loss Current: 10.0315, Validation Loss AVG: 10.0315, lr: 0.001
+Epoch [2/134], Training Loss: 18.8943, Validation Loss Current: 13.0010, Validation Loss AVG: 13.0010, lr: 0.001
+Epoch [3/134], Training Loss: 20.6463, Validation Loss Current: 11.2738, Validation Loss AVG: 11.2738, lr: 0.001
+Epoch [4/134], Training Loss: 15.7577, Validation Loss Current: 10.0945, Validation Loss AVG: 10.0945, lr: 0.001
+Epoch [5/134], Training Loss: 13.8850, Validation Loss Current: 9.3426, Validation Loss AVG: 9.3426, lr: 0.001
+Epoch [6/134], Training Loss: 9.7385, Validation Loss Current: 10.8753, Validation Loss AVG: 10.8753, lr: 0.001
+Epoch [7/134], Training Loss: 9.3504, Validation Loss Current: 10.6930, Validation Loss AVG: 10.6930, lr: 0.001
+Epoch [8/134], Training Loss: 8.6509, Validation Loss Current: 11.3328, Validation Loss AVG: 11.3328, lr: 0.001
+Epoch [9/134], Training Loss: 12.5010, Validation Loss Current: 14.2052, Validation Loss AVG: 14.2052, lr: 0.001
+Epoch [10/134], Training Loss: 7.0577, Validation Loss Current: 11.0913, Validation Loss AVG: 11.0913, lr: 0.001
+Epoch [11/134], Training Loss: 5.0900, Validation Loss Current: 9.9873, Validation Loss AVG: 9.9873, lr: 0.001
+Epoch [12/134], Training Loss: 4.0090, Validation Loss Current: 11.5413, Validation Loss AVG: 11.5413, lr: 0.001
+Epoch [13/134], Training Loss: 4.4889, Validation Loss Current: 10.9133, Validation Loss AVG: 10.9133, lr: 0.001
+Epoch [14/134], Training Loss: 3.2863, Validation Loss Current: 9.6413, Validation Loss AVG: 9.6413, lr: 0.001
+Epoch [15/134], Training Loss: 5.4716, Validation Loss Current: 10.0661, Validation Loss AVG: 10.0661, lr: 0.001
+Epoch [16/134], Training Loss: 8.5016, Validation Loss Current: 10.3381, Validation Loss AVG: 10.3381, lr: 0.001
+Epoch [17/134], Training Loss: 3.9371, Validation Loss Current: 10.6651, Validation Loss AVG: 10.6651, lr: 0.001
+Epoch [18/134], Training Loss: 7.1184, Validation Loss Current: 11.1981, Validation Loss AVG: 11.1981, lr: 0.001
+Epoch [19/134], Training Loss: 4.8392, Validation Loss Current: 10.4625, Validation Loss AVG: 10.4625, lr: 0.001
+Epoch [20/134], Training Loss: 4.9204, Validation Loss Current: 10.2777, Validation Loss AVG: 10.2777, lr: 0.001
+Epoch [21/134], Training Loss: 2.6903, Validation Loss Current: 10.5741, Validation Loss AVG: 10.5741, lr: 0.001
+Epoch [22/134], Training Loss: 3.4653, Validation Loss Current: 10.9438, Validation Loss AVG: 10.9438, lr: 0.001
+Epoch [23/134], Training Loss: 3.8899, Validation Loss Current: 10.7835, Validation Loss AVG: 10.7835, lr: 0.001
+Epoch [24/134], Training Loss: 3.5282, Validation Loss Current: 12.5469, Validation Loss AVG: 12.5469, lr: 0.001
+Epoch [25/134], Training Loss: 1.4392, Validation Loss Current: 11.6735, Validation Loss AVG: 11.6735, lr: 0.001
+Epoch [26/134], Training Loss: 1.1732, Validation Loss Current: 10.8859, Validation Loss AVG: 10.8859, lr: 0.001
+Epoch [27/134], Training Loss: 1.0114, Validation Loss Current: 11.2609, Validation Loss AVG: 11.2609, lr: 0.001
+Epoch [28/134], Training Loss: 4.2625, Validation Loss Current: 11.4067, Validation Loss AVG: 11.4067, lr: 0.001
+Epoch [29/134], Training Loss: 3.2457, Validation Loss Current: 10.7617, Validation Loss AVG: 10.7617, lr: 0.001
+Epoch [30/134], Training Loss: 2.4314, Validation Loss Current: 11.6194, Validation Loss AVG: 11.6194, lr: 0.001
+Epoch [31/134], Training Loss: 2.7617, Validation Loss Current: 11.7485, Validation Loss AVG: 11.7485, lr: 0.001
+Epoch [32/134], Training Loss: 5.0598, Validation Loss Current: 11.8206, Validation Loss AVG: 11.8206, lr: 0.001
+Epoch [33/134], Training Loss: 2.8587, Validation Loss Current: 12.3304, Validation Loss AVG: 12.3304, lr: 0.001
+Epoch [34/134], Training Loss: 6.5386, Validation Loss Current: 13.2760, Validation Loss AVG: 13.2760, lr: 0.001
+Epoch [35/134], Training Loss: 4.0189, Validation Loss Current: 13.3407, Validation Loss AVG: 13.3407, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.6 finished training. Best epoch: 5 Best val accuracy: [0.46907894736842104, 0.3799342105263158, 0.4253289473684211, 0.4608552631578947, 0.4776315789473684, 0.4437499999999999, 0.46052631578947373, 0.41546052631578945, 0.4177631578947369, 0.40822368421052635, 0.4766447368421053, 0.4375, 0.4720394736842106, 0.4875, 0.46809210526315786, 0.45592105263157895, 0.47335526315789467, 0.4411184210526315, 0.4786184210526316, 0.48157894736842105, 0.4536184210526316, 0.48125, 0.4717105263157896, 0.4309210526315789, 0.4625, 0.46611842105263157, 0.4776315789473684, 0.47993421052631585, 0.46611842105263157, 0.4338815789473684, 0.47105263157894733, 0.45723684210526316, 0.46940789473684214, 0.4046052631578948, 0.38881578947368417] Best val loss: 9.342642688751221
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6]
+Current group: 0.4
+Epoch [1/100], Training Loss: 36.0422, Validation Loss Current: 14.6612, Validation Loss AVG: 14.6612, lr: 0.001
+Epoch [2/100], Training Loss: 23.7315, Validation Loss Current: 10.4197, Validation Loss AVG: 10.4197, lr: 0.001
+Epoch [3/100], Training Loss: 15.7782, Validation Loss Current: 9.9655, Validation Loss AVG: 9.9655, lr: 0.001
+Epoch [4/100], Training Loss: 13.0251, Validation Loss Current: 11.6136, Validation Loss AVG: 11.6136, lr: 0.001
+Epoch [5/100], Training Loss: 12.9205, Validation Loss Current: 9.5606, Validation Loss AVG: 9.5606, lr: 0.001
+Epoch [6/100], Training Loss: 9.2128, Validation Loss Current: 12.2449, Validation Loss AVG: 12.2449, lr: 0.001
+Epoch [7/100], Training Loss: 8.6508, Validation Loss Current: 11.0616, Validation Loss AVG: 11.0616, lr: 0.001
+Epoch [8/100], Training Loss: 7.8184, Validation Loss Current: 11.6728, Validation Loss AVG: 11.6728, lr: 0.001
+Epoch [9/100], Training Loss: 6.9251, Validation Loss Current: 10.0593, Validation Loss AVG: 10.0593, lr: 0.001
+Epoch [10/100], Training Loss: 6.6594, Validation Loss Current: 13.6974, Validation Loss AVG: 13.6974, lr: 0.001
+Epoch [11/100], Training Loss: 6.9033, Validation Loss Current: 11.3507, Validation Loss AVG: 11.3507, lr: 0.001
+Epoch [12/100], Training Loss: 5.9951, Validation Loss Current: 15.4918, Validation Loss AVG: 15.4918, lr: 0.001
+Epoch [13/100], Training Loss: 5.4218, Validation Loss Current: 11.2155, Validation Loss AVG: 11.2155, lr: 0.001
+Epoch [14/100], Training Loss: 3.8852, Validation Loss Current: 11.7740, Validation Loss AVG: 11.7740, lr: 0.001
+Epoch [15/100], Training Loss: 3.7347, Validation Loss Current: 13.7290, Validation Loss AVG: 13.7290, lr: 0.001
+Epoch [16/100], Training Loss: 2.1171, Validation Loss Current: 10.6995, Validation Loss AVG: 10.6995, lr: 0.001
+Epoch [17/100], Training Loss: 2.6858, Validation Loss Current: 12.0570, Validation Loss AVG: 12.0570, lr: 0.001
+Epoch [18/100], Training Loss: 7.2767, Validation Loss Current: 12.7239, Validation Loss AVG: 12.7239, lr: 0.001
+Epoch [19/100], Training Loss: 3.9066, Validation Loss Current: 13.5861, Validation Loss AVG: 13.5861, lr: 0.001
+Epoch [20/100], Training Loss: 4.3818, Validation Loss Current: 11.0115, Validation Loss AVG: 11.0115, lr: 0.001
+Epoch [21/100], Training Loss: 4.8194, Validation Loss Current: 13.6400, Validation Loss AVG: 13.6400, lr: 0.001
+Epoch [22/100], Training Loss: 6.2137, Validation Loss Current: 12.7199, Validation Loss AVG: 12.7199, lr: 0.001
+Epoch [23/100], Training Loss: 6.9392, Validation Loss Current: 13.2472, Validation Loss AVG: 13.2472, lr: 0.001
+Epoch [24/100], Training Loss: 2.8276, Validation Loss Current: 12.3251, Validation Loss AVG: 12.3251, lr: 0.001
+Epoch [25/100], Training Loss: 1.3987, Validation Loss Current: 12.1906, Validation Loss AVG: 12.1906, lr: 0.001
+Epoch [26/100], Training Loss: 1.4051, Validation Loss Current: 11.8987, Validation Loss AVG: 11.8987, lr: 0.001
+Epoch [27/100], Training Loss: 3.7360, Validation Loss Current: 18.3445, Validation Loss AVG: 18.3445, lr: 0.001
+Epoch [28/100], Training Loss: 3.9037, Validation Loss Current: 12.2115, Validation Loss AVG: 12.2115, lr: 0.001
+Epoch [29/100], Training Loss: 2.6857, Validation Loss Current: 14.6090, Validation Loss AVG: 14.6090, lr: 0.001
+Epoch [30/100], Training Loss: 3.8102, Validation Loss Current: 13.5205, Validation Loss AVG: 13.5205, lr: 0.001
+Epoch [31/100], Training Loss: 2.1436, Validation Loss Current: 13.3529, Validation Loss AVG: 13.3529, lr: 0.001
+Epoch [32/100], Training Loss: 4.0129, Validation Loss Current: 13.8832, Validation Loss AVG: 13.8832, lr: 0.001
+Epoch [33/100], Training Loss: 6.2764, Validation Loss Current: 14.3172, Validation Loss AVG: 14.3172, lr: 0.001
+Epoch [34/100], Training Loss: 6.4165, Validation Loss Current: 13.1722, Validation Loss AVG: 13.1722, lr: 0.001
+Epoch [35/100], Training Loss: 5.2868, Validation Loss Current: 24.3765, Validation Loss AVG: 24.3765, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.4 finished training. Best epoch: 5 Best val accuracy: [0.3736842105263158, 0.4427631578947369, 0.47171052631578947, 0.4203947368421052, 0.48947368421052617, 0.3848684210526316, 0.5046052631578947, 0.46611842105263157, 0.4756578947368421, 0.44671052631578945, 0.47993421052631585, 0.35427631578947366, 0.4648026315789474, 0.5009868421052631, 0.43618421052631573, 0.49934210526315786, 0.48322368421052636, 0.4822368421052632, 0.44375, 0.49078947368421055, 0.4796052631578947, 0.4736842105263158, 0.43355263157894736, 0.4615131578947368, 0.48717105263157895, 0.4894736842105263, 0.38355263157894737, 0.48421052631578954, 0.4671052631578947, 0.4286184210526316, 0.48717105263157895, 0.4601973684210526, 0.4375, 0.4753289473684211, 0.2825657894736842] Best val loss: 9.560624980926514
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4, 0.2] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6, 0.4] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6, 0.4]
+Current group: 0.2
+Epoch [1/80], Training Loss: 42.1033, Validation Loss Current: 22.4104, Validation Loss AVG: 22.4104, lr: 0.001
+Epoch [2/80], Training Loss: 24.6066, Validation Loss Current: 16.4784, Validation Loss AVG: 16.4784, lr: 0.001
+Epoch [3/80], Training Loss: 22.2817, Validation Loss Current: 14.3560, Validation Loss AVG: 14.3560, lr: 0.001
+Epoch [4/80], Training Loss: 19.9030, Validation Loss Current: 16.5379, Validation Loss AVG: 16.5379, lr: 0.001
+Epoch [5/80], Training Loss: 16.7975, Validation Loss Current: 21.9919, Validation Loss AVG: 21.9919, lr: 0.001
+Epoch [6/80], Training Loss: 14.8441, Validation Loss Current: 15.6996, Validation Loss AVG: 15.6996, lr: 0.001
+Epoch [7/80], Training Loss: 11.8253, Validation Loss Current: 23.6305, Validation Loss AVG: 23.6305, lr: 0.001
+Epoch [8/80], Training Loss: 9.8863, Validation Loss Current: 17.0344, Validation Loss AVG: 17.0344, lr: 0.001
+Epoch [9/80], Training Loss: 10.6507, Validation Loss Current: 17.7142, Validation Loss AVG: 17.7142, lr: 0.001
+Epoch [10/80], Training Loss: 10.6661, Validation Loss Current: 16.6869, Validation Loss AVG: 16.6869, lr: 0.001
+Epoch [11/80], Training Loss: 6.2767, Validation Loss Current: 17.0844, Validation Loss AVG: 17.0844, lr: 0.001
+Epoch [12/80], Training Loss: 8.0934, Validation Loss Current: 16.8975, Validation Loss AVG: 16.8975, lr: 0.001
+Epoch [13/80], Training Loss: 5.5510, Validation Loss Current: 17.6097, Validation Loss AVG: 17.6097, lr: 0.001
+Epoch [14/80], Training Loss: 6.2575, Validation Loss Current: 22.5206, Validation Loss AVG: 22.5206, lr: 0.001
+Epoch [15/80], Training Loss: 7.8270, Validation Loss Current: 19.2062, Validation Loss AVG: 19.2062, lr: 0.001
+Epoch [16/80], Training Loss: 9.6217, Validation Loss Current: 21.2390, Validation Loss AVG: 21.2390, lr: 0.001
+Epoch [17/80], Training Loss: 6.1022, Validation Loss Current: 21.3900, Validation Loss AVG: 21.3900, lr: 0.001
+Epoch [18/80], Training Loss: 7.0166, Validation Loss Current: 23.4604, Validation Loss AVG: 23.4604, lr: 0.001
+Epoch [19/80], Training Loss: 9.1980, Validation Loss Current: 25.2668, Validation Loss AVG: 25.2668, lr: 0.001
+Epoch [20/80], Training Loss: 8.2375, Validation Loss Current: 28.5473, Validation Loss AVG: 28.5473, lr: 0.001
+Epoch [21/80], Training Loss: 13.7321, Validation Loss Current: 20.6649, Validation Loss AVG: 20.6649, lr: 0.001
+Epoch [22/80], Training Loss: 7.6249, Validation Loss Current: 22.2481, Validation Loss AVG: 22.2481, lr: 0.001
+Epoch [23/80], Training Loss: 10.6837, Validation Loss Current: 20.7991, Validation Loss AVG: 20.7991, lr: 0.001
+Epoch [24/80], Training Loss: 14.3630, Validation Loss Current: 18.3558, Validation Loss AVG: 18.3558, lr: 0.001
+Epoch [25/80], Training Loss: 7.8302, Validation Loss Current: 22.8046, Validation Loss AVG: 22.8046, lr: 0.001
+Epoch [26/80], Training Loss: 5.3277, Validation Loss Current: 17.9995, Validation Loss AVG: 17.9995, lr: 0.001
+Epoch [27/80], Training Loss: 4.1965, Validation Loss Current: 18.5744, Validation Loss AVG: 18.5744, lr: 0.001
+Epoch [28/80], Training Loss: 4.3316, Validation Loss Current: 22.6625, Validation Loss AVG: 22.6625, lr: 0.001
+Epoch [29/80], Training Loss: 6.1323, Validation Loss Current: 24.8065, Validation Loss AVG: 24.8065, lr: 0.001
+Epoch [30/80], Training Loss: 4.5008, Validation Loss Current: 18.8322, Validation Loss AVG: 18.8322, lr: 0.001
+Epoch [31/80], Training Loss: 5.9571, Validation Loss Current: 22.5966, Validation Loss AVG: 22.5966, lr: 0.001
+Epoch [32/80], Training Loss: 4.7479, Validation Loss Current: 24.6723, Validation Loss AVG: 24.6723, lr: 0.001
+Epoch [33/80], Training Loss: 9.5810, Validation Loss Current: 30.5078, Validation Loss AVG: 30.5078, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.2 finished training. Best epoch: 3 Best val accuracy: [0.40592105263157896, 0.34671052631578947, 0.35230263157894737, 0.36875, 0.32203947368421054, 0.3740131578947369, 0.28421052631578947, 0.3493421052631579, 0.3815789473684211, 0.35197368421052627, 0.41085526315789467, 0.35855263157894735, 0.3483552631578948, 0.35296052631578945, 0.36677631578947373, 0.32532894736842105, 0.3059210526315789, 0.30625, 0.27828947368421053, 0.33059210526315785, 0.27697368421052626, 0.3072368421052632, 0.32335526315789476, 0.3282894736842105, 0.3315789473684211, 0.37236842105263157, 0.40164473684210533, 0.30625, 0.33585526315789477, 0.3299342105263158, 0.3555921052631579, 0.2868421052631579, 0.21743421052631579] Best val loss: 14.35602605342865
+
+
+Fold: 2
+----- Training resnet18 with sequence: [1] -----
+Current group: 1
+Epoch [1/400], Training Loss: 40.9384, Validation Loss Current: 9.9676, Validation Loss AVG: 10.0473, lr: 0.001
+Epoch [2/400], Training Loss: 37.7750, Validation Loss Current: 9.6952, Validation Loss AVG: 9.9956, lr: 0.001
+Epoch [3/400], Training Loss: 37.8007, Validation Loss Current: 9.3555, Validation Loss AVG: 9.8152, lr: 0.001
+Epoch [4/400], Training Loss: 36.5585, Validation Loss Current: 9.1968, Validation Loss AVG: 9.6656, lr: 0.001
+Epoch [5/400], Training Loss: 35.6621, Validation Loss Current: 8.8572, Validation Loss AVG: 9.5889, lr: 0.001
+Epoch [6/400], Training Loss: 32.5459, Validation Loss Current: 8.5013, Validation Loss AVG: 9.4863, lr: 0.001
+Epoch [7/400], Training Loss: 32.2233, Validation Loss Current: 8.3248, Validation Loss AVG: 9.2075, lr: 0.001
+Epoch [8/400], Training Loss: 30.8086, Validation Loss Current: 7.9463, Validation Loss AVG: 9.6723, lr: 0.001
+Epoch [9/400], Training Loss: 29.4355, Validation Loss Current: 7.9086, Validation Loss AVG: 9.3046, lr: 0.001
+Epoch [10/400], Training Loss: 28.5797, Validation Loss Current: 7.4539, Validation Loss AVG: 9.7600, lr: 0.001
+Epoch [11/400], Training Loss: 27.2934, Validation Loss Current: 7.3589, Validation Loss AVG: 9.1260, lr: 0.001
+Epoch [12/400], Training Loss: 26.4171, Validation Loss Current: 7.6888, Validation Loss AVG: 11.5962, lr: 0.001
+Epoch [13/400], Training Loss: 25.3600, Validation Loss Current: 7.2953, Validation Loss AVG: 8.8752, lr: 0.001
+Epoch [14/400], Training Loss: 24.6296, Validation Loss Current: 7.0614, Validation Loss AVG: 10.4227, lr: 0.001
+Epoch [15/400], Training Loss: 26.8629, Validation Loss Current: 7.0487, Validation Loss AVG: 9.2309, lr: 0.001
+Epoch [16/400], Training Loss: 24.6130, Validation Loss Current: 7.6063, Validation Loss AVG: 13.0570, lr: 0.001
+Epoch [17/400], Training Loss: 24.6188, Validation Loss Current: 7.4810, Validation Loss AVG: 8.9868, lr: 0.001
+Epoch [18/400], Training Loss: 23.0473, Validation Loss Current: 7.0826, Validation Loss AVG: 9.8196, lr: 0.001
+Epoch [19/400], Training Loss: 22.2612, Validation Loss Current: 6.7842, Validation Loss AVG: 9.6309, lr: 0.001
+Epoch [20/400], Training Loss: 21.2332, Validation Loss Current: 6.2856, Validation Loss AVG: 8.1955, lr: 0.001
+Epoch [21/400], Training Loss: 21.4054, Validation Loss Current: 6.5417, Validation Loss AVG: 9.2275, lr: 0.001
+Epoch [22/400], Training Loss: 20.0246, Validation Loss Current: 6.3512, Validation Loss AVG: 9.5097, lr: 0.001
+Epoch [23/400], Training Loss: 20.1132, Validation Loss Current: 6.6773, Validation Loss AVG: 12.2783, lr: 0.001
+Epoch [24/400], Training Loss: 18.2936, Validation Loss Current: 6.7862, Validation Loss AVG: 8.7807, lr: 0.001
+Epoch [25/400], Training Loss: 17.8978, Validation Loss Current: 6.5494, Validation Loss AVG: 12.8096, lr: 0.001
+Epoch [26/400], Training Loss: 16.7126, Validation Loss Current: 6.4095, Validation Loss AVG: 9.9131, lr: 0.001
+Epoch [27/400], Training Loss: 16.1724, Validation Loss Current: 6.1977, Validation Loss AVG: 8.5526, lr: 0.001
+Epoch [28/400], Training Loss: 16.5178, Validation Loss Current: 6.0204, Validation Loss AVG: 8.7905, lr: 0.001
+Epoch [29/400], Training Loss: 14.9935, Validation Loss Current: 6.1482, Validation Loss AVG: 10.0420, lr: 0.001
+Epoch [30/400], Training Loss: 13.4810, Validation Loss Current: 6.3230, Validation Loss AVG: 11.3578, lr: 0.001
+Epoch [31/400], Training Loss: 12.4129, Validation Loss Current: 6.0025, Validation Loss AVG: 8.9032, lr: 0.001
+Epoch [32/400], Training Loss: 13.1600, Validation Loss Current: 6.2103, Validation Loss AVG: 11.6301, lr: 0.001
+Epoch [33/400], Training Loss: 16.1646, Validation Loss Current: 6.5536, Validation Loss AVG: 8.6743, lr: 0.001
+Epoch [34/400], Training Loss: 13.6290, Validation Loss Current: 6.3846, Validation Loss AVG: 11.5172, lr: 0.001
+Epoch [35/400], Training Loss: 11.8861, Validation Loss Current: 6.1196, Validation Loss AVG: 9.6141, lr: 0.001
+Epoch [36/400], Training Loss: 10.3075, Validation Loss Current: 5.5611, Validation Loss AVG: 9.0033, lr: 0.001
+Epoch [37/400], Training Loss: 9.5038, Validation Loss Current: 5.8907, Validation Loss AVG: 10.4911, lr: 0.001
+Epoch [38/400], Training Loss: 8.8334, Validation Loss Current: 6.0478, Validation Loss AVG: 10.3899, lr: 0.001
+Epoch [39/400], Training Loss: 10.0398, Validation Loss Current: 8.1163, Validation Loss AVG: 16.9763, lr: 0.001
+Epoch [40/400], Training Loss: 10.2641, Validation Loss Current: 6.1937, Validation Loss AVG: 8.0897, lr: 0.001
+Epoch [41/400], Training Loss: 8.5789, Validation Loss Current: 6.3311, Validation Loss AVG: 9.0501, lr: 0.001
+Epoch [42/400], Training Loss: 8.2660, Validation Loss Current: 5.7004, Validation Loss AVG: 9.7387, lr: 0.001
+Epoch [43/400], Training Loss: 7.9616, Validation Loss Current: 6.4795, Validation Loss AVG: 9.0641, lr: 0.001
+Epoch [44/400], Training Loss: 7.8217, Validation Loss Current: 5.9332, Validation Loss AVG: 9.5981, lr: 0.001
+Epoch [45/400], Training Loss: 6.7368, Validation Loss Current: 6.8789, Validation Loss AVG: 12.6311, lr: 0.001
+Epoch [46/400], Training Loss: 7.1140, Validation Loss Current: 6.4150, Validation Loss AVG: 9.5061, lr: 0.001
+Epoch [47/400], Training Loss: 5.5479, Validation Loss Current: 6.2617, Validation Loss AVG: 12.0011, lr: 0.001
+Epoch [48/400], Training Loss: 5.7232, Validation Loss Current: 6.2048, Validation Loss AVG: 10.4295, lr: 0.001
+Epoch [49/400], Training Loss: 6.3899, Validation Loss Current: 6.2744, Validation Loss AVG: 10.2019, lr: 0.001
+Epoch [50/400], Training Loss: 7.8310, Validation Loss Current: 6.9510, Validation Loss AVG: 11.0069, lr: 0.001
+Epoch [51/400], Training Loss: 5.1370, Validation Loss Current: 7.1803, Validation Loss AVG: 9.1854, lr: 0.001
+Epoch [52/400], Training Loss: 4.7041, Validation Loss Current: 8.5929, Validation Loss AVG: 14.9712, lr: 0.001
+Epoch [53/400], Training Loss: 6.4951, Validation Loss Current: 7.4136, Validation Loss AVG: 9.4325, lr: 0.001
+Epoch [54/400], Training Loss: 4.2318, Validation Loss Current: 6.0447, Validation Loss AVG: 9.2264, lr: 0.001
+Epoch [55/400], Training Loss: 5.5039, Validation Loss Current: 6.5009, Validation Loss AVG: 11.5263, lr: 0.001
+Epoch [56/400], Training Loss: 3.4977, Validation Loss Current: 6.9087, Validation Loss AVG: 14.0356, lr: 0.001
+Epoch [57/400], Training Loss: 3.4047, Validation Loss Current: 6.9990, Validation Loss AVG: 9.5795, lr: 0.001
+Epoch [58/400], Training Loss: 4.0764, Validation Loss Current: 7.9017, Validation Loss AVG: 12.5614, lr: 0.001
+Epoch [59/400], Training Loss: 6.4488, Validation Loss Current: 9.3745, Validation Loss AVG: 11.5229, lr: 0.001
+Epoch [60/400], Training Loss: 7.7700, Validation Loss Current: 8.1953, Validation Loss AVG: 21.5309, lr: 0.001
+Epoch [61/400], Training Loss: 7.2373, Validation Loss Current: 7.4805, Validation Loss AVG: 14.2818, lr: 0.001
+Epoch [62/400], Training Loss: 6.1722, Validation Loss Current: 8.1016, Validation Loss AVG: 12.2827, lr: 0.001
+Epoch [63/400], Training Loss: 5.7590, Validation Loss Current: 6.7201, Validation Loss AVG: 13.1045, lr: 0.001
+Epoch [64/400], Training Loss: 3.6120, Validation Loss Current: 7.2100, Validation Loss AVG: 13.2923, lr: 0.001
+Epoch [65/400], Training Loss: 3.8123, Validation Loss Current: 6.6801, Validation Loss AVG: 13.0558, lr: 0.001
+Epoch [66/400], Training Loss: 5.9065, Validation Loss Current: 7.7586, Validation Loss AVG: 11.8757, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 1 finished training. Best epoch: 36 Best val accuracy: [0.23026315789473684, 0.2713815789473684, 0.32894736842105265, 0.3338815789473684, 0.36348684210526316, 0.3832236842105263, 0.39144736842105265, 0.4407894736842105, 0.43585526315789475, 0.48848684210526316, 0.4868421052631579, 0.4506578947368421, 0.49506578947368424, 0.5049342105263158, 0.5049342105263158, 0.48519736842105265, 0.47039473684210525, 0.5279605263157895, 0.5411184210526315, 0.5625, 0.569078947368421, 0.5740131578947368, 0.5592105263157895, 0.5427631578947368, 0.5394736842105263, 0.5608552631578947, 0.5855263157894737, 0.6069078947368421, 0.5674342105263158, 0.5904605263157895, 0.5970394736842105, 0.5986842105263158, 0.5740131578947368, 0.587171052631579, 0.59375, 0.625, 0.600328947368421, 0.6019736842105263, 0.524671052631579, 0.5921052631578947, 0.5986842105263158, 0.6299342105263158, 0.5855263157894737, 0.6151315789473685, 0.5674342105263158, 0.625, 0.618421052631579, 0.6217105263157895, 0.6200657894736842, 0.5526315789473685, 0.5822368421052632, 0.5164473684210527, 0.5641447368421053, 0.6151315789473685, 0.6167763157894737, 0.6052631578947368, 0.6134868421052632, 0.5657894736842105, 0.5542763157894737, 0.53125, 0.5361842105263158, 0.5822368421052632, 0.618421052631579, 0.5838815789473685, 0.6118421052631579, 0.5838815789473685] Best val loss: 5.5611350536346436
+
+
+----- Training resnet18 with sequence: [1, 0.8] -----
+Sequence [1] already in state dictionary, jumped
+Loaded best state dict for [1]
+Current group: 0.8
+Epoch [1/200], Training Loss: 21.9193, Validation Loss Current: 11.6186, Validation Loss AVG: 11.6186, lr: 0.001
+Epoch [2/200], Training Loss: 19.7605, Validation Loss Current: 10.3128, Validation Loss AVG: 10.3128, lr: 0.001
+Epoch [3/200], Training Loss: 12.5956, Validation Loss Current: 10.9018, Validation Loss AVG: 10.9018, lr: 0.001
+Epoch [4/200], Training Loss: 11.8324, Validation Loss Current: 13.1366, Validation Loss AVG: 13.1366, lr: 0.001
+Epoch [5/200], Training Loss: 12.2104, Validation Loss Current: 11.0687, Validation Loss AVG: 11.0687, lr: 0.001
+Epoch [6/200], Training Loss: 11.0487, Validation Loss Current: 10.2764, Validation Loss AVG: 10.2764, lr: 0.001
+Epoch [7/200], Training Loss: 9.7516, Validation Loss Current: 15.3576, Validation Loss AVG: 15.3576, lr: 0.001
+Epoch [8/200], Training Loss: 6.4851, Validation Loss Current: 10.8745, Validation Loss AVG: 10.8745, lr: 0.001
+Epoch [9/200], Training Loss: 7.2500, Validation Loss Current: 9.6692, Validation Loss AVG: 9.6692, lr: 0.001
+Epoch [10/200], Training Loss: 6.1123, Validation Loss Current: 12.3583, Validation Loss AVG: 12.3583, lr: 0.001
+Epoch [11/200], Training Loss: 5.3469, Validation Loss Current: 9.6504, Validation Loss AVG: 9.6504, lr: 0.001
+Epoch [12/200], Training Loss: 4.7648, Validation Loss Current: 10.3563, Validation Loss AVG: 10.3563, lr: 0.001
+Epoch [13/200], Training Loss: 7.1695, Validation Loss Current: 9.9485, Validation Loss AVG: 9.9485, lr: 0.001
+Epoch [14/200], Training Loss: 5.1095, Validation Loss Current: 11.7177, Validation Loss AVG: 11.7177, lr: 0.001
+Epoch [15/200], Training Loss: 4.4574, Validation Loss Current: 10.8716, Validation Loss AVG: 10.8716, lr: 0.001
+Epoch [16/200], Training Loss: 8.7954, Validation Loss Current: 11.1262, Validation Loss AVG: 11.1262, lr: 0.001
+Epoch [17/200], Training Loss: 5.8477, Validation Loss Current: 11.7985, Validation Loss AVG: 11.7985, lr: 0.001
+Epoch [18/200], Training Loss: 3.6212, Validation Loss Current: 14.6834, Validation Loss AVG: 14.6834, lr: 0.001
+Epoch [19/200], Training Loss: 2.3178, Validation Loss Current: 11.5539, Validation Loss AVG: 11.5539, lr: 0.001
+Epoch [20/200], Training Loss: 4.5379, Validation Loss Current: 9.6773, Validation Loss AVG: 9.6773, lr: 0.001
+Epoch [21/200], Training Loss: 3.9125, Validation Loss Current: 11.0207, Validation Loss AVG: 11.0207, lr: 0.001
+Epoch [22/200], Training Loss: 2.5429, Validation Loss Current: 11.5290, Validation Loss AVG: 11.5290, lr: 0.001
+Epoch [23/200], Training Loss: 3.5145, Validation Loss Current: 11.3808, Validation Loss AVG: 11.3808, lr: 0.001
+Epoch [24/200], Training Loss: 2.1439, Validation Loss Current: 11.4338, Validation Loss AVG: 11.4338, lr: 0.001
+Epoch [25/200], Training Loss: 3.5388, Validation Loss Current: 10.5658, Validation Loss AVG: 10.5658, lr: 0.001
+Epoch [26/200], Training Loss: 2.7418, Validation Loss Current: 15.2533, Validation Loss AVG: 15.2533, lr: 0.001
+Epoch [27/200], Training Loss: 2.6834, Validation Loss Current: 12.7311, Validation Loss AVG: 12.7311, lr: 0.001
+Epoch [28/200], Training Loss: 3.2127, Validation Loss Current: 14.3478, Validation Loss AVG: 14.3478, lr: 0.001
+Epoch [29/200], Training Loss: 1.9714, Validation Loss Current: 11.5867, Validation Loss AVG: 11.5867, lr: 0.001
+Epoch [30/200], Training Loss: 3.3637, Validation Loss Current: 14.4075, Validation Loss AVG: 14.4075, lr: 0.001
+Epoch [31/200], Training Loss: 4.4186, Validation Loss Current: 12.8363, Validation Loss AVG: 12.8363, lr: 0.001
+Epoch [32/200], Training Loss: 5.2682, Validation Loss Current: 16.5170, Validation Loss AVG: 16.5170, lr: 0.001
+Epoch [33/200], Training Loss: 3.7464, Validation Loss Current: 11.5043, Validation Loss AVG: 11.5043, lr: 0.001
+Epoch [34/200], Training Loss: 4.6492, Validation Loss Current: 11.6258, Validation Loss AVG: 11.6258, lr: 0.001
+Epoch [35/200], Training Loss: 6.1310, Validation Loss Current: 12.6089, Validation Loss AVG: 12.6089, lr: 0.001
+Epoch [36/200], Training Loss: 8.4561, Validation Loss Current: 11.7301, Validation Loss AVG: 11.7301, lr: 0.001
+Epoch [37/200], Training Loss: 9.9822, Validation Loss Current: 17.3165, Validation Loss AVG: 17.3165, lr: 0.001
+Epoch [38/200], Training Loss: 7.5802, Validation Loss Current: 12.7722, Validation Loss AVG: 12.7722, lr: 0.001
+Epoch [39/200], Training Loss: 7.2992, Validation Loss Current: 12.1149, Validation Loss AVG: 12.1149, lr: 0.001
+Epoch [40/200], Training Loss: 6.3521, Validation Loss Current: 12.7810, Validation Loss AVG: 12.7810, lr: 0.001
+Epoch [41/200], Training Loss: 3.9193, Validation Loss Current: 10.8257, Validation Loss AVG: 10.8257, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.8 finished training. Best epoch: 11 Best val accuracy: [0.4375, 0.4513157894736842, 0.43519736842105267, 0.41282894736842096, 0.4046052631578948, 0.4328947368421052, 0.4023026315789474, 0.42828947368421055, 0.46118421052631586, 0.4134868421052632, 0.4582236842105264, 0.45131578947368417, 0.4578947368421053, 0.4134868421052632, 0.4809210526315789, 0.4269736842105263, 0.41743421052631574, 0.4125, 0.4601973684210526, 0.46611842105263157, 0.45822368421052617, 0.44572368421052627, 0.45032894736842105, 0.45131578947368417, 0.4536184210526316, 0.44868421052631574, 0.44539473684210523, 0.4375, 0.469407894736842, 0.43815789473684214, 0.41546052631578945, 0.3973684210526315, 0.4759868421052631, 0.4411184210526316, 0.4259868421052631, 0.40756578947368427, 0.3358552631578947, 0.4325657894736842, 0.4108552631578948, 0.4220394736842105, 0.46118421052631575] Best val loss: 9.650396847724915
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8]
+Current group: 0.6
+Epoch [1/134], Training Loss: 26.3812, Validation Loss Current: 14.2480, Validation Loss AVG: 14.2480, lr: 0.001
+Epoch [2/134], Training Loss: 20.5059, Validation Loss Current: 10.6281, Validation Loss AVG: 10.6281, lr: 0.001
+Epoch [3/134], Training Loss: 16.1896, Validation Loss Current: 9.5776, Validation Loss AVG: 9.5776, lr: 0.001
+Epoch [4/134], Training Loss: 11.6616, Validation Loss Current: 9.2487, Validation Loss AVG: 9.2487, lr: 0.001
+Epoch [5/134], Training Loss: 10.3421, Validation Loss Current: 10.7855, Validation Loss AVG: 10.7855, lr: 0.001
+Epoch [6/134], Training Loss: 8.0888, Validation Loss Current: 9.7538, Validation Loss AVG: 9.7538, lr: 0.001
+Epoch [7/134], Training Loss: 9.8534, Validation Loss Current: 10.0622, Validation Loss AVG: 10.0622, lr: 0.001
+Epoch [8/134], Training Loss: 5.9652, Validation Loss Current: 10.3522, Validation Loss AVG: 10.3522, lr: 0.001
+Epoch [9/134], Training Loss: 6.0402, Validation Loss Current: 9.7398, Validation Loss AVG: 9.7398, lr: 0.001
+Epoch [10/134], Training Loss: 6.6186, Validation Loss Current: 11.6575, Validation Loss AVG: 11.6575, lr: 0.001
+Epoch [11/134], Training Loss: 4.6265, Validation Loss Current: 11.6850, Validation Loss AVG: 11.6850, lr: 0.001
+Epoch [12/134], Training Loss: 4.1795, Validation Loss Current: 10.3782, Validation Loss AVG: 10.3782, lr: 0.001
+Epoch [13/134], Training Loss: 4.1996, Validation Loss Current: 10.7000, Validation Loss AVG: 10.7000, lr: 0.001
+Epoch [14/134], Training Loss: 2.6961, Validation Loss Current: 10.2953, Validation Loss AVG: 10.2953, lr: 0.001
+Epoch [15/134], Training Loss: 2.0529, Validation Loss Current: 10.0575, Validation Loss AVG: 10.0575, lr: 0.001
+Epoch [16/134], Training Loss: 1.8977, Validation Loss Current: 10.1047, Validation Loss AVG: 10.1047, lr: 0.001
+Epoch [17/134], Training Loss: 1.7756, Validation Loss Current: 9.6824, Validation Loss AVG: 9.6824, lr: 0.001
+Epoch [18/134], Training Loss: 4.1536, Validation Loss Current: 10.8728, Validation Loss AVG: 10.8728, lr: 0.001
+Epoch [19/134], Training Loss: 3.5536, Validation Loss Current: 11.4688, Validation Loss AVG: 11.4688, lr: 0.001
+Epoch [20/134], Training Loss: 9.4891, Validation Loss Current: 10.6546, Validation Loss AVG: 10.6546, lr: 0.001
+Epoch [21/134], Training Loss: 4.2529, Validation Loss Current: 12.4124, Validation Loss AVG: 12.4124, lr: 0.001
+Epoch [22/134], Training Loss: 5.8449, Validation Loss Current: 13.8593, Validation Loss AVG: 13.8593, lr: 0.001
+Epoch [23/134], Training Loss: 2.5427, Validation Loss Current: 10.1679, Validation Loss AVG: 10.1679, lr: 0.001
+Epoch [24/134], Training Loss: 2.1577, Validation Loss Current: 10.4965, Validation Loss AVG: 10.4965, lr: 0.001
+Epoch [25/134], Training Loss: 1.7258, Validation Loss Current: 10.7959, Validation Loss AVG: 10.7959, lr: 0.001
+Epoch [26/134], Training Loss: 1.8686, Validation Loss Current: 13.4264, Validation Loss AVG: 13.4264, lr: 0.001
+Epoch [27/134], Training Loss: 1.5646, Validation Loss Current: 12.1832, Validation Loss AVG: 12.1832, lr: 0.001
+Epoch [28/134], Training Loss: 1.3693, Validation Loss Current: 10.2852, Validation Loss AVG: 10.2852, lr: 0.001
+Epoch [29/134], Training Loss: 1.1249, Validation Loss Current: 11.8793, Validation Loss AVG: 11.8793, lr: 0.001
+Epoch [30/134], Training Loss: 1.6712, Validation Loss Current: 11.3274, Validation Loss AVG: 11.3274, lr: 0.001
+Epoch [31/134], Training Loss: 1.2779, Validation Loss Current: 10.9473, Validation Loss AVG: 10.9473, lr: 0.001
+Epoch [32/134], Training Loss: 1.6010, Validation Loss Current: 12.6132, Validation Loss AVG: 12.6132, lr: 0.001
+Epoch [33/134], Training Loss: 3.3717, Validation Loss Current: 11.6763, Validation Loss AVG: 11.6763, lr: 0.001
+Epoch [34/134], Training Loss: 3.7580, Validation Loss Current: 12.2537, Validation Loss AVG: 12.2537, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.6 finished training. Best epoch: 4 Best val accuracy: [0.3805921052631579, 0.4444078947368421, 0.48717105263157895, 0.5101973684210526, 0.4703947368421053, 0.46447368421052626, 0.499342105263158, 0.4759868421052632, 0.5036184210526315, 0.4457236842105264, 0.47335526315789467, 0.49572368421052626, 0.5101973684210527, 0.5029605263157895, 0.5210526315789473, 0.48684210526315785, 0.53125, 0.511513157894737, 0.4440789473684211, 0.5013157894736843, 0.44671052631578945, 0.43157894736842106, 0.5088815789473684, 0.5023026315789474, 0.47434210526315795, 0.46480263157894736, 0.4759868421052631, 0.4944078947368421, 0.5069078947368422, 0.49243421052631575, 0.500328947368421, 0.49144736842105263, 0.47105263157894744, 0.4641447368421052] Best val loss: 9.248669385910034
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6]
+Current group: 0.4
+Epoch [1/100], Training Loss: 34.6906, Validation Loss Current: 17.6849, Validation Loss AVG: 17.6849, lr: 0.001
+Epoch [2/100], Training Loss: 23.1446, Validation Loss Current: 27.7486, Validation Loss AVG: 27.7486, lr: 0.001
+Epoch [3/100], Training Loss: 22.3538, Validation Loss Current: 13.8249, Validation Loss AVG: 13.8249, lr: 0.001
+Epoch [4/100], Training Loss: 15.9385, Validation Loss Current: 9.6745, Validation Loss AVG: 9.6745, lr: 0.001
+Epoch [5/100], Training Loss: 12.6756, Validation Loss Current: 11.9045, Validation Loss AVG: 11.9045, lr: 0.001
+Epoch [6/100], Training Loss: 8.7346, Validation Loss Current: 10.0266, Validation Loss AVG: 10.0266, lr: 0.001
+Epoch [7/100], Training Loss: 6.9807, Validation Loss Current: 9.5198, Validation Loss AVG: 9.5198, lr: 0.001
+Epoch [8/100], Training Loss: 5.0825, Validation Loss Current: 9.0210, Validation Loss AVG: 9.0210, lr: 0.001
+Epoch [9/100], Training Loss: 4.0487, Validation Loss Current: 12.3526, Validation Loss AVG: 12.3526, lr: 0.001
+Epoch [10/100], Training Loss: 3.2316, Validation Loss Current: 9.9139, Validation Loss AVG: 9.9139, lr: 0.001
+Epoch [11/100], Training Loss: 3.3196, Validation Loss Current: 10.0781, Validation Loss AVG: 10.0781, lr: 0.001
+Epoch [12/100], Training Loss: 5.3105, Validation Loss Current: 20.5245, Validation Loss AVG: 20.5245, lr: 0.001
+Epoch [13/100], Training Loss: 12.3328, Validation Loss Current: 17.2763, Validation Loss AVG: 17.2763, lr: 0.001
+Epoch [14/100], Training Loss: 10.3673, Validation Loss Current: 13.1521, Validation Loss AVG: 13.1521, lr: 0.001
+Epoch [15/100], Training Loss: 13.6161, Validation Loss Current: 17.9548, Validation Loss AVG: 17.9548, lr: 0.001
+Epoch [16/100], Training Loss: 8.7489, Validation Loss Current: 11.7738, Validation Loss AVG: 11.7738, lr: 0.001
+Epoch [17/100], Training Loss: 5.9746, Validation Loss Current: 12.7204, Validation Loss AVG: 12.7204, lr: 0.001
+Epoch [18/100], Training Loss: 6.7709, Validation Loss Current: 12.9747, Validation Loss AVG: 12.9747, lr: 0.001
+Epoch [19/100], Training Loss: 4.0610, Validation Loss Current: 10.8286, Validation Loss AVG: 10.8286, lr: 0.001
+Epoch [20/100], Training Loss: 4.0510, Validation Loss Current: 11.0703, Validation Loss AVG: 11.0703, lr: 0.001
+Epoch [21/100], Training Loss: 3.3406, Validation Loss Current: 12.0815, Validation Loss AVG: 12.0815, lr: 0.001
+Epoch [22/100], Training Loss: 4.2979, Validation Loss Current: 13.2322, Validation Loss AVG: 13.2322, lr: 0.001
+Epoch [23/100], Training Loss: 12.9892, Validation Loss Current: 20.7945, Validation Loss AVG: 20.7945, lr: 0.001
+Epoch [24/100], Training Loss: 6.4969, Validation Loss Current: 12.5203, Validation Loss AVG: 12.5203, lr: 0.001
+Epoch [25/100], Training Loss: 2.4054, Validation Loss Current: 12.0058, Validation Loss AVG: 12.0058, lr: 0.001
+Epoch [26/100], Training Loss: 3.2657, Validation Loss Current: 11.5102, Validation Loss AVG: 11.5102, lr: 0.001
+Epoch [27/100], Training Loss: 5.9435, Validation Loss Current: 19.5746, Validation Loss AVG: 19.5746, lr: 0.001
+Epoch [28/100], Training Loss: 3.8229, Validation Loss Current: 14.4081, Validation Loss AVG: 14.4081, lr: 0.001
+Epoch [29/100], Training Loss: 3.1482, Validation Loss Current: 12.7868, Validation Loss AVG: 12.7868, lr: 0.001
+Epoch [30/100], Training Loss: 6.3721, Validation Loss Current: 11.5826, Validation Loss AVG: 11.5826, lr: 0.001
+Epoch [31/100], Training Loss: 4.9530, Validation Loss Current: 13.5035, Validation Loss AVG: 13.5035, lr: 0.001
+Epoch [32/100], Training Loss: 5.1422, Validation Loss Current: 12.1135, Validation Loss AVG: 12.1135, lr: 0.001
+Epoch [33/100], Training Loss: 8.3849, Validation Loss Current: 16.1787, Validation Loss AVG: 16.1787, lr: 0.001
+Epoch [34/100], Training Loss: 6.9657, Validation Loss Current: 14.0744, Validation Loss AVG: 14.0744, lr: 0.001
+Epoch [35/100], Training Loss: 5.0528, Validation Loss Current: 13.6984, Validation Loss AVG: 13.6984, lr: 0.001
+Epoch [36/100], Training Loss: 3.9352, Validation Loss Current: 14.9642, Validation Loss AVG: 14.9642, lr: 0.001
+Epoch [37/100], Training Loss: 2.4200, Validation Loss Current: 12.8743, Validation Loss AVG: 12.8743, lr: 0.001
+Epoch [38/100], Training Loss: 1.9292, Validation Loss Current: 11.8010, Validation Loss AVG: 11.8010, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.4 finished training. Best epoch: 8 Best val accuracy: [0.35427631578947366, 0.19407894736842107, 0.4217105263157895, 0.48684210526315785, 0.4164473684210527, 0.5046052631578947, 0.5177631578947368, 0.5361842105263157, 0.4532894736842105, 0.5161184210526316, 0.5210526315789474, 0.33059210526315785, 0.36973684210526314, 0.42368421052631583, 0.3845394736842105, 0.42631578947368415, 0.4493421052631579, 0.4305921052631579, 0.4796052631578947, 0.5055921052631579, 0.4322368421052632, 0.4296052631578947, 0.3226973684210526, 0.43453947368421053, 0.47006578947368416, 0.4848684210526315, 0.3779605263157894, 0.4125, 0.45723684210526316, 0.49703947368421053, 0.41776315789473684, 0.4858552631578947, 0.4407894736842105, 0.4128289473684211, 0.46940789473684214, 0.40361842105263157, 0.46085526315789477, 0.4944078947368421] Best val loss: 9.02097682952881
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4, 0.2] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6, 0.4] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6, 0.4]
+Current group: 0.2
+Epoch [1/80], Training Loss: 42.2607, Validation Loss Current: 22.2830, Validation Loss AVG: 22.2830, lr: 0.001
+Epoch [2/80], Training Loss: 25.7998, Validation Loss Current: 23.9601, Validation Loss AVG: 23.9601, lr: 0.001
+Epoch [3/80], Training Loss: 22.1393, Validation Loss Current: 21.0687, Validation Loss AVG: 21.0687, lr: 0.001
+Epoch [4/80], Training Loss: 16.6460, Validation Loss Current: 13.2385, Validation Loss AVG: 13.2385, lr: 0.001
+Epoch [5/80], Training Loss: 14.1921, Validation Loss Current: 13.1679, Validation Loss AVG: 13.1679, lr: 0.001
+Epoch [6/80], Training Loss: 10.3334, Validation Loss Current: 22.9505, Validation Loss AVG: 22.9505, lr: 0.001
+Epoch [7/80], Training Loss: 10.3387, Validation Loss Current: 18.4374, Validation Loss AVG: 18.4374, lr: 0.001
+Epoch [8/80], Training Loss: 6.8498, Validation Loss Current: 17.8195, Validation Loss AVG: 17.8195, lr: 0.001
+Epoch [9/80], Training Loss: 5.5210, Validation Loss Current: 16.1898, Validation Loss AVG: 16.1898, lr: 0.001
+Epoch [10/80], Training Loss: 7.0191, Validation Loss Current: 16.9083, Validation Loss AVG: 16.9083, lr: 0.001
+Epoch [11/80], Training Loss: 6.2776, Validation Loss Current: 17.9313, Validation Loss AVG: 17.9313, lr: 0.001
+Epoch [12/80], Training Loss: 7.6167, Validation Loss Current: 20.2389, Validation Loss AVG: 20.2389, lr: 0.001
+Epoch [13/80], Training Loss: 12.9816, Validation Loss Current: 17.7737, Validation Loss AVG: 17.7737, lr: 0.001
+Epoch [14/80], Training Loss: 7.5517, Validation Loss Current: 22.8051, Validation Loss AVG: 22.8051, lr: 0.001
+Epoch [15/80], Training Loss: 9.7270, Validation Loss Current: 20.1351, Validation Loss AVG: 20.1351, lr: 0.001
+Epoch [16/80], Training Loss: 9.4379, Validation Loss Current: 35.8637, Validation Loss AVG: 35.8637, lr: 0.001
+Epoch [17/80], Training Loss: 9.3316, Validation Loss Current: 43.6830, Validation Loss AVG: 43.6830, lr: 0.001
+Epoch [18/80], Training Loss: 5.1938, Validation Loss Current: 19.0682, Validation Loss AVG: 19.0682, lr: 0.001
+Epoch [19/80], Training Loss: 6.7207, Validation Loss Current: 23.3890, Validation Loss AVG: 23.3890, lr: 0.001
+Epoch [20/80], Training Loss: 11.2209, Validation Loss Current: 19.3425, Validation Loss AVG: 19.3425, lr: 0.001
+Epoch [21/80], Training Loss: 7.7980, Validation Loss Current: 21.1087, Validation Loss AVG: 21.1087, lr: 0.001
+Epoch [22/80], Training Loss: 8.3286, Validation Loss Current: 19.0520, Validation Loss AVG: 19.0520, lr: 0.001
+Epoch [23/80], Training Loss: 4.9978, Validation Loss Current: 26.9079, Validation Loss AVG: 26.9079, lr: 0.001
+Epoch [24/80], Training Loss: 4.2469, Validation Loss Current: 19.4513, Validation Loss AVG: 19.4513, lr: 0.001
+Epoch [25/80], Training Loss: 2.7204, Validation Loss Current: 17.7079, Validation Loss AVG: 17.7079, lr: 0.001
+Epoch [26/80], Training Loss: 2.8129, Validation Loss Current: 17.4239, Validation Loss AVG: 17.4239, lr: 0.001
+Epoch [27/80], Training Loss: 2.0907, Validation Loss Current: 21.6305, Validation Loss AVG: 21.6305, lr: 0.001
+Epoch [28/80], Training Loss: 1.3251, Validation Loss Current: 19.2822, Validation Loss AVG: 19.2822, lr: 0.001
+Epoch [29/80], Training Loss: 4.1380, Validation Loss Current: 24.6086, Validation Loss AVG: 24.6086, lr: 0.001
+Epoch [30/80], Training Loss: 4.9144, Validation Loss Current: 24.9053, Validation Loss AVG: 24.9053, lr: 0.001
+Epoch [31/80], Training Loss: 6.6405, Validation Loss Current: 20.1001, Validation Loss AVG: 20.1001, lr: 0.001
+Epoch [32/80], Training Loss: 7.0279, Validation Loss Current: 30.7194, Validation Loss AVG: 30.7194, lr: 0.001
+Epoch [33/80], Training Loss: 6.2440, Validation Loss Current: 21.8818, Validation Loss AVG: 21.8818, lr: 0.001
+Epoch [34/80], Training Loss: 3.6923, Validation Loss Current: 19.7463, Validation Loss AVG: 19.7463, lr: 0.001
+Epoch [35/80], Training Loss: 2.8118, Validation Loss Current: 18.1968, Validation Loss AVG: 18.1968, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.2 finished training. Best epoch: 5 Best val accuracy: [0.32368421052631585, 0.2463815789473684, 0.2348684210526316, 0.40822368421052635, 0.4266447368421053, 0.26842105263157895, 0.3927631578947368, 0.3638157894736842, 0.3786184210526316, 0.3667763157894737, 0.35131578947368425, 0.3424342105263158, 0.36151315789473687, 0.3661184210526316, 0.3391447368421052, 0.2365131578947369, 0.2049342105263158, 0.3171052631578947, 0.3200657894736842, 0.33881578947368424, 0.3424342105263158, 0.3651315789473684, 0.2743421052631579, 0.3855263157894737, 0.37796052631578947, 0.40032894736842106, 0.35789473684210527, 0.38684210526315793, 0.33684210526315794, 0.3125, 0.37302631578947365, 0.2236842105263158, 0.33125, 0.39473684210526316, 0.36381578947368426] Best val loss: 13.167918872833251
+
+
+Fold: 3
+----- Training resnet18 with sequence: [1] -----
+Current group: 1
+Epoch [1/400], Training Loss: 40.4612, Validation Loss Current: 9.8931, Validation Loss AVG: 9.9969, lr: 0.001
+Epoch [2/400], Training Loss: 38.4323, Validation Loss Current: 9.4155, Validation Loss AVG: 9.7133, lr: 0.001
+Epoch [3/400], Training Loss: 36.7947, Validation Loss Current: 8.8721, Validation Loss AVG: 9.5469, lr: 0.001
+Epoch [4/400], Training Loss: 35.4045, Validation Loss Current: 8.6048, Validation Loss AVG: 9.3904, lr: 0.001
+Epoch [5/400], Training Loss: 34.2886, Validation Loss Current: 8.2325, Validation Loss AVG: 9.3116, lr: 0.001
+Epoch [6/400], Training Loss: 33.5114, Validation Loss Current: 7.9829, Validation Loss AVG: 9.1972, lr: 0.001
+Epoch [7/400], Training Loss: 32.1986, Validation Loss Current: 7.8201, Validation Loss AVG: 8.9423, lr: 0.001
+Epoch [8/400], Training Loss: 30.2470, Validation Loss Current: 7.2662, Validation Loss AVG: 8.6045, lr: 0.001
+Epoch [9/400], Training Loss: 28.6895, Validation Loss Current: 7.0655, Validation Loss AVG: 8.7672, lr: 0.001
+Epoch [10/400], Training Loss: 27.8567, Validation Loss Current: 6.8377, Validation Loss AVG: 9.1067, lr: 0.001
+Epoch [11/400], Training Loss: 26.5835, Validation Loss Current: 6.7351, Validation Loss AVG: 8.2583, lr: 0.001
+Epoch [12/400], Training Loss: 25.6757, Validation Loss Current: 6.8875, Validation Loss AVG: 9.1037, lr: 0.001
+Epoch [13/400], Training Loss: 26.2854, Validation Loss Current: 6.7580, Validation Loss AVG: 10.7680, lr: 0.001
+Epoch [14/400], Training Loss: 23.9421, Validation Loss Current: 6.9938, Validation Loss AVG: 8.4112, lr: 0.001
+Epoch [15/400], Training Loss: 23.8533, Validation Loss Current: 6.3087, Validation Loss AVG: 8.5184, lr: 0.001
+Epoch [16/400], Training Loss: 22.8790, Validation Loss Current: 6.1278, Validation Loss AVG: 9.7650, lr: 0.001
+Epoch [17/400], Training Loss: 22.5664, Validation Loss Current: 6.2896, Validation Loss AVG: 9.8164, lr: 0.001
+Epoch [18/400], Training Loss: 21.9201, Validation Loss Current: 7.1030, Validation Loss AVG: 9.0862, lr: 0.001
+Epoch [19/400], Training Loss: 22.2052, Validation Loss Current: 5.8897, Validation Loss AVG: 9.2390, lr: 0.001
+Epoch [20/400], Training Loss: 21.1399, Validation Loss Current: 6.1640, Validation Loss AVG: 9.2397, lr: 0.001
+Epoch [21/400], Training Loss: 20.7656, Validation Loss Current: 6.7014, Validation Loss AVG: 9.4901, lr: 0.001
+Epoch [22/400], Training Loss: 20.1957, Validation Loss Current: 6.0662, Validation Loss AVG: 10.8660, lr: 0.001
+Epoch [23/400], Training Loss: 20.6172, Validation Loss Current: 5.6310, Validation Loss AVG: 7.9984, lr: 0.001
+Epoch [24/400], Training Loss: 17.9237, Validation Loss Current: 5.8716, Validation Loss AVG: 11.1148, lr: 0.001
+Epoch [25/400], Training Loss: 17.6061, Validation Loss Current: 5.7953, Validation Loss AVG: 8.1757, lr: 0.001
+Epoch [26/400], Training Loss: 18.1405, Validation Loss Current: 5.6943, Validation Loss AVG: 8.9411, lr: 0.001
+Epoch [27/400], Training Loss: 16.4636, Validation Loss Current: 5.3369, Validation Loss AVG: 8.4844, lr: 0.001
+Epoch [28/400], Training Loss: 15.1976, Validation Loss Current: 5.4724, Validation Loss AVG: 9.1999, lr: 0.001
+Epoch [29/400], Training Loss: 15.6354, Validation Loss Current: 6.2232, Validation Loss AVG: 8.6236, lr: 0.001
+Epoch [30/400], Training Loss: 14.0448, Validation Loss Current: 6.0351, Validation Loss AVG: 13.4462, lr: 0.001
+Epoch [31/400], Training Loss: 13.4976, Validation Loss Current: 5.4000, Validation Loss AVG: 8.2633, lr: 0.001
+Epoch [32/400], Training Loss: 13.4610, Validation Loss Current: 5.4673, Validation Loss AVG: 9.2260, lr: 0.001
+Epoch [33/400], Training Loss: 14.7915, Validation Loss Current: 5.7472, Validation Loss AVG: 8.7339, lr: 0.001
+Epoch [34/400], Training Loss: 11.5785, Validation Loss Current: 5.7898, Validation Loss AVG: 10.3781, lr: 0.001
+Epoch [35/400], Training Loss: 10.6496, Validation Loss Current: 5.9499, Validation Loss AVG: 9.1390, lr: 0.001
+Epoch [36/400], Training Loss: 11.0243, Validation Loss Current: 6.5806, Validation Loss AVG: 10.3318, lr: 0.001
+Epoch [37/400], Training Loss: 14.0817, Validation Loss Current: 7.0670, Validation Loss AVG: 15.9662, lr: 0.001
+Epoch [38/400], Training Loss: 12.0321, Validation Loss Current: 5.9754, Validation Loss AVG: 11.5184, lr: 0.001
+Epoch [39/400], Training Loss: 9.4363, Validation Loss Current: 5.4549, Validation Loss AVG: 10.0213, lr: 0.001
+Epoch [40/400], Training Loss: 8.1986, Validation Loss Current: 5.5182, Validation Loss AVG: 10.1686, lr: 0.001
+Epoch [41/400], Training Loss: 8.6863, Validation Loss Current: 5.5722, Validation Loss AVG: 9.5367, lr: 0.001
+Epoch [42/400], Training Loss: 6.7713, Validation Loss Current: 5.9661, Validation Loss AVG: 9.7020, lr: 0.001
+Epoch [43/400], Training Loss: 7.1609, Validation Loss Current: 6.2818, Validation Loss AVG: 12.5013, lr: 0.001
+Epoch [44/400], Training Loss: 8.9603, Validation Loss Current: 6.8746, Validation Loss AVG: 14.4535, lr: 0.001
+Epoch [45/400], Training Loss: 6.7423, Validation Loss Current: 5.8704, Validation Loss AVG: 10.4167, lr: 0.001
+Epoch [46/400], Training Loss: 6.2349, Validation Loss Current: 5.7064, Validation Loss AVG: 11.3122, lr: 0.001
+Epoch [47/400], Training Loss: 7.7769, Validation Loss Current: 6.3231, Validation Loss AVG: 11.7436, lr: 0.001
+Epoch [48/400], Training Loss: 9.4781, Validation Loss Current: 7.6752, Validation Loss AVG: 10.4553, lr: 0.001
+Epoch [49/400], Training Loss: 6.9304, Validation Loss Current: 7.0059, Validation Loss AVG: 12.6821, lr: 0.001
+Epoch [50/400], Training Loss: 7.4752, Validation Loss Current: 6.2687, Validation Loss AVG: 8.8246, lr: 0.001
+Epoch [51/400], Training Loss: 5.8343, Validation Loss Current: 6.3645, Validation Loss AVG: 12.6169, lr: 0.001
+Epoch [52/400], Training Loss: 5.5156, Validation Loss Current: 5.8462, Validation Loss AVG: 10.1038, lr: 0.001
+Epoch [53/400], Training Loss: 4.8497, Validation Loss Current: 6.3487, Validation Loss AVG: 9.6872, lr: 0.001
+Epoch [54/400], Training Loss: 5.4141, Validation Loss Current: 6.5119, Validation Loss AVG: 11.5737, lr: 0.001
+Epoch [55/400], Training Loss: 4.6929, Validation Loss Current: 6.2087, Validation Loss AVG: 9.4761, lr: 0.001
+Epoch [56/400], Training Loss: 3.5835, Validation Loss Current: 6.0439, Validation Loss AVG: 11.8123, lr: 0.001
+Epoch [57/400], Training Loss: 2.8295, Validation Loss Current: 5.5016, Validation Loss AVG: 11.4445, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 1 finished training. Best epoch: 27 Best val accuracy: [0.24177631578947367, 0.34210526315789475, 0.3782894736842105, 0.4128289473684211, 0.42105263157894735, 0.44243421052631576, 0.4588815789473684, 0.48519736842105265, 0.49506578947368424, 0.537828947368421, 0.5098684210526315, 0.5296052631578947, 0.5164473684210527, 0.5016447368421053, 0.5608552631578947, 0.5707236842105263, 0.5575657894736842, 0.5082236842105263, 0.5888157894736842, 0.5657894736842105, 0.5740131578947368, 0.5740131578947368, 0.6299342105263158, 0.59375, 0.6052631578947368, 0.6134868421052632, 0.6381578947368421, 0.6414473684210527, 0.6052631578947368, 0.5904605263157895, 0.6348684210526315, 0.6200657894736842, 0.6052631578947368, 0.6217105263157895, 0.600328947368421, 0.5756578947368421, 0.5444078947368421, 0.5970394736842105, 0.6430921052631579, 0.6200657894736842, 0.6414473684210527, 0.6282894736842105, 0.5970394736842105, 0.6134868421052632, 0.6069078947368421, 0.6414473684210527, 0.5904605263157895, 0.5625, 0.6036184210526315, 0.6266447368421053, 0.5789473684210527, 0.6414473684210527, 0.6052631578947368, 0.6299342105263158, 0.631578947368421, 0.6200657894736842, 0.6398026315789473] Best val loss: 5.336857438087463
+
+
+----- Training resnet18 with sequence: [1, 0.8] -----
+Sequence [1] already in state dictionary, jumped
+Loaded best state dict for [1]
+Current group: 0.8
+Epoch [1/200], Training Loss: 20.7812, Validation Loss Current: 9.8886, Validation Loss AVG: 9.8886, lr: 0.001
+Epoch [2/200], Training Loss: 15.0664, Validation Loss Current: 11.2975, Validation Loss AVG: 11.2975, lr: 0.001
+Epoch [3/200], Training Loss: 11.9844, Validation Loss Current: 9.3475, Validation Loss AVG: 9.3475, lr: 0.001
+Epoch [4/200], Training Loss: 10.8403, Validation Loss Current: 13.9234, Validation Loss AVG: 13.9234, lr: 0.001
+Epoch [5/200], Training Loss: 9.9108, Validation Loss Current: 10.5111, Validation Loss AVG: 10.5111, lr: 0.001
+Epoch [6/200], Training Loss: 9.7508, Validation Loss Current: 13.0353, Validation Loss AVG: 13.0353, lr: 0.001
+Epoch [7/200], Training Loss: 8.5065, Validation Loss Current: 10.1672, Validation Loss AVG: 10.1672, lr: 0.001
+Epoch [8/200], Training Loss: 7.1594, Validation Loss Current: 11.8147, Validation Loss AVG: 11.8147, lr: 0.001
+Epoch [9/200], Training Loss: 6.1076, Validation Loss Current: 9.4783, Validation Loss AVG: 9.4783, lr: 0.001
+Epoch [10/200], Training Loss: 6.9054, Validation Loss Current: 11.9194, Validation Loss AVG: 11.9194, lr: 0.001
+Epoch [11/200], Training Loss: 8.9830, Validation Loss Current: 10.8291, Validation Loss AVG: 10.8291, lr: 0.001
+Epoch [12/200], Training Loss: 6.6096, Validation Loss Current: 10.8791, Validation Loss AVG: 10.8791, lr: 0.001
+Epoch [13/200], Training Loss: 7.8973, Validation Loss Current: 11.0844, Validation Loss AVG: 11.0844, lr: 0.001
+Epoch [14/200], Training Loss: 8.8157, Validation Loss Current: 12.9069, Validation Loss AVG: 12.9069, lr: 0.001
+Epoch [15/200], Training Loss: 6.7852, Validation Loss Current: 14.0125, Validation Loss AVG: 14.0125, lr: 0.001
+Epoch [16/200], Training Loss: 4.3773, Validation Loss Current: 9.9355, Validation Loss AVG: 9.9355, lr: 0.001
+Epoch [17/200], Training Loss: 2.9023, Validation Loss Current: 9.9780, Validation Loss AVG: 9.9780, lr: 0.001
+Epoch [18/200], Training Loss: 5.3022, Validation Loss Current: 13.4008, Validation Loss AVG: 13.4008, lr: 0.001
+Epoch [19/200], Training Loss: 6.7944, Validation Loss Current: 18.5189, Validation Loss AVG: 18.5189, lr: 0.001
+Epoch [20/200], Training Loss: 7.2484, Validation Loss Current: 11.5768, Validation Loss AVG: 11.5768, lr: 0.001
+Epoch [21/200], Training Loss: 6.0213, Validation Loss Current: 10.1452, Validation Loss AVG: 10.1452, lr: 0.001
+Epoch [22/200], Training Loss: 3.6249, Validation Loss Current: 10.4322, Validation Loss AVG: 10.4322, lr: 0.001
+Epoch [23/200], Training Loss: 2.9150, Validation Loss Current: 10.7210, Validation Loss AVG: 10.7210, lr: 0.001
+Epoch [24/200], Training Loss: 2.6118, Validation Loss Current: 11.8747, Validation Loss AVG: 11.8747, lr: 0.001
+Epoch [25/200], Training Loss: 4.0919, Validation Loss Current: 11.4317, Validation Loss AVG: 11.4317, lr: 0.001
+Epoch [26/200], Training Loss: 5.5830, Validation Loss Current: 11.3742, Validation Loss AVG: 11.3742, lr: 0.001
+Epoch [27/200], Training Loss: 3.7751, Validation Loss Current: 13.7759, Validation Loss AVG: 13.7759, lr: 0.001
+Epoch [28/200], Training Loss: 3.3187, Validation Loss Current: 11.9552, Validation Loss AVG: 11.9552, lr: 0.001
+Epoch [29/200], Training Loss: 1.8177, Validation Loss Current: 10.2712, Validation Loss AVG: 10.2712, lr: 0.001
+Epoch [30/200], Training Loss: 2.6647, Validation Loss Current: 13.2589, Validation Loss AVG: 13.2589, lr: 0.001
+Epoch [31/200], Training Loss: 5.7500, Validation Loss Current: 13.6469, Validation Loss AVG: 13.6469, lr: 0.001
+Epoch [32/200], Training Loss: 3.2124, Validation Loss Current: 11.2087, Validation Loss AVG: 11.2087, lr: 0.001
+Epoch [33/200], Training Loss: 3.0893, Validation Loss Current: 11.3706, Validation Loss AVG: 11.3706, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.8 finished training. Best epoch: 3 Best val accuracy: [0.4473684210526316, 0.42960526315789477, 0.43256578947368424, 0.39539473684210524, 0.4276315789473684, 0.42105263157894735, 0.4473684210526316, 0.43815789473684214, 0.4546052631578948, 0.44703947368421054, 0.45230263157894746, 0.45065789473684215, 0.4598684210526316, 0.42631578947368426, 0.3950657894736842, 0.47105263157894733, 0.45, 0.40361842105263157, 0.34375, 0.3868421052631579, 0.4615131578947369, 0.4532894736842105, 0.47105263157894744, 0.46447368421052626, 0.4440789473684211, 0.4703947368421052, 0.44835526315789476, 0.4513157894736842, 0.47138157894736843, 0.4457236842105262, 0.4095394736842105, 0.4322368421052632, 0.469078947368421] Best val loss: 9.347534584999085
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8]
+Current group: 0.6
+Epoch [1/134], Training Loss: 23.3551, Validation Loss Current: 11.5610, Validation Loss AVG: 11.5610, lr: 0.001
+Epoch [2/134], Training Loss: 15.6361, Validation Loss Current: 12.3840, Validation Loss AVG: 12.3840, lr: 0.001
+Epoch [3/134], Training Loss: 18.1896, Validation Loss Current: 13.4828, Validation Loss AVG: 13.4828, lr: 0.001
+Epoch [4/134], Training Loss: 18.0494, Validation Loss Current: 12.8678, Validation Loss AVG: 12.8678, lr: 0.001
+Epoch [5/134], Training Loss: 13.1122, Validation Loss Current: 10.6334, Validation Loss AVG: 10.6334, lr: 0.001
+Epoch [6/134], Training Loss: 8.7167, Validation Loss Current: 10.9055, Validation Loss AVG: 10.9055, lr: 0.001
+Epoch [7/134], Training Loss: 7.5521, Validation Loss Current: 9.0444, Validation Loss AVG: 9.0444, lr: 0.001
+Epoch [8/134], Training Loss: 6.7726, Validation Loss Current: 10.3768, Validation Loss AVG: 10.3768, lr: 0.001
+Epoch [9/134], Training Loss: 6.8502, Validation Loss Current: 12.2048, Validation Loss AVG: 12.2048, lr: 0.001
+Epoch [10/134], Training Loss: 5.4833, Validation Loss Current: 11.1821, Validation Loss AVG: 11.1821, lr: 0.001
+Epoch [11/134], Training Loss: 7.1117, Validation Loss Current: 11.4513, Validation Loss AVG: 11.4513, lr: 0.001
+Epoch [12/134], Training Loss: 5.7085, Validation Loss Current: 10.5809, Validation Loss AVG: 10.5809, lr: 0.001
+Epoch [13/134], Training Loss: 3.8233, Validation Loss Current: 9.4669, Validation Loss AVG: 9.4669, lr: 0.001
+Epoch [14/134], Training Loss: 2.9313, Validation Loss Current: 11.2117, Validation Loss AVG: 11.2117, lr: 0.001
+Epoch [15/134], Training Loss: 2.1517, Validation Loss Current: 10.3485, Validation Loss AVG: 10.3485, lr: 0.001
+Epoch [16/134], Training Loss: 4.4393, Validation Loss Current: 10.5382, Validation Loss AVG: 10.5382, lr: 0.001
+Epoch [17/134], Training Loss: 4.8679, Validation Loss Current: 9.7178, Validation Loss AVG: 9.7178, lr: 0.001
+Epoch [18/134], Training Loss: 4.5596, Validation Loss Current: 10.5647, Validation Loss AVG: 10.5647, lr: 0.001
+Epoch [19/134], Training Loss: 3.7865, Validation Loss Current: 11.9772, Validation Loss AVG: 11.9772, lr: 0.001
+Epoch [20/134], Training Loss: 2.8653, Validation Loss Current: 10.3816, Validation Loss AVG: 10.3816, lr: 0.001
+Epoch [21/134], Training Loss: 3.9493, Validation Loss Current: 12.2349, Validation Loss AVG: 12.2349, lr: 0.001
+Epoch [22/134], Training Loss: 7.3495, Validation Loss Current: 13.1264, Validation Loss AVG: 13.1264, lr: 0.001
+Epoch [23/134], Training Loss: 4.3811, Validation Loss Current: 11.8474, Validation Loss AVG: 11.8474, lr: 0.001
+Epoch [24/134], Training Loss: 2.9162, Validation Loss Current: 13.2010, Validation Loss AVG: 13.2010, lr: 0.001
+Epoch [25/134], Training Loss: 4.2766, Validation Loss Current: 14.1543, Validation Loss AVG: 14.1543, lr: 0.001
+Epoch [26/134], Training Loss: 6.3302, Validation Loss Current: 15.9210, Validation Loss AVG: 15.9210, lr: 0.001
+Epoch [27/134], Training Loss: 4.4397, Validation Loss Current: 11.0534, Validation Loss AVG: 11.0534, lr: 0.001
+Epoch [28/134], Training Loss: 2.7941, Validation Loss Current: 12.2887, Validation Loss AVG: 12.2887, lr: 0.001
+Epoch [29/134], Training Loss: 4.8520, Validation Loss Current: 10.2378, Validation Loss AVG: 10.2378, lr: 0.001
+Epoch [30/134], Training Loss: 2.2518, Validation Loss Current: 11.0501, Validation Loss AVG: 11.0501, lr: 0.001
+Epoch [31/134], Training Loss: 2.8978, Validation Loss Current: 10.8041, Validation Loss AVG: 10.8041, lr: 0.001
+Epoch [32/134], Training Loss: 4.8346, Validation Loss Current: 14.7888, Validation Loss AVG: 14.7888, lr: 0.001
+Epoch [33/134], Training Loss: 11.0083, Validation Loss Current: 18.1417, Validation Loss AVG: 18.1417, lr: 0.001
+Epoch [34/134], Training Loss: 5.3569, Validation Loss Current: 11.2418, Validation Loss AVG: 11.2418, lr: 0.001
+Epoch [35/134], Training Loss: 3.6770, Validation Loss Current: 11.2164, Validation Loss AVG: 11.2164, lr: 0.001
+Epoch [36/134], Training Loss: 5.9488, Validation Loss Current: 12.4086, Validation Loss AVG: 12.4086, lr: 0.001
+Epoch [37/134], Training Loss: 3.3654, Validation Loss Current: 11.3322, Validation Loss AVG: 11.3322, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.6 finished training. Best epoch: 7 Best val accuracy: [0.4740131578947369, 0.4266447368421053, 0.3983552631578947, 0.42631578947368426, 0.43815789473684214, 0.47368421052631576, 0.47072368421052635, 0.4723684210526316, 0.46052631578947373, 0.4792763157894737, 0.43486842105263157, 0.4723684210526315, 0.488157894736842, 0.49934210526315786, 0.5125, 0.5069078947368421, 0.5075657894736842, 0.5016447368421053, 0.48453947368421063, 0.4848684210526316, 0.49967105263157896, 0.4476973684210527, 0.487171052631579, 0.45032894736842105, 0.4338815789473684, 0.43256578947368424, 0.4753289473684211, 0.46875, 0.5009868421052632, 0.49210526315789477, 0.5210526315789473, 0.449342105263158, 0.3963815789473684, 0.48026315789473684, 0.4878289473684211, 0.48717105263157895, 0.4822368421052631] Best val loss: 9.0444420337677
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6]
+Current group: 0.4
+Epoch [1/100], Training Loss: 36.1500, Validation Loss Current: 15.4442, Validation Loss AVG: 15.4442, lr: 0.001
+Epoch [2/100], Training Loss: 24.9524, Validation Loss Current: 13.2964, Validation Loss AVG: 13.2964, lr: 0.001
+Epoch [3/100], Training Loss: 21.2164, Validation Loss Current: 11.7220, Validation Loss AVG: 11.7220, lr: 0.001
+Epoch [4/100], Training Loss: 15.5563, Validation Loss Current: 10.4177, Validation Loss AVG: 10.4177, lr: 0.001
+Epoch [5/100], Training Loss: 12.6664, Validation Loss Current: 10.4048, Validation Loss AVG: 10.4048, lr: 0.001
+Epoch [6/100], Training Loss: 10.7334, Validation Loss Current: 9.9219, Validation Loss AVG: 9.9219, lr: 0.001
+Epoch [7/100], Training Loss: 9.4130, Validation Loss Current: 10.2329, Validation Loss AVG: 10.2329, lr: 0.001
+Epoch [8/100], Training Loss: 8.9310, Validation Loss Current: 11.4877, Validation Loss AVG: 11.4877, lr: 0.001
+Epoch [9/100], Training Loss: 8.2276, Validation Loss Current: 10.4402, Validation Loss AVG: 10.4402, lr: 0.001
+Epoch [10/100], Training Loss: 6.9053, Validation Loss Current: 11.0798, Validation Loss AVG: 11.0798, lr: 0.001
+Epoch [11/100], Training Loss: 5.9015, Validation Loss Current: 10.3526, Validation Loss AVG: 10.3526, lr: 0.001
+Epoch [12/100], Training Loss: 5.8543, Validation Loss Current: 10.5438, Validation Loss AVG: 10.5438, lr: 0.001
+Epoch [13/100], Training Loss: 5.6278, Validation Loss Current: 12.3530, Validation Loss AVG: 12.3530, lr: 0.001
+Epoch [14/100], Training Loss: 5.2406, Validation Loss Current: 11.5049, Validation Loss AVG: 11.5049, lr: 0.001
+Epoch [15/100], Training Loss: 4.3657, Validation Loss Current: 9.8582, Validation Loss AVG: 9.8582, lr: 0.001
+Epoch [16/100], Training Loss: 3.2913, Validation Loss Current: 10.7081, Validation Loss AVG: 10.7081, lr: 0.001
+Epoch [17/100], Training Loss: 4.2362, Validation Loss Current: 10.3397, Validation Loss AVG: 10.3397, lr: 0.001
+Epoch [18/100], Training Loss: 2.7748, Validation Loss Current: 13.1799, Validation Loss AVG: 13.1799, lr: 0.001
+Epoch [19/100], Training Loss: 2.5435, Validation Loss Current: 11.6935, Validation Loss AVG: 11.6935, lr: 0.001
+Epoch [20/100], Training Loss: 4.2866, Validation Loss Current: 11.8436, Validation Loss AVG: 11.8436, lr: 0.001
+Epoch [21/100], Training Loss: 2.5127, Validation Loss Current: 11.7690, Validation Loss AVG: 11.7690, lr: 0.001
+Epoch [22/100], Training Loss: 5.6075, Validation Loss Current: 12.0042, Validation Loss AVG: 12.0042, lr: 0.001
+Epoch [23/100], Training Loss: 6.9632, Validation Loss Current: 12.1756, Validation Loss AVG: 12.1756, lr: 0.001
+Epoch [24/100], Training Loss: 5.2848, Validation Loss Current: 11.2786, Validation Loss AVG: 11.2786, lr: 0.001
+Epoch [25/100], Training Loss: 4.6895, Validation Loss Current: 15.2290, Validation Loss AVG: 15.2290, lr: 0.001
+Epoch [26/100], Training Loss: 4.5037, Validation Loss Current: 12.7722, Validation Loss AVG: 12.7722, lr: 0.001
+Epoch [27/100], Training Loss: 3.8264, Validation Loss Current: 13.3832, Validation Loss AVG: 13.3832, lr: 0.001
+Epoch [28/100], Training Loss: 3.4026, Validation Loss Current: 15.3624, Validation Loss AVG: 15.3624, lr: 0.001
+Epoch [29/100], Training Loss: 7.8333, Validation Loss Current: 11.7262, Validation Loss AVG: 11.7262, lr: 0.001
+Epoch [30/100], Training Loss: 7.2584, Validation Loss Current: 12.2047, Validation Loss AVG: 12.2047, lr: 0.001
+Epoch [31/100], Training Loss: 4.7020, Validation Loss Current: 12.6169, Validation Loss AVG: 12.6169, lr: 0.001
+Epoch [32/100], Training Loss: 1.9628, Validation Loss Current: 11.5213, Validation Loss AVG: 11.5213, lr: 0.001
+Epoch [33/100], Training Loss: 2.3330, Validation Loss Current: 11.1055, Validation Loss AVG: 11.1055, lr: 0.001
+Epoch [34/100], Training Loss: 3.4127, Validation Loss Current: 13.0437, Validation Loss AVG: 13.0437, lr: 0.001
+Epoch [35/100], Training Loss: 1.3551, Validation Loss Current: 12.2880, Validation Loss AVG: 12.2880, lr: 0.001
+Epoch [36/100], Training Loss: 1.8762, Validation Loss Current: 11.6521, Validation Loss AVG: 11.6521, lr: 0.001
+Epoch [37/100], Training Loss: 2.9040, Validation Loss Current: 11.3208, Validation Loss AVG: 11.3208, lr: 0.001
+Epoch [38/100], Training Loss: 3.0888, Validation Loss Current: 31.7569, Validation Loss AVG: 31.7569, lr: 0.001
+Epoch [39/100], Training Loss: 8.4029, Validation Loss Current: 17.4938, Validation Loss AVG: 17.4938, lr: 0.001
+Epoch [40/100], Training Loss: 5.5187, Validation Loss Current: 13.5126, Validation Loss AVG: 13.5126, lr: 0.001
+Epoch [41/100], Training Loss: 4.6556, Validation Loss Current: 12.8333, Validation Loss AVG: 12.8333, lr: 0.001
+Epoch [42/100], Training Loss: 1.4813, Validation Loss Current: 12.4013, Validation Loss AVG: 12.4013, lr: 0.001
+Epoch [43/100], Training Loss: 2.3102, Validation Loss Current: 12.2204, Validation Loss AVG: 12.2204, lr: 0.001
+Epoch [44/100], Training Loss: 4.6438, Validation Loss Current: 14.3916, Validation Loss AVG: 14.3916, lr: 0.001
+Epoch [45/100], Training Loss: 4.8469, Validation Loss Current: 15.4624, Validation Loss AVG: 15.4624, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.4 finished training. Best epoch: 15 Best val accuracy: [0.43256578947368424, 0.3625, 0.44177631578947374, 0.48190789473684204, 0.4845394736842105, 0.5072368421052631, 0.4865131578947368, 0.46743421052631573, 0.5036184210526315, 0.49243421052631586, 0.5161184210526315, 0.5108552631578946, 0.47006578947368427, 0.5203947368421052, 0.5177631578947368, 0.5072368421052632, 0.5174342105263158, 0.4549342105263158, 0.4980263157894737, 0.4947368421052631, 0.5046052631578947, 0.49243421052631575, 0.48782894736842114, 0.5148026315789475, 0.41875, 0.47730263157894737, 0.46085526315789477, 0.4756578947368421, 0.500328947368421, 0.49572368421052626, 0.4894736842105264, 0.48256578947368417, 0.5210526315789473, 0.49769736842105267, 0.5006578947368421, 0.5200657894736842, 0.5138157894736841, 0.30657894736842106, 0.4273026315789473, 0.4868421052631578, 0.5101973684210526, 0.4657894736842104, 0.49078947368421055, 0.4756578947368421, 0.40559210526315786] Best val loss: 9.8581552028656
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4, 0.2] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6, 0.4] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6, 0.4]
+Current group: 0.2
+Epoch [1/80], Training Loss: 43.2933, Validation Loss Current: 26.3170, Validation Loss AVG: 26.3170, lr: 0.001
+Epoch [2/80], Training Loss: 25.3825, Validation Loss Current: 16.6748, Validation Loss AVG: 16.6748, lr: 0.001
+Epoch [3/80], Training Loss: 21.6629, Validation Loss Current: 19.5489, Validation Loss AVG: 19.5489, lr: 0.001
+Epoch [4/80], Training Loss: 15.9543, Validation Loss Current: 12.9702, Validation Loss AVG: 12.9702, lr: 0.001
+Epoch [5/80], Training Loss: 13.0148, Validation Loss Current: 16.2751, Validation Loss AVG: 16.2751, lr: 0.001
+Epoch [6/80], Training Loss: 11.7630, Validation Loss Current: 15.1136, Validation Loss AVG: 15.1136, lr: 0.001
+Epoch [7/80], Training Loss: 9.3657, Validation Loss Current: 14.6936, Validation Loss AVG: 14.6936, lr: 0.001
+Epoch [8/80], Training Loss: 5.7703, Validation Loss Current: 18.6810, Validation Loss AVG: 18.6810, lr: 0.001
+Epoch [9/80], Training Loss: 5.9857, Validation Loss Current: 17.8350, Validation Loss AVG: 17.8350, lr: 0.001
+Epoch [10/80], Training Loss: 7.6171, Validation Loss Current: 20.6922, Validation Loss AVG: 20.6922, lr: 0.001
+Epoch [11/80], Training Loss: 8.3488, Validation Loss Current: 16.8788, Validation Loss AVG: 16.8788, lr: 0.001
+Epoch [12/80], Training Loss: 7.2819, Validation Loss Current: 21.2097, Validation Loss AVG: 21.2097, lr: 0.001
+Epoch [13/80], Training Loss: 9.2242, Validation Loss Current: 21.4161, Validation Loss AVG: 21.4161, lr: 0.001
+Epoch [14/80], Training Loss: 10.0837, Validation Loss Current: 19.6832, Validation Loss AVG: 19.6832, lr: 0.001
+Epoch [15/80], Training Loss: 11.5614, Validation Loss Current: 23.9279, Validation Loss AVG: 23.9279, lr: 0.001
+Epoch [16/80], Training Loss: 12.2694, Validation Loss Current: 24.1290, Validation Loss AVG: 24.1290, lr: 0.001
+Epoch [17/80], Training Loss: 11.2031, Validation Loss Current: 18.6893, Validation Loss AVG: 18.6893, lr: 0.001
+Epoch [18/80], Training Loss: 9.9592, Validation Loss Current: 19.9350, Validation Loss AVG: 19.9350, lr: 0.001
+Epoch [19/80], Training Loss: 5.8890, Validation Loss Current: 17.6547, Validation Loss AVG: 17.6547, lr: 0.001
+Epoch [20/80], Training Loss: 5.3574, Validation Loss Current: 17.3400, Validation Loss AVG: 17.3400, lr: 0.001
+Epoch [21/80], Training Loss: 7.3267, Validation Loss Current: 27.3914, Validation Loss AVG: 27.3914, lr: 0.001
+Epoch [22/80], Training Loss: 6.9011, Validation Loss Current: 20.4811, Validation Loss AVG: 20.4811, lr: 0.001
+Epoch [23/80], Training Loss: 4.1414, Validation Loss Current: 19.0528, Validation Loss AVG: 19.0528, lr: 0.001
+Epoch [24/80], Training Loss: 3.7459, Validation Loss Current: 18.6893, Validation Loss AVG: 18.6893, lr: 0.001
+Epoch [25/80], Training Loss: 5.4311, Validation Loss Current: 19.0984, Validation Loss AVG: 19.0984, lr: 0.001
+Epoch [26/80], Training Loss: 11.0835, Validation Loss Current: 23.7640, Validation Loss AVG: 23.7640, lr: 0.001
+Epoch [27/80], Training Loss: 5.1575, Validation Loss Current: 24.2386, Validation Loss AVG: 24.2386, lr: 0.001
+Epoch [28/80], Training Loss: 3.1786, Validation Loss Current: 18.3234, Validation Loss AVG: 18.3234, lr: 0.001
+Epoch [29/80], Training Loss: 2.8401, Validation Loss Current: 21.9470, Validation Loss AVG: 21.9470, lr: 0.001
+Epoch [30/80], Training Loss: 5.7867, Validation Loss Current: 19.8853, Validation Loss AVG: 19.8853, lr: 0.001
+Epoch [31/80], Training Loss: 3.7648, Validation Loss Current: 24.7047, Validation Loss AVG: 24.7047, lr: 0.001
+Epoch [32/80], Training Loss: 3.2456, Validation Loss Current: 17.1183, Validation Loss AVG: 17.1183, lr: 0.001
+Epoch [33/80], Training Loss: 3.5235, Validation Loss Current: 24.1897, Validation Loss AVG: 24.1897, lr: 0.001
+Epoch [34/80], Training Loss: 4.9959, Validation Loss Current: 19.9212, Validation Loss AVG: 19.9212, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.2 finished training. Best epoch: 4 Best val accuracy: [0.21480263157894736, 0.4052631578947368, 0.3368421052631579, 0.42796052631578946, 0.4213815789473684, 0.39375, 0.43684210526315786, 0.37894736842105264, 0.36776315789473685, 0.2957236842105263, 0.4180921052631579, 0.36019736842105265, 0.3046052631578947, 0.32664473684210527, 0.30065789473684207, 0.31085526315789475, 0.38355263157894737, 0.4009868421052631, 0.4167763157894736, 0.46447368421052637, 0.30526315789473685, 0.34309210526315786, 0.4052631578947368, 0.3911184210526316, 0.3707236842105263, 0.3375, 0.33026315789473687, 0.44177631578947374, 0.3292763157894737, 0.3407894736842106, 0.29078947368421054, 0.43486842105263157, 0.2967105263157895, 0.3855263157894737] Best val loss: 12.970178031921387
+
+
+Fold: 4
+----- Training resnet18 with sequence: [1] -----
+Current group: 1
+Epoch [1/400], Training Loss: 40.5428, Validation Loss Current: 9.7447, Validation Loss AVG: 9.9026, lr: 0.001
+Epoch [2/400], Training Loss: 38.9535, Validation Loss Current: 9.5009, Validation Loss AVG: 9.8653, lr: 0.001
+Epoch [3/400], Training Loss: 37.3665, Validation Loss Current: 9.0435, Validation Loss AVG: 9.7073, lr: 0.001
+Epoch [4/400], Training Loss: 35.7476, Validation Loss Current: 8.9370, Validation Loss AVG: 9.4793, lr: 0.001
+Epoch [5/400], Training Loss: 34.8731, Validation Loss Current: 8.3774, Validation Loss AVG: 9.4099, lr: 0.001
+Epoch [6/400], Training Loss: 33.5123, Validation Loss Current: 8.3597, Validation Loss AVG: 9.3217, lr: 0.001
+Epoch [7/400], Training Loss: 31.7067, Validation Loss Current: 8.0064, Validation Loss AVG: 9.8812, lr: 0.001
+Epoch [8/400], Training Loss: 30.8291, Validation Loss Current: 7.6333, Validation Loss AVG: 9.1886, lr: 0.001
+Epoch [9/400], Training Loss: 29.2317, Validation Loss Current: 7.3406, Validation Loss AVG: 9.3290, lr: 0.001
+Epoch [10/400], Training Loss: 28.6866, Validation Loss Current: 7.1493, Validation Loss AVG: 9.0180, lr: 0.001
+Epoch [11/400], Training Loss: 26.9283, Validation Loss Current: 6.9867, Validation Loss AVG: 8.9271, lr: 0.001
+Epoch [12/400], Training Loss: 26.7672, Validation Loss Current: 7.6628, Validation Loss AVG: 11.3968, lr: 0.001
+Epoch [13/400], Training Loss: 26.3183, Validation Loss Current: 6.9655, Validation Loss AVG: 10.2539, lr: 0.001
+Epoch [14/400], Training Loss: 24.3689, Validation Loss Current: 6.6325, Validation Loss AVG: 8.5271, lr: 0.001
+Epoch [15/400], Training Loss: 25.9552, Validation Loss Current: 6.7260, Validation Loss AVG: 10.6914, lr: 0.001
+Epoch [16/400], Training Loss: 24.8668, Validation Loss Current: 6.4453, Validation Loss AVG: 9.0318, lr: 0.001
+Epoch [17/400], Training Loss: 21.9321, Validation Loss Current: 6.5434, Validation Loss AVG: 10.1919, lr: 0.001
+Epoch [18/400], Training Loss: 22.4683, Validation Loss Current: 6.2153, Validation Loss AVG: 8.3466, lr: 0.001
+Epoch [19/400], Training Loss: 21.6930, Validation Loss Current: 6.4977, Validation Loss AVG: 8.6894, lr: 0.001
+Epoch [20/400], Training Loss: 21.0672, Validation Loss Current: 6.3281, Validation Loss AVG: 10.0587, lr: 0.001
+Epoch [21/400], Training Loss: 20.5270, Validation Loss Current: 6.7503, Validation Loss AVG: 10.4973, lr: 0.001
+Epoch [22/400], Training Loss: 19.5266, Validation Loss Current: 5.9686, Validation Loss AVG: 10.0298, lr: 0.001
+Epoch [23/400], Training Loss: 18.5680, Validation Loss Current: 6.2777, Validation Loss AVG: 10.7933, lr: 0.001
+Epoch [24/400], Training Loss: 20.2150, Validation Loss Current: 5.9400, Validation Loss AVG: 8.9547, lr: 0.001
+Epoch [25/400], Training Loss: 19.2848, Validation Loss Current: 6.0048, Validation Loss AVG: 11.0750, lr: 0.001
+Epoch [26/400], Training Loss: 19.0735, Validation Loss Current: 6.1561, Validation Loss AVG: 8.6184, lr: 0.001
+Epoch [27/400], Training Loss: 19.2932, Validation Loss Current: 6.2129, Validation Loss AVG: 9.9929, lr: 0.001
+Epoch [28/400], Training Loss: 18.5802, Validation Loss Current: 7.3486, Validation Loss AVG: 13.0589, lr: 0.001
+Epoch [29/400], Training Loss: 17.6432, Validation Loss Current: 5.8786, Validation Loss AVG: 9.9668, lr: 0.001
+Epoch [30/400], Training Loss: 16.5761, Validation Loss Current: 6.1115, Validation Loss AVG: 9.0710, lr: 0.001
+Epoch [31/400], Training Loss: 17.4598, Validation Loss Current: 5.8299, Validation Loss AVG: 10.3336, lr: 0.001
+Epoch [32/400], Training Loss: 15.1677, Validation Loss Current: 5.7765, Validation Loss AVG: 8.9903, lr: 0.001
+Epoch [33/400], Training Loss: 14.3497, Validation Loss Current: 5.9379, Validation Loss AVG: 12.1792, lr: 0.001
+Epoch [34/400], Training Loss: 16.9848, Validation Loss Current: 6.1749, Validation Loss AVG: 9.2099, lr: 0.001
+Epoch [35/400], Training Loss: 13.1525, Validation Loss Current: 5.6438, Validation Loss AVG: 10.3833, lr: 0.001
+Epoch [36/400], Training Loss: 12.4093, Validation Loss Current: 6.2044, Validation Loss AVG: 10.9853, lr: 0.001
+Epoch [37/400], Training Loss: 13.3237, Validation Loss Current: 6.8318, Validation Loss AVG: 9.3982, lr: 0.001
+Epoch [38/400], Training Loss: 13.4408, Validation Loss Current: 5.6977, Validation Loss AVG: 9.8468, lr: 0.001
+Epoch [39/400], Training Loss: 13.7704, Validation Loss Current: 5.7357, Validation Loss AVG: 8.8748, lr: 0.001
+Epoch [40/400], Training Loss: 11.8466, Validation Loss Current: 5.7950, Validation Loss AVG: 8.9063, lr: 0.001
+Epoch [41/400], Training Loss: 9.1528, Validation Loss Current: 6.4575, Validation Loss AVG: 10.0786, lr: 0.001
+Epoch [42/400], Training Loss: 9.1204, Validation Loss Current: 5.5164, Validation Loss AVG: 11.2076, lr: 0.001
+Epoch [43/400], Training Loss: 8.2426, Validation Loss Current: 6.1658, Validation Loss AVG: 11.2788, lr: 0.001
+Epoch [44/400], Training Loss: 10.5860, Validation Loss Current: 5.9569, Validation Loss AVG: 9.1663, lr: 0.001
+Epoch [45/400], Training Loss: 7.8494, Validation Loss Current: 6.2689, Validation Loss AVG: 12.4479, lr: 0.001
+Epoch [46/400], Training Loss: 7.3935, Validation Loss Current: 6.7139, Validation Loss AVG: 12.7350, lr: 0.001
+Epoch [47/400], Training Loss: 8.9299, Validation Loss Current: 5.9214, Validation Loss AVG: 10.9872, lr: 0.001
+Epoch [48/400], Training Loss: 8.4434, Validation Loss Current: 5.6122, Validation Loss AVG: 9.4075, lr: 0.001
+Epoch [49/400], Training Loss: 6.1635, Validation Loss Current: 6.5972, Validation Loss AVG: 12.0688, lr: 0.001
+Epoch [50/400], Training Loss: 9.4455, Validation Loss Current: 9.6354, Validation Loss AVG: 17.3214, lr: 0.001
+Epoch [51/400], Training Loss: 9.4369, Validation Loss Current: 7.5304, Validation Loss AVG: 13.0721, lr: 0.001
+Epoch [52/400], Training Loss: 7.5557, Validation Loss Current: 6.6377, Validation Loss AVG: 9.9647, lr: 0.001
+Epoch [53/400], Training Loss: 5.6597, Validation Loss Current: 9.1900, Validation Loss AVG: 16.5736, lr: 0.001
+Epoch [54/400], Training Loss: 5.8954, Validation Loss Current: 6.0956, Validation Loss AVG: 11.0205, lr: 0.001
+Epoch [55/400], Training Loss: 4.1945, Validation Loss Current: 6.3285, Validation Loss AVG: 13.6548, lr: 0.001
+Epoch [56/400], Training Loss: 5.7876, Validation Loss Current: 6.4421, Validation Loss AVG: 10.0068, lr: 0.001
+Epoch [57/400], Training Loss: 7.1021, Validation Loss Current: 6.7959, Validation Loss AVG: 12.3589, lr: 0.001
+Epoch [58/400], Training Loss: 5.2556, Validation Loss Current: 6.9335, Validation Loss AVG: 12.9730, lr: 0.001
+Epoch [59/400], Training Loss: 4.8270, Validation Loss Current: 6.5379, Validation Loss AVG: 10.9527, lr: 0.001
+Epoch [60/400], Training Loss: 4.4510, Validation Loss Current: 6.3419, Validation Loss AVG: 9.8622, lr: 0.001
+Epoch [61/400], Training Loss: 5.9025, Validation Loss Current: 7.9516, Validation Loss AVG: 13.2764, lr: 0.001
+Epoch [62/400], Training Loss: 5.9934, Validation Loss Current: 6.0214, Validation Loss AVG: 11.1317, lr: 0.001
+Epoch [63/400], Training Loss: 6.2575, Validation Loss Current: 7.2051, Validation Loss AVG: 14.1076, lr: 0.001
+Epoch [64/400], Training Loss: 4.8274, Validation Loss Current: 7.6475, Validation Loss AVG: 14.9419, lr: 0.001
+Epoch [65/400], Training Loss: 5.9435, Validation Loss Current: 7.5458, Validation Loss AVG: 12.3832, lr: 0.001
+Epoch [66/400], Training Loss: 3.4728, Validation Loss Current: 6.9914, Validation Loss AVG: 16.9103, lr: 0.001
+Epoch [67/400], Training Loss: 3.7075, Validation Loss Current: 6.7300, Validation Loss AVG: 12.0112, lr: 0.001
+Epoch [68/400], Training Loss: 6.4939, Validation Loss Current: 9.2735, Validation Loss AVG: 15.2014, lr: 0.001
+Epoch [69/400], Training Loss: 3.5925, Validation Loss Current: 10.8225, Validation Loss AVG: 19.9399, lr: 0.001
+Epoch [70/400], Training Loss: 4.0191, Validation Loss Current: 7.1287, Validation Loss AVG: 12.7864, lr: 0.001
+Epoch [71/400], Training Loss: 2.9863, Validation Loss Current: 7.1499, Validation Loss AVG: 14.7783, lr: 0.001
+Epoch [72/400], Training Loss: 4.3762, Validation Loss Current: 7.3372, Validation Loss AVG: 17.0809, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 1 finished training. Best epoch: 42 Best val accuracy: [0.2680921052631579, 0.2993421052631579, 0.3569078947368421, 0.34210526315789475, 0.3963815789473684, 0.3717105263157895, 0.4457236842105263, 0.44243421052631576, 0.4605263157894737, 0.4917763157894737, 0.5131578947368421, 0.4375, 0.5082236842105263, 0.5131578947368421, 0.5296052631578947, 0.5328947368421053, 0.5345394736842105, 0.5707236842105263, 0.5476973684210527, 0.5970394736842105, 0.5444078947368421, 0.587171052631579, 0.5657894736842105, 0.6036184210526315, 0.5723684210526315, 0.5904605263157895, 0.5888157894736842, 0.5115131578947368, 0.587171052631579, 0.5986842105263158, 0.625, 0.6151315789473685, 0.587171052631579, 0.5986842105263158, 0.6118421052631579, 0.6085526315789473, 0.569078947368421, 0.6217105263157895, 0.6085526315789473, 0.618421052631579, 0.6085526315789473, 0.6381578947368421, 0.6151315789473685, 0.6200657894736842, 0.6332236842105263, 0.5855263157894737, 0.6282894736842105, 0.6463815789473685, 0.6085526315789473, 0.5032894736842105, 0.5921052631578947, 0.5904605263157895, 0.5460526315789473, 0.631578947368421, 0.6167763157894737, 0.6019736842105263, 0.5888157894736842, 0.6019736842105263, 0.5904605263157895, 0.6134868421052632, 0.5756578947368421, 0.625, 0.6217105263157895, 0.5921052631578947, 0.6134868421052632, 0.6052631578947368, 0.618421052631579, 0.5657894736842105, 0.4605263157894737, 0.6101973684210527, 0.6167763157894737, 0.6233552631578947] Best val loss: 5.5164090394973755
+
+
+----- Training resnet18 with sequence: [1, 0.8] -----
+Sequence [1] already in state dictionary, jumped
+Loaded best state dict for [1]
+Current group: 0.8
+Epoch [1/200], Training Loss: 22.0761, Validation Loss Current: 11.6919, Validation Loss AVG: 11.6919, lr: 0.001
+Epoch [2/200], Training Loss: 19.2120, Validation Loss Current: 10.6230, Validation Loss AVG: 10.6230, lr: 0.001
+Epoch [3/200], Training Loss: 13.1949, Validation Loss Current: 9.4204, Validation Loss AVG: 9.4204, lr: 0.001
+Epoch [4/200], Training Loss: 10.1521, Validation Loss Current: 12.4171, Validation Loss AVG: 12.4171, lr: 0.001
+Epoch [5/200], Training Loss: 9.1157, Validation Loss Current: 10.7200, Validation Loss AVG: 10.7200, lr: 0.001
+Epoch [6/200], Training Loss: 9.5445, Validation Loss Current: 12.5547, Validation Loss AVG: 12.5547, lr: 0.001
+Epoch [7/200], Training Loss: 9.1790, Validation Loss Current: 10.8874, Validation Loss AVG: 10.8874, lr: 0.001
+Epoch [8/200], Training Loss: 8.1850, Validation Loss Current: 10.8445, Validation Loss AVG: 10.8445, lr: 0.001
+Epoch [9/200], Training Loss: 7.7825, Validation Loss Current: 9.2572, Validation Loss AVG: 9.2572, lr: 0.001
+Epoch [10/200], Training Loss: 7.1652, Validation Loss Current: 13.0111, Validation Loss AVG: 13.0111, lr: 0.001
+Epoch [11/200], Training Loss: 4.5297, Validation Loss Current: 12.1672, Validation Loss AVG: 12.1672, lr: 0.001
+Epoch [12/200], Training Loss: 4.1765, Validation Loss Current: 13.0142, Validation Loss AVG: 13.0142, lr: 0.001
+Epoch [13/200], Training Loss: 5.2225, Validation Loss Current: 9.5763, Validation Loss AVG: 9.5763, lr: 0.001
+Epoch [14/200], Training Loss: 5.8374, Validation Loss Current: 11.8218, Validation Loss AVG: 11.8218, lr: 0.001
+Epoch [15/200], Training Loss: 6.2986, Validation Loss Current: 13.3709, Validation Loss AVG: 13.3709, lr: 0.001
+Epoch [16/200], Training Loss: 6.1024, Validation Loss Current: 14.9701, Validation Loss AVG: 14.9701, lr: 0.001
+Epoch [17/200], Training Loss: 4.6733, Validation Loss Current: 14.8775, Validation Loss AVG: 14.8775, lr: 0.001
+Epoch [18/200], Training Loss: 3.0952, Validation Loss Current: 13.5334, Validation Loss AVG: 13.5334, lr: 0.001
+Epoch [19/200], Training Loss: 3.4342, Validation Loss Current: 14.9026, Validation Loss AVG: 14.9026, lr: 0.001
+Epoch [20/200], Training Loss: 3.7677, Validation Loss Current: 12.7826, Validation Loss AVG: 12.7826, lr: 0.001
+Epoch [21/200], Training Loss: 3.0055, Validation Loss Current: 11.9347, Validation Loss AVG: 11.9347, lr: 0.001
+Epoch [22/200], Training Loss: 3.6424, Validation Loss Current: 14.8903, Validation Loss AVG: 14.8903, lr: 0.001
+Epoch [23/200], Training Loss: 2.7641, Validation Loss Current: 12.1877, Validation Loss AVG: 12.1877, lr: 0.001
+Epoch [24/200], Training Loss: 4.9844, Validation Loss Current: 12.5433, Validation Loss AVG: 12.5433, lr: 0.001
+Epoch [25/200], Training Loss: 4.4980, Validation Loss Current: 15.9198, Validation Loss AVG: 15.9198, lr: 0.001
+Epoch [26/200], Training Loss: 4.1056, Validation Loss Current: 12.7121, Validation Loss AVG: 12.7121, lr: 0.001
+Epoch [27/200], Training Loss: 2.8925, Validation Loss Current: 13.3809, Validation Loss AVG: 13.3809, lr: 0.001
+Epoch [28/200], Training Loss: 3.3570, Validation Loss Current: 11.7200, Validation Loss AVG: 11.7200, lr: 0.001
+Epoch [29/200], Training Loss: 4.2816, Validation Loss Current: 14.8282, Validation Loss AVG: 14.8282, lr: 0.001
+Epoch [30/200], Training Loss: 4.7664, Validation Loss Current: 15.5899, Validation Loss AVG: 15.5899, lr: 0.001
+Epoch [31/200], Training Loss: 3.0556, Validation Loss Current: 11.2751, Validation Loss AVG: 11.2751, lr: 0.001
+Epoch [32/200], Training Loss: 2.8315, Validation Loss Current: 12.8742, Validation Loss AVG: 12.8742, lr: 0.001
+Epoch [33/200], Training Loss: 3.0188, Validation Loss Current: 12.2547, Validation Loss AVG: 12.2547, lr: 0.001
+Epoch [34/200], Training Loss: 3.6786, Validation Loss Current: 13.6224, Validation Loss AVG: 13.6224, lr: 0.001
+Epoch [35/200], Training Loss: 3.5371, Validation Loss Current: 15.1304, Validation Loss AVG: 15.1304, lr: 0.001
+Epoch [36/200], Training Loss: 4.6514, Validation Loss Current: 16.6958, Validation Loss AVG: 16.6958, lr: 0.001
+Epoch [37/200], Training Loss: 4.2912, Validation Loss Current: 12.5433, Validation Loss AVG: 12.5433, lr: 0.001
+Epoch [38/200], Training Loss: 3.3401, Validation Loss Current: 12.4971, Validation Loss AVG: 12.4971, lr: 0.001
+Epoch [39/200], Training Loss: 6.2434, Validation Loss Current: 14.4876, Validation Loss AVG: 14.4876, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.8 finished training. Best epoch: 9 Best val accuracy: [0.37565789473684214, 0.4134868421052632, 0.48519736842105254, 0.40328947368421053, 0.4618421052631579, 0.375, 0.4444078947368421, 0.4223684210526315, 0.4509868421052632, 0.44144736842105264, 0.4546052631578947, 0.4447368421052632, 0.46019736842105263, 0.45394736842105265, 0.4223684210526316, 0.4305921052631579, 0.40328947368421053, 0.45032894736842105, 0.43453947368421053, 0.44046052631578947, 0.4529605263157895, 0.43256578947368424, 0.45723684210526316, 0.44868421052631585, 0.43980263157894733, 0.4447368421052632, 0.4476973684210527, 0.4546052631578948, 0.42203947368421063, 0.42269736842105265, 0.4565789473684211, 0.4588815789473685, 0.4394736842105263, 0.43519736842105267, 0.40921052631578947, 0.42664473684210524, 0.4516447368421053, 0.41085526315789467, 0.44671052631578945] Best val loss: 9.257187068462372
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8]
+Current group: 0.6
+Epoch [1/134], Training Loss: 30.4221, Validation Loss Current: 26.9592, Validation Loss AVG: 26.9592, lr: 0.001
+Epoch [2/134], Training Loss: 28.1562, Validation Loss Current: 15.4816, Validation Loss AVG: 15.4816, lr: 0.001
+Epoch [3/134], Training Loss: 17.4072, Validation Loss Current: 12.5569, Validation Loss AVG: 12.5569, lr: 0.001
+Epoch [4/134], Training Loss: 13.0400, Validation Loss Current: 10.6051, Validation Loss AVG: 10.6051, lr: 0.001
+Epoch [5/134], Training Loss: 10.2953, Validation Loss Current: 10.3083, Validation Loss AVG: 10.3083, lr: 0.001
+Epoch [6/134], Training Loss: 6.8602, Validation Loss Current: 9.6483, Validation Loss AVG: 9.6483, lr: 0.001
+Epoch [7/134], Training Loss: 6.1494, Validation Loss Current: 13.0480, Validation Loss AVG: 13.0480, lr: 0.001
+Epoch [8/134], Training Loss: 6.2038, Validation Loss Current: 11.0900, Validation Loss AVG: 11.0900, lr: 0.001
+Epoch [9/134], Training Loss: 7.4389, Validation Loss Current: 12.6603, Validation Loss AVG: 12.6603, lr: 0.001
+Epoch [10/134], Training Loss: 5.3341, Validation Loss Current: 11.4679, Validation Loss AVG: 11.4679, lr: 0.001
+Epoch [11/134], Training Loss: 7.3041, Validation Loss Current: 8.8312, Validation Loss AVG: 8.8312, lr: 0.001
+Epoch [12/134], Training Loss: 6.8178, Validation Loss Current: 11.5950, Validation Loss AVG: 11.5950, lr: 0.001
+Epoch [13/134], Training Loss: 5.6103, Validation Loss Current: 10.7744, Validation Loss AVG: 10.7744, lr: 0.001
+Epoch [14/134], Training Loss: 5.5096, Validation Loss Current: 12.8254, Validation Loss AVG: 12.8254, lr: 0.001
+Epoch [15/134], Training Loss: 6.1874, Validation Loss Current: 10.4256, Validation Loss AVG: 10.4256, lr: 0.001
+Epoch [16/134], Training Loss: 5.3577, Validation Loss Current: 13.3527, Validation Loss AVG: 13.3527, lr: 0.001
+Epoch [17/134], Training Loss: 9.0276, Validation Loss Current: 13.6533, Validation Loss AVG: 13.6533, lr: 0.001
+Epoch [18/134], Training Loss: 9.0161, Validation Loss Current: 11.9067, Validation Loss AVG: 11.9067, lr: 0.001
+Epoch [19/134], Training Loss: 8.3437, Validation Loss Current: 11.5260, Validation Loss AVG: 11.5260, lr: 0.001
+Epoch [20/134], Training Loss: 5.3581, Validation Loss Current: 11.1239, Validation Loss AVG: 11.1239, lr: 0.001
+Epoch [21/134], Training Loss: 6.4142, Validation Loss Current: 11.6316, Validation Loss AVG: 11.6316, lr: 0.001
+Epoch [22/134], Training Loss: 7.7720, Validation Loss Current: 12.3262, Validation Loss AVG: 12.3262, lr: 0.001
+Epoch [23/134], Training Loss: 6.2246, Validation Loss Current: 10.6043, Validation Loss AVG: 10.6043, lr: 0.001
+Epoch [24/134], Training Loss: 3.9676, Validation Loss Current: 12.0795, Validation Loss AVG: 12.0795, lr: 0.001
+Epoch [25/134], Training Loss: 4.8372, Validation Loss Current: 12.2776, Validation Loss AVG: 12.2776, lr: 0.001
+Epoch [26/134], Training Loss: 2.8211, Validation Loss Current: 12.5972, Validation Loss AVG: 12.5972, lr: 0.001
+Epoch [27/134], Training Loss: 2.1260, Validation Loss Current: 11.5946, Validation Loss AVG: 11.5946, lr: 0.001
+Epoch [28/134], Training Loss: 1.0555, Validation Loss Current: 11.3745, Validation Loss AVG: 11.3745, lr: 0.001
+Epoch [29/134], Training Loss: 1.0146, Validation Loss Current: 10.6690, Validation Loss AVG: 10.6690, lr: 0.001
+Epoch [30/134], Training Loss: 1.6233, Validation Loss Current: 11.9313, Validation Loss AVG: 11.9313, lr: 0.001
+Epoch [31/134], Training Loss: 1.8829, Validation Loss Current: 11.1056, Validation Loss AVG: 11.1056, lr: 0.001
+Epoch [32/134], Training Loss: 1.9416, Validation Loss Current: 13.2198, Validation Loss AVG: 13.2198, lr: 0.001
+Epoch [33/134], Training Loss: 2.3561, Validation Loss Current: 13.6437, Validation Loss AVG: 13.6437, lr: 0.001
+Epoch [34/134], Training Loss: 4.1987, Validation Loss Current: 10.8376, Validation Loss AVG: 10.8376, lr: 0.001
+Epoch [35/134], Training Loss: 2.5721, Validation Loss Current: 14.7409, Validation Loss AVG: 14.7409, lr: 0.001
+Epoch [36/134], Training Loss: 3.0913, Validation Loss Current: 11.9938, Validation Loss AVG: 11.9938, lr: 0.001
+Epoch [37/134], Training Loss: 2.5513, Validation Loss Current: 13.3620, Validation Loss AVG: 13.3620, lr: 0.001
+Epoch [38/134], Training Loss: 5.2695, Validation Loss Current: 14.0075, Validation Loss AVG: 14.0075, lr: 0.001
+Epoch [39/134], Training Loss: 4.8732, Validation Loss Current: 15.2179, Validation Loss AVG: 15.2179, lr: 0.001
+Epoch [40/134], Training Loss: 2.6659, Validation Loss Current: 13.6875, Validation Loss AVG: 13.6875, lr: 0.001
+Epoch [41/134], Training Loss: 2.3497, Validation Loss Current: 14.0029, Validation Loss AVG: 14.0029, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.6 finished training. Best epoch: 11 Best val accuracy: [0.28717105263157894, 0.36677631578947373, 0.44868421052631585, 0.44013157894736843, 0.4720394736842105, 0.4884868421052631, 0.4375, 0.4825657894736842, 0.4391447368421053, 0.4858552631578948, 0.48881578947368426, 0.46809210526315786, 0.5009868421052632, 0.4588815789473684, 0.5078947368421052, 0.4707236842105263, 0.3625, 0.46875, 0.49210526315789477, 0.4875, 0.5036184210526315, 0.45592105263157895, 0.4901315789473685, 0.48190789473684204, 0.47894736842105257, 0.506578947368421, 0.4838815789473684, 0.4983552631578948, 0.5111842105263158, 0.4822368421052631, 0.5128289473684211, 0.4855263157894737, 0.48092105263157886, 0.488157894736842, 0.4651315789473684, 0.48980263157894727, 0.4878289473684211, 0.43782894736842104, 0.4575657894736841, 0.47631578947368414, 0.46875] Best val loss: 8.831207585334777
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6]
+Current group: 0.4
+Epoch [1/100], Training Loss: 36.5476, Validation Loss Current: 11.3280, Validation Loss AVG: 11.3280, lr: 0.001
+Epoch [2/100], Training Loss: 25.3704, Validation Loss Current: 11.0685, Validation Loss AVG: 11.0685, lr: 0.001
+Epoch [3/100], Training Loss: 18.0965, Validation Loss Current: 9.6268, Validation Loss AVG: 9.6268, lr: 0.001
+Epoch [4/100], Training Loss: 14.1458, Validation Loss Current: 10.3667, Validation Loss AVG: 10.3667, lr: 0.001
+Epoch [5/100], Training Loss: 12.0699, Validation Loss Current: 10.5982, Validation Loss AVG: 10.5982, lr: 0.001
+Epoch [6/100], Training Loss: 11.5184, Validation Loss Current: 13.6829, Validation Loss AVG: 13.6829, lr: 0.001
+Epoch [7/100], Training Loss: 9.9632, Validation Loss Current: 9.4866, Validation Loss AVG: 9.4866, lr: 0.001
+Epoch [8/100], Training Loss: 5.9205, Validation Loss Current: 8.8732, Validation Loss AVG: 8.8732, lr: 0.001
+Epoch [9/100], Training Loss: 4.9671, Validation Loss Current: 10.4308, Validation Loss AVG: 10.4308, lr: 0.001
+Epoch [10/100], Training Loss: 7.3902, Validation Loss Current: 15.6017, Validation Loss AVG: 15.6017, lr: 0.001
+Epoch [11/100], Training Loss: 6.4372, Validation Loss Current: 11.7959, Validation Loss AVG: 11.7959, lr: 0.001
+Epoch [12/100], Training Loss: 5.5428, Validation Loss Current: 13.7485, Validation Loss AVG: 13.7485, lr: 0.001
+Epoch [13/100], Training Loss: 6.2086, Validation Loss Current: 11.1089, Validation Loss AVG: 11.1089, lr: 0.001
+Epoch [14/100], Training Loss: 5.4432, Validation Loss Current: 12.8883, Validation Loss AVG: 12.8883, lr: 0.001
+Epoch [15/100], Training Loss: 4.9403, Validation Loss Current: 11.7258, Validation Loss AVG: 11.7258, lr: 0.001
+Epoch [16/100], Training Loss: 2.8109, Validation Loss Current: 10.0587, Validation Loss AVG: 10.0587, lr: 0.001
+Epoch [17/100], Training Loss: 3.4028, Validation Loss Current: 14.0343, Validation Loss AVG: 14.0343, lr: 0.001
+Epoch [18/100], Training Loss: 8.8066, Validation Loss Current: 19.1788, Validation Loss AVG: 19.1788, lr: 0.001
+Epoch [19/100], Training Loss: 8.8936, Validation Loss Current: 11.9515, Validation Loss AVG: 11.9515, lr: 0.001
+Epoch [20/100], Training Loss: 9.0133, Validation Loss Current: 14.2004, Validation Loss AVG: 14.2004, lr: 0.001
+Epoch [21/100], Training Loss: 11.5041, Validation Loss Current: 21.7225, Validation Loss AVG: 21.7225, lr: 0.001
+Epoch [22/100], Training Loss: 7.6049, Validation Loss Current: 12.7140, Validation Loss AVG: 12.7140, lr: 0.001
+Epoch [23/100], Training Loss: 2.5426, Validation Loss Current: 10.1354, Validation Loss AVG: 10.1354, lr: 0.001
+Epoch [24/100], Training Loss: 1.2772, Validation Loss Current: 10.1173, Validation Loss AVG: 10.1173, lr: 0.001
+Epoch [25/100], Training Loss: 1.2997, Validation Loss Current: 10.0382, Validation Loss AVG: 10.0382, lr: 0.001
+Epoch [26/100], Training Loss: 2.3113, Validation Loss Current: 11.9035, Validation Loss AVG: 11.9035, lr: 0.001
+Epoch [27/100], Training Loss: 1.8896, Validation Loss Current: 11.0969, Validation Loss AVG: 11.0969, lr: 0.001
+Epoch [28/100], Training Loss: 1.2398, Validation Loss Current: 11.5020, Validation Loss AVG: 11.5020, lr: 0.001
+Epoch [29/100], Training Loss: 0.6827, Validation Loss Current: 10.4279, Validation Loss AVG: 10.4279, lr: 0.001
+Epoch [30/100], Training Loss: 0.9212, Validation Loss Current: 10.7754, Validation Loss AVG: 10.7754, lr: 0.001
+Epoch [31/100], Training Loss: 0.7864, Validation Loss Current: 11.9118, Validation Loss AVG: 11.9118, lr: 0.001
+Epoch [32/100], Training Loss: 1.6160, Validation Loss Current: 12.5155, Validation Loss AVG: 12.5155, lr: 0.001
+Epoch [33/100], Training Loss: 5.3813, Validation Loss Current: 12.9226, Validation Loss AVG: 12.9226, lr: 0.001
+Epoch [34/100], Training Loss: 5.3847, Validation Loss Current: 18.2519, Validation Loss AVG: 18.2519, lr: 0.001
+Epoch [35/100], Training Loss: 4.7281, Validation Loss Current: 12.4433, Validation Loss AVG: 12.4433, lr: 0.001
+Epoch [36/100], Training Loss: 4.9085, Validation Loss Current: 12.6400, Validation Loss AVG: 12.6400, lr: 0.001
+Epoch [37/100], Training Loss: 4.4218, Validation Loss Current: 14.5748, Validation Loss AVG: 14.5748, lr: 0.001
+Epoch [38/100], Training Loss: 8.5150, Validation Loss Current: 18.9220, Validation Loss AVG: 18.9220, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.4 finished training. Best epoch: 8 Best val accuracy: [0.4509868421052632, 0.4776315789473684, 0.505592105263158, 0.44177631578947374, 0.5042763157894737, 0.37796052631578947, 0.4901315789473685, 0.5256578947368421, 0.4756578947368421, 0.4565789473684211, 0.4756578947368421, 0.43618421052631584, 0.47269736842105264, 0.4411184210526316, 0.4875, 0.5101973684210526, 0.4687500000000001, 0.4046052631578948, 0.4526315789473684, 0.4134868421052632, 0.3052631578947368, 0.45921052631578946, 0.5125, 0.5013157894736842, 0.5167763157894737, 0.4707236842105263, 0.4999999999999999, 0.4822368421052632, 0.5328947368421053, 0.5174342105263159, 0.47302631578947374, 0.4828947368421053, 0.4546052631578947, 0.43618421052631573, 0.46875, 0.4901315789473684, 0.4338815789473685, 0.36907894736842106] Best val loss: 8.873194098472595
+
+
+----- Training resnet18 with sequence: [1, 0.8, 0.6, 0.4, 0.2] -----
+Sequence [1] already in state dictionary, jumped
+Sequence [1, 0.8] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6] already in state dictionary, jumped
+Sequence [1, 0.8, 0.6, 0.4] already in state dictionary, jumped
+Loaded best state dict for [1, 0.8, 0.6, 0.4]
+Current group: 0.2
+Epoch [1/80], Training Loss: 42.7502, Validation Loss Current: 27.4693, Validation Loss AVG: 27.4693, lr: 0.001
+Epoch [2/80], Training Loss: 24.6281, Validation Loss Current: 13.8961, Validation Loss AVG: 13.8961, lr: 0.001
+Epoch [3/80], Training Loss: 19.8380, Validation Loss Current: 13.8297, Validation Loss AVG: 13.8297, lr: 0.001
+Epoch [4/80], Training Loss: 18.7047, Validation Loss Current: 12.3776, Validation Loss AVG: 12.3776, lr: 0.001
+Epoch [5/80], Training Loss: 17.4344, Validation Loss Current: 13.9882, Validation Loss AVG: 13.9882, lr: 0.001
+Epoch [6/80], Training Loss: 12.2637, Validation Loss Current: 15.4045, Validation Loss AVG: 15.4045, lr: 0.001
+Epoch [7/80], Training Loss: 10.9666, Validation Loss Current: 13.3927, Validation Loss AVG: 13.3927, lr: 0.001
+Epoch [8/80], Training Loss: 11.5933, Validation Loss Current: 13.6396, Validation Loss AVG: 13.6396, lr: 0.001
+Epoch [9/80], Training Loss: 13.6971, Validation Loss Current: 17.3399, Validation Loss AVG: 17.3399, lr: 0.001
+Epoch [10/80], Training Loss: 11.4714, Validation Loss Current: 16.5484, Validation Loss AVG: 16.5484, lr: 0.001
+Epoch [11/80], Training Loss: 8.4181, Validation Loss Current: 16.0547, Validation Loss AVG: 16.0547, lr: 0.001
+Epoch [12/80], Training Loss: 8.2004, Validation Loss Current: 15.0312, Validation Loss AVG: 15.0312, lr: 0.001
+Epoch [13/80], Training Loss: 9.8375, Validation Loss Current: 19.9815, Validation Loss AVG: 19.9815, lr: 0.001
+Epoch [14/80], Training Loss: 10.9514, Validation Loss Current: 26.4566, Validation Loss AVG: 26.4566, lr: 0.001
+Epoch [15/80], Training Loss: 7.4373, Validation Loss Current: 21.1691, Validation Loss AVG: 21.1691, lr: 0.001
+Epoch [16/80], Training Loss: 5.8939, Validation Loss Current: 16.7689, Validation Loss AVG: 16.7689, lr: 0.001
+Epoch [17/80], Training Loss: 5.6767, Validation Loss Current: 17.4291, Validation Loss AVG: 17.4291, lr: 0.001
+Epoch [18/80], Training Loss: 7.7868, Validation Loss Current: 17.2162, Validation Loss AVG: 17.2162, lr: 0.001
+Epoch [19/80], Training Loss: 7.1535, Validation Loss Current: 19.3093, Validation Loss AVG: 19.3093, lr: 0.001
+Epoch [20/80], Training Loss: 7.0956, Validation Loss Current: 24.1530, Validation Loss AVG: 24.1530, lr: 0.001
+Epoch [21/80], Training Loss: 6.1456, Validation Loss Current: 18.9848, Validation Loss AVG: 18.9848, lr: 0.001
+Epoch [22/80], Training Loss: 6.7705, Validation Loss Current: 16.4258, Validation Loss AVG: 16.4258, lr: 0.001
+Epoch [23/80], Training Loss: 9.0171, Validation Loss Current: 20.7744, Validation Loss AVG: 20.7744, lr: 0.001
+Epoch [24/80], Training Loss: 6.7819, Validation Loss Current: 14.8597, Validation Loss AVG: 14.8597, lr: 0.001
+Epoch [25/80], Training Loss: 3.2013, Validation Loss Current: 15.8051, Validation Loss AVG: 15.8051, lr: 0.001
+Epoch [26/80], Training Loss: 2.3411, Validation Loss Current: 15.9700, Validation Loss AVG: 15.9700, lr: 0.001
+Epoch [27/80], Training Loss: 2.5896, Validation Loss Current: 15.9657, Validation Loss AVG: 15.9657, lr: 0.001
+Epoch [28/80], Training Loss: 4.0240, Validation Loss Current: 20.3788, Validation Loss AVG: 20.3788, lr: 0.001
+Epoch [29/80], Training Loss: 5.2815, Validation Loss Current: 24.5992, Validation Loss AVG: 24.5992, lr: 0.001
+Epoch [30/80], Training Loss: 10.6010, Validation Loss Current: 26.3475, Validation Loss AVG: 26.3475, lr: 0.001
+Epoch [31/80], Training Loss: 11.6139, Validation Loss Current: 23.9914, Validation Loss AVG: 23.9914, lr: 0.001
+Epoch [32/80], Training Loss: 7.0418, Validation Loss Current: 18.2204, Validation Loss AVG: 18.2204, lr: 0.001
+Epoch [33/80], Training Loss: 4.4560, Validation Loss Current: 17.4924, Validation Loss AVG: 17.4924, lr: 0.001
+Epoch [34/80], Training Loss: 6.0203, Validation Loss Current: 19.4051, Validation Loss AVG: 19.4051, lr: 0.001
+ --- Early Stopped ---
+Patch distance: 0.2 finished training. Best epoch: 4 Best val accuracy: [0.2911184210526316, 0.39375, 0.4273026315789473, 0.4582236842105264, 0.4023026315789474, 0.37368421052631584, 0.4631578947368421, 0.4493421052631579, 0.40592105263157896, 0.41875, 0.4092105263157896, 0.40493421052631573, 0.4197368421052631, 0.2986842105263158, 0.33388157894736836, 0.4098684210526316, 0.37532894736842104, 0.4098684210526316, 0.3618421052631579, 0.30131578947368426, 0.34309210526315786, 0.45032894736842105, 0.3052631578947368, 0.43552631578947365, 0.436842105263158, 0.4532894736842105, 0.4605263157894736, 0.3871710526315789, 0.3131578947368421, 0.3046052631578947, 0.29934210526315785, 0.42894736842105263, 0.41381578947368414, 0.3983552631578947] Best val loss: 12.377640056610108
+
+
+-------------------- All training done --------------------
+
+
+ --- Evaluating ---
+Fold: 0
+---- Testing model trained on sequence: [1] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.18105423987776928
+Test set distance: 0.4 Top 1 Accuracy: 0.21237585943468296
+Test set distance: 0.6 Top 1 Accuracy: 0.372803666921314
+Test set distance: 0.8 Top 1 Accuracy: 0.5401069518716578
+Test set distance: 1 Top 1 Accuracy: 0.6027501909854851
+---- Testing model trained on sequence: [1, 0.8] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.1779984721161192
+Test set distance: 0.4 Top 1 Accuracy: 0.30863254392666156
+Test set distance: 0.6 Top 1 Accuracy: 0.4950343773873186
+Test set distance: 0.8 Top 1 Accuracy: 0.5691367456073338
+Test set distance: 1 Top 1 Accuracy: 0.5676088617265088
+---- Testing model trained on sequence: [1, 0.8, 0.6] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.30557677616501144
+Test set distance: 0.4 Top 1 Accuracy: 0.466768525592055
+Test set distance: 0.6 Top 1 Accuracy: 0.5805958747135218
+Test set distance: 0.8 Top 1 Accuracy: 0.5729564553093965
+Test set distance: 1 Top 1 Accuracy: 0.5653170359052712
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.3414820473644003
+Test set distance: 0.4 Top 1 Accuracy: 0.5676088617265088
+Test set distance: 0.6 Top 1 Accuracy: 0.5393430099312452
+Test set distance: 0.8 Top 1 Accuracy: 0.5271199388846448
+Test set distance: 1 Top 1 Accuracy: 0.4881588999236058
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4, 0.2] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.29411764705882354
+Test set distance: 0.4 Top 1 Accuracy: 0.23682200152788388
+Test set distance: 0.6 Top 1 Accuracy: 0.2643239113827349
+Test set distance: 0.8 Top 1 Accuracy: 0.2719633307868602
+Test set distance: 1 Top 1 Accuracy: 0.24064171122994651
+Fold: 1
+---- Testing model trained on sequence: [1] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.21008403361344538
+Test set distance: 0.4 Top 1 Accuracy: 0.2910618792971734
+Test set distance: 0.6 Top 1 Accuracy: 0.4232238349885409
+Test set distance: 0.8 Top 1 Accuracy: 0.5210084033613446
+Test set distance: 1 Top 1 Accuracy: 0.5943468296409473
+---- Testing model trained on sequence: [1, 0.8] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.14591291061879297
+Test set distance: 0.4 Top 1 Accuracy: 0.32161955691367455
+Test set distance: 0.6 Top 1 Accuracy: 0.4957983193277311
+Test set distance: 0.8 Top 1 Accuracy: 0.6012223071046601
+Test set distance: 1 Top 1 Accuracy: 0.6142093200916731
+---- Testing model trained on sequence: [1, 0.8, 0.6] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.173414820473644
+Test set distance: 0.4 Top 1 Accuracy: 0.3155080213903743
+Test set distance: 0.6 Top 1 Accuracy: 0.5485103132161956
+Test set distance: 0.8 Top 1 Accuracy: 0.5408708938120703
+Test set distance: 1 Top 1 Accuracy: 0.49732620320855614
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.11841100076394194
+Test set distance: 0.4 Top 1 Accuracy: 0.306340718105424
+Test set distance: 0.6 Top 1 Accuracy: 0.3819709702062643
+Test set distance: 0.8 Top 1 Accuracy: 0.3544690603514133
+Test set distance: 1 Top 1 Accuracy: 0.33689839572192515
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4, 0.2] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.2582123758594347
+Test set distance: 0.4 Top 1 Accuracy: 0.23682200152788388
+Test set distance: 0.6 Top 1 Accuracy: 0.23300229182582124
+Test set distance: 0.8 Top 1 Accuracy: 0.21695951107715813
+Test set distance: 1 Top 1 Accuracy: 0.19404125286478227
+Fold: 2
+---- Testing model trained on sequence: [1] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.1038961038961039
+Test set distance: 0.4 Top 1 Accuracy: 0.3002291825821238
+Test set distance: 0.6 Top 1 Accuracy: 0.47517188693659285
+Test set distance: 0.8 Top 1 Accuracy: 0.5538579067990833
+Test set distance: 1 Top 1 Accuracy: 0.5844155844155844
+---- Testing model trained on sequence: [1, 0.8] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.19480519480519481
+Test set distance: 0.4 Top 1 Accuracy: 0.359816653934301
+Test set distance: 0.6 Top 1 Accuracy: 0.5210084033613446
+Test set distance: 0.8 Top 1 Accuracy: 0.586707410236822
+Test set distance: 1 Top 1 Accuracy: 0.5645530939648586
+---- Testing model trained on sequence: [1, 0.8, 0.6] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.19480519480519481
+Test set distance: 0.4 Top 1 Accuracy: 0.48586707410236823
+Test set distance: 0.6 Top 1 Accuracy: 0.6004583651642476
+Test set distance: 0.8 Top 1 Accuracy: 0.5706646294881589
+Test set distance: 1 Top 1 Accuracy: 0.5217723453017571
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.3445378151260504
+Test set distance: 0.4 Top 1 Accuracy: 0.5760122230710466
+Test set distance: 0.6 Top 1 Accuracy: 0.5393430099312452
+Test set distance: 0.8 Top 1 Accuracy: 0.5148968678380443
+Test set distance: 1 Top 1 Accuracy: 0.46829640947288004
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4, 0.2] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.48433919022154315
+Test set distance: 0.4 Top 1 Accuracy: 0.35064935064935066
+Test set distance: 0.6 Top 1 Accuracy: 0.36440030557677616
+Test set distance: 0.8 Top 1 Accuracy: 0.34988540870893814
+Test set distance: 1 Top 1 Accuracy: 0.33537051184110006
+Fold: 3
+---- Testing model trained on sequence: [1] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.16195569136745608
+Test set distance: 0.4 Top 1 Accuracy: 0.2345301757066463
+Test set distance: 0.6 Top 1 Accuracy: 0.43391902215431627
+Test set distance: 0.8 Top 1 Accuracy: 0.5607333842627961
+Test set distance: 1 Top 1 Accuracy: 0.6187929717341482
+---- Testing model trained on sequence: [1, 0.8] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.1466768525592055
+Test set distance: 0.4 Top 1 Accuracy: 0.3834988540870894
+Test set distance: 0.6 Top 1 Accuracy: 0.5439266615737204
+Test set distance: 0.8 Top 1 Accuracy: 0.6302521008403361
+Test set distance: 1 Top 1 Accuracy: 0.5897631779984721
+---- Testing model trained on sequence: [1, 0.8, 0.6] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.22536287242169595
+Test set distance: 0.4 Top 1 Accuracy: 0.48128342245989303
+Test set distance: 0.6 Top 1 Accuracy: 0.6180290297937356
+Test set distance: 0.8 Top 1 Accuracy: 0.5897631779984721
+Test set distance: 1 Top 1 Accuracy: 0.5462184873949579
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.20932009167303284
+Test set distance: 0.4 Top 1 Accuracy: 0.42780748663101603
+Test set distance: 0.6 Top 1 Accuracy: 0.4293353705118411
+Test set distance: 0.8 Top 1 Accuracy: 0.4087089381207028
+Test set distance: 1 Top 1 Accuracy: 0.37815126050420167
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4, 0.2] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.4362108479755539
+Test set distance: 0.4 Top 1 Accuracy: 0.3521772345301757
+Test set distance: 0.6 Top 1 Accuracy: 0.33537051184110006
+Test set distance: 0.8 Top 1 Accuracy: 0.33231474407944994
+Test set distance: 1 Top 1 Accuracy: 0.3048128342245989
+Fold: 4
+---- Testing model trained on sequence: [1] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.0825057295645531
+Test set distance: 0.4 Top 1 Accuracy: 0.20244461420932008
+Test set distance: 0.6 Top 1 Accuracy: 0.4186401833460657
+Test set distance: 0.8 Top 1 Accuracy: 0.5362872421695951
+Test set distance: 1 Top 1 Accuracy: 0.6073338426279603
+---- Testing model trained on sequence: [1, 0.8] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.18563789152024446
+Test set distance: 0.4 Top 1 Accuracy: 0.3850267379679144
+Test set distance: 0.6 Top 1 Accuracy: 0.4782276546982429
+Test set distance: 0.8 Top 1 Accuracy: 0.5637891520244461
+Test set distance: 1 Top 1 Accuracy: 0.5699006875477464
+---- Testing model trained on sequence: [1, 0.8, 0.6] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.1925133689839572
+Test set distance: 0.4 Top 1 Accuracy: 0.4660045836516425
+Test set distance: 0.6 Top 1 Accuracy: 0.5851795263559969
+Test set distance: 0.8 Top 1 Accuracy: 0.5446906035141329
+Test set distance: 1 Top 1 Accuracy: 0.5171886936592819
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.21237585943468296
+Test set distance: 0.4 Top 1 Accuracy: 0.4499618029029794
+Test set distance: 0.6 Top 1 Accuracy: 0.38961038961038963
+Test set distance: 0.8 Top 1 Accuracy: 0.3437738731856379
+Test set distance: 1 Top 1 Accuracy: 0.3009931245225363
+---- Testing model trained on sequence: [1, 0.8, 0.6, 0.4, 0.2] ----
+Test set distance: 0.2 Top 1 Accuracy: 0.44614209320091675
+Test set distance: 0.4 Top 1 Accuracy: 0.3689839572192513
+Test set distance: 0.6 Top 1 Accuracy: 0.3147440794499618
+Test set distance: 0.8 Top 1 Accuracy: 0.29640947288006114
+Test set distance: 1 Top 1 Accuracy: 0.29640947288006114
+------------------------------ End ------------------------------
+
+
+
+
+
+
+
+

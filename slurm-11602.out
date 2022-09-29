@@ -1,0 +1,117 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+device = cpu
+gaussian
+----------
+
+FOLD 1:
+Start training on blur window of 0.2
+[10,  validation acc:    24, validation loss: 8.01735 training loss: 0.31934
+[20,  validation acc:    24, validation loss: 7.98521 training loss: 0.31899
+[30,  validation acc:    24, validation loss: 7.98081 training loss: 0.32067
+[40,  validation acc:    24, validation loss: 7.96494 training loss: 0.31939
+[50,  validation acc:    24, validation loss: 7.93359 training loss: 0.31831
+[60,  validation acc:    24, validation loss: 7.92801 training loss: 0.31813
+Finished Training on gaussian with blur window of 0.2
+Start training on blur window of 0.25
+[10,  validation acc:    24, validation loss: 7.88087 training loss: 0.31545
+[20,  validation acc:    25, validation loss: 7.82546 training loss: 0.31315
+[30,  validation acc:    29, validation loss: 7.62819 training loss: 0.30351
+[40,  validation acc:    34, validation loss: 7.36954 training loss: 0.29812
+[50,  validation acc:    35, validation loss: 7.15239 training loss: 0.29272
+[60,  validation acc:    37, validation loss: 6.81165 training loss: 0.27638
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,  validation acc:    29, validation loss: 7.49114 training loss: 0.28834
+[20,  validation acc:    41, validation loss: 6.44791 training loss: 0.25658
+[30,  validation acc:    44, validation loss: 6.12449 training loss: 0.23747
+[40,  validation acc:    47, validation loss: 5.85042 training loss: 0.22385
+[50,  validation acc:    43, validation loss: 6.44407 training loss: 0.21163
+[60,  validation acc:    41, validation loss: 6.32382 training loss: 0.21305
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,  validation acc:    50, validation loss: 5.60564 training loss: 0.18540
+[20,  validation acc:    51, validation loss: 6.83756 training loss: 0.14766
+[30,  validation acc:    42, validation loss: 7.44511 training loss: 0.14054
+[40,  validation acc:    50, validation loss: 9.20378 training loss: 0.09196
+[50,  validation acc:    50, validation loss: 10.91699 training loss: 0.05749
+[60,  validation acc:    49, validation loss: 11.07916 training loss: 0.04285
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,  validation acc:    58, validation loss: 5.18636 training loss: 0.14752
+[20,  validation acc:    58, validation loss: 6.85317 training loss: 0.10388
+[30,  validation acc:    54, validation loss: 8.70082 training loss: 0.05609
+[40,  validation acc:    56, validation loss: 11.88605 training loss: 0.02663
+[50,  validation acc:    58, validation loss: 14.36604 training loss: 0.01803
+[60,  validation acc:    57, validation loss: 12.51578 training loss: 0.00781
+Finished Training on gaussian with blur window of 1
+Accuracy: 18.106996 %
+Accuracy: 19.753086 %
+Accuracy: 25.514403 %
+Accuracy: 38.477366 %
+Accuracy: 57.201646 %
+Start training on blur window of 0.25
+[10,  validation acc:    24, validation loss: 8.07542 training loss: 0.32276
+[20,  validation acc:    24, validation loss: 7.99369 training loss: 0.31944
+[30,  validation acc:    24, validation loss: 7.97312 training loss: 0.31926
+[40,  validation acc:    24, validation loss: 7.94671 training loss: 0.31809
+[50,  validation acc:    24, validation loss: 7.91747 training loss: 0.31602
+[60,  validation acc:    24, validation loss: 7.89255 training loss: 0.31571
+[70,  validation acc:    24, validation loss: 7.81268 training loss: 0.31251
+Finished Training on gaussian with blur window of 0.25
+Start training on blur window of 0.333
+[10,  validation acc:    34, validation loss: 7.37922 training loss: 0.29839
+[20,  validation acc:    34, validation loss: 7.33208 training loss: 0.29222
+[30,  validation acc:    38, validation loss: 6.92823 training loss: 0.27649
+[40,  validation acc:    39, validation loss: 6.67713 training loss: 0.27079
+[50,  validation acc:    38, validation loss: 7.08690 training loss: 0.25874
+[60,  validation acc:    45, validation loss: 6.26746 training loss: 0.23995
+[70,  validation acc:    46, validation loss: 6.17025 training loss: 0.22283
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,  validation acc:    49, validation loss: 5.66898 training loss: 0.21291
+[20,  validation acc:    52, validation loss: 5.61269 training loss: 0.19125
+[30,  validation acc:    48, validation loss: 6.11308 training loss: 0.16714
+[40,  validation acc:    44, validation loss: 7.05308 training loss: 0.13863
+[50,  validation acc:    52, validation loss: 6.68358 training loss: 0.12915
+[60,  validation acc:    50, validation loss: 7.55672 training loss: 0.09282
+[70,  validation acc:    52, validation loss: 9.15632 training loss: 0.06383
+Finished Training on gaussian with blur window of 0.5
+Start training on blur window of 1
+[10,  validation acc:    56, validation loss: 5.68865 training loss: 0.14015
+[20,  validation acc:    55, validation loss: 6.12614 training loss: 0.09397
+[30,  validation acc:    58, validation loss: 9.80663 training loss: 0.03184
+[40,  validation acc:    55, validation loss: 10.46514 training loss: 0.03448
+[50,  validation acc:    59, validation loss: 11.72822 training loss: 0.01010
+[60,  validation acc:    55, validation loss: 12.29686 training loss: 0.03775
+[70,  validation acc:    59, validation loss: 14.17679 training loss: 0.00160
+Finished Training on gaussian with blur window of 1
+Accuracy: 16.460905 %
+Accuracy: 18.312757 %
+Accuracy: 23.662551 %
+Accuracy: 33.950617 %
+Accuracy: 56.584362 %
+Start training on blur window of 0.333
+[10,  validation acc:    24, validation loss: 7.99765 training loss: 0.31824
+[20,  validation acc:    24, validation loss: 7.96010 training loss: 0.31884
+[30,  validation acc:    24, validation loss: 7.94674 training loss: 0.31722
+[40,  validation acc:    24, validation loss: 7.91226 training loss: 0.31917
+[50,  validation acc:    24, validation loss: 7.89140 training loss: 0.31554
+[60,  validation acc:    25, validation loss: 7.83756 training loss: 0.31441
+[70,  validation acc:    28, validation loss: 7.74057 training loss: 0.31183
+[80,  validation acc:    32, validation loss: 7.45940 training loss: 0.30098
+[90,  validation acc:    34, validation loss: 7.23534 training loss: 0.29385
+[100,  validation acc:    37, validation loss: 6.88889 training loss: 0.28130
+Finished Training on gaussian with blur window of 0.333
+Start training on blur window of 0.5
+[10,  validation acc:    40, validation loss: 6.52907 training loss: 0.26930
+[20,  validation acc:    40, validation loss: 6.33456 training loss: 0.25133
+[30,  validation acc:    44, validation loss: 6.02211 training loss: 0.24361
+[40,  validation acc:    46, validation loss: 5.81366 training loss: 0.23039
+[50,  validation acc:    46, validation loss: 6.52466 training loss: 0.20229
+[60,  validation acc:    51, validation loss: 5.77890 training loss: 0.18516
+slurmstepd: error: *** JOB 11602 ON node001 CANCELLED AT 2022-04-04T17:25:55 ***

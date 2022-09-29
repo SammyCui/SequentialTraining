@@ -140,8 +140,25 @@ class RunModel:
                     self.target_distances = sorted(self.target_distances)
                     for i in range(len(self.target_distances)):
                         train_distances_sequence = self.target_distances[i:]
+                        sub_sequence = []
+                        for train_distance in train_distances_sequence:
+                            train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
+                                                                    background_generator=self.background,
+                                                                    resize_method=self.resize_method,
+                                                                    annotation_root_path=train_annotation_root_path)
+                            train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
+                                                           transform=transform, loader=train_loader)
 
-                        train_datasets.append((str(train_distances_sequence), train_distances_sequence))
+                            val_loader = VOCDistancingImageLoader(self.size, p=train_distance,
+                                                                  background_generator=self.background,
+                                                                  resize_method=self.resize_method,
+                                                                  annotation_root_path=val_annotation_root_path)
+                            val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
+                                                         transform=transform, loader=val_loader)
+                            train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])
+
+                            sub_sequence.append((train_distance, train_dataset))
+                        train_datasets.append((str(train_distances_sequence), sub_sequence))
 
                 elif self.training_mode == 'stb_startsame':
                     self.target_distances = sorted(self.target_distances)
@@ -165,7 +182,7 @@ class RunModel:
                             train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])
 
                             sub_sequence.append((train_distance, train_dataset))
-                        train_datasets.append((str(train_distances_sequence), train_distances_sequence))
+                        train_datasets.append((str(train_distances_sequence), sub_sequence))
 
                 elif self.training_mode == 'bts_endsame':
                     self.target_distances = sorted(self.target_distances, reverse=True)
@@ -275,18 +292,8 @@ class RunModel:
                                                                background_generator=self.background,
                                                                resize_method=self.resize_method,
                                                                annotation_root_path=train_annotation_root_path)
-
                         last_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
                                                       transform=transform, loader=last_loader)
-
-                        target_loader_val = VOCDistancingImageLoader(self.size, p=self.target_distances[i],
-                                                               background_generator=self.background,
-                                                               resize_method=self.resize_method,
-                                                               annotation_root_path=val_annotation_root_path)
-
-                        target_dataset_val = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
-                                                      transform=transform, loader=last_loader)
-
                         sub_sequence.append((str(self.target_distances[i]), last_dataset))
                         train_datasets.append((str([j[0] for j in sub_sequence]), sub_sequence))
 
@@ -309,25 +316,6 @@ class RunModel:
 
                 elif self.training_mode == 'random-permute':
                     shuffler = np.random.default_rng(40)
-
-                elif self.training_mode == 'as_is':
-                    sub_sequence = []
-                    for train_distance in self.target_distances:
-                        train_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                                background_generator=self.background,
-                                                                resize_method=self.resize_method,
-                                                                annotation_root_path=train_annotation_root_path)
-                        train_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
-                                                       transform=transform, loader=train_loader)
-                        val_loader = VOCDistancingImageLoader(self.size, p=train_distance,
-                                                              background_generator=self.background,
-                                                              resize_method=self.resize_method,
-                                                              annotation_root_path=val_annotation_root_path)
-                        val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
-                                                     transform=transform, loader=val_loader)
-                        train_dataset = torch.utils.data.ConcatDataset([train_dataset, val_dataset])
-                        sub_sequence.append((train_distance, train_dataset))
-                    train_datasets.append((str(self.target_distances), sub_sequence))
 
                 self.train_datasets = train_datasets
                 self.test_datasets = test_datasets
@@ -396,44 +384,7 @@ class RunModel:
                 self.all_val_acc_top1[fold][str(name)] = []
                 epochs_per_distance = int(np.ceil(self.epochs / len(sequence)))
                 distances_seq = eval(name)
-                for seq_idx, distance in enumerate(sequence):
-
-                    if self.training_mode == 'llo':
-                        if seq_idx < len(sequence)-1:
-                            random_distances = self.target_distances[:self.target_distances.index(sequence[-1])] + \
-                                               self.target_distances[self.target_distances.index(sequence[-1]) + 1:]
-                            datasets = []
-                            for random_distance in random_distances:
-                                random_loader = VOCDistancingImageLoader(self.size, p=random_distance,
-                                                                         background_generator=self.background,
-                                                                         resize_method=self.resize_method,
-                                                                         annotation_root_path=train_annotation_root_path)
-                                random_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=train_image_root_path,
-                                                                transform=transform, loader=random_loader)
-
-                                val_loader = VOCDistancingImageLoader(self.size, p=random_distance,
-                                                                      background_generator=self.background,
-                                                                      resize_method=self.resize_method,
-                                                                      annotation_root_path=val_annotation_root_path)
-                                val_dataset = VOCImageFolder(cls_to_use=self.cls_to_use, root=val_image_root_path,
-                                                             transform=transform, loader=val_loader)
-                                random_dataset = torch.utils.data.ConcatDataset([random_dataset, val_dataset])
-
-                                datasets.append(random_dataset)
-
-                            combined_datasets = torch.utils.data.ConcatDataset(datasets)
-                            indices = np.arange(len(combined_datasets))
-                            np.random.seed(self.random_seed)
-                            np.random.shuffle(indices)
-                            indices_dataset = np.array_split(indices, len(self.target_distances) - 1)
-                            sub_sequence = [(f'llo_{self.target_distances[i]}_random{j}',
-                                             torch.utils.data.Subset(combined_datasets, idx))
-                                            for j, idx in enumerate(indices_dataset)]
-
-
-
-
-
+                for seq_idx, (distance, dataset) in enumerate(sequence):
 
                     if str(distances_seq[:seq_idx + 1]) in best_state_dict:
                         print(f"Sequence {distances_seq[:seq_idx + 1]} already in state dictionary, jumped")

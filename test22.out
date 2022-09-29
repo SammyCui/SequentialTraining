@@ -1,0 +1,20 @@
+Loading openmpi/cuda/64/3.1.4
+  Loading requirement: hpcx/2.4.0
+Loading pytorch-py36-cuda10.1-gcc/1.5.0
+  Loading requirement: python36 ml-pythondeps-py36-cuda10.1-gcc/3.3.0
+    openblas/dynamic/0.2.20 cudnn7.6-cuda10.1/7.6.5.32 hdf5_18/1.8.20
+    nccl2-cuda10.1-gcc/2.7.8
+Traceback (most recent call last):
+  File "/u/erdos/students/xcui32/cnslab/test2.py", line 160, in <module>
+    test()
+  File "/u/erdos/students/xcui32/cnslab/test2.py", line 56, in test
+    sampler=torch.utils.data.DistributedSampler(train_dataset)
+  File "/cm/shared/apps/pytorch-py36-cuda10.1-gcc/1.5.0/lib/python3.6/site-packages/torch/utils/data/distributed.py", line 43, in __init__
+    num_replicas = dist.get_world_size()
+  File "/cm/shared/apps/pytorch-py36-cuda10.1-gcc/1.5.0/lib/python3.6/site-packages/torch/distributed/distributed_c10d.py", line 582, in get_world_size
+    return _get_group_size(group)
+  File "/cm/shared/apps/pytorch-py36-cuda10.1-gcc/1.5.0/lib/python3.6/site-packages/torch/distributed/distributed_c10d.py", line 196, in _get_group_size
+    _check_default_pg()
+  File "/cm/shared/apps/pytorch-py36-cuda10.1-gcc/1.5.0/lib/python3.6/site-packages/torch/distributed/distributed_c10d.py", line 187, in _check_default_pg
+    "Default process group is not initialized"
+AssertionError: Default process group is not initialized
