@@ -7,7 +7,8 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 
-from utils.data_utils import CIFARLoader, GenerateBackground
+from utils.data_utils import GenerateBackground
+from loader import CIFARLoader
 from datasets_legacy import CIFAR10Dataset
 from utils import metrics
 

@@ -7,7 +7,8 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 
-from utils.data_utils import ResizeImageLoader, GenerateBackground
+from utils.data_utils import GenerateBackground
+from loader import ResizeImageLoader
 from datasets_legacy import VOCDataset
 from utils import metrics
 

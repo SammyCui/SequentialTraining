@@ -114,7 +114,7 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 test_image_path=dataset_paths['test_image_path'],
                 train_size=args.train_size, test_size=args.test_size,
                 num_classes=args.num_classes, cls_to_use=args.cls_to_use,
-                sizes=[x.strip() for x in args.sizes.split(',')],
+                sizes=[eval(x.strip()) for x in args.sizes.split(',')],
                 input_size=(args.input_size, args.input_size),
                 resize_method=args.resize_method,
                 background=args.background, model=args.model,
@@ -131,6 +131,9 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
 optimizer_object = torch.optim.SGD
 criterion_object = torch.nn.CrossEntropyLoss
 scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
+
+for name, value in config:
+    print(f'{name}: {value}')
 
 
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
@@ -273,7 +276,8 @@ def main():
     # for datasets that don't have separate train/test
     if config.dataset_name == 'Imagenet':
         num_samples = len(get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=1,
-                                      image_roots=config.train_image_path,
+                                      image_roots=config.train_image_path, cls_to_use=config.cls_to_use,
+                                      n_classes=config.num_classes,
                                       annotation_roots=config.train_annotation_path))
         np.random.seed(config.random_seed)
         indices = list(range(num_samples))
