@@ -273,6 +273,10 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
 
 
 def main():
+
+    if not os.path.isdir(config.result_path):
+        os.mkdir(config.result_path)
+
     # for datasets that don't have separate train/test
     if config.dataset_name == 'Imagenet':
         num_samples = len(get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=1,
