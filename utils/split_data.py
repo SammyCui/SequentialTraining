@@ -43,8 +43,8 @@ for filename in os.listdir(layout_dir):
 
 
 # # print(datasets['train'].shape, datasets['val'].shape, datasets['test'].shape)
-# anno_set = set([filename.split('.')[0] for filename in os.listdir('/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/VOC2012/Annotations')])
-# image_set = set([filename.split('.')[0] for filename in os.listdir('/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/VOC2012/JPEGImages')])
+# anno_set = set([filename.split('.')[0] for filename in os.listdir('/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012/Annotations')])
+# image_set = set([filename.split('.')[0] for filename in os.listdir('/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012/JPEGImages')])
 #
 # for filename,label in result:
 #     if filename not in anno_set or filename not in image_set:

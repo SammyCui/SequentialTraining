@@ -59,7 +59,7 @@ def coco_downloader(annotation_path: str,
 
 if __name__ == '__main__':
     # coco_downloader('/Users/xuanmingcui/Downloads/instances_val2017.json',
-    # '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/coco', None, 10, 3)
+    # '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/coco', None, 10, 3)
 
     coco_downloader(annotation_path=args.annotation_path,
                     img_root=args.img_root,

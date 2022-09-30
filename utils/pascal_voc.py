@@ -13,7 +13,7 @@ def parse_args():
         description='Initialize PASCAL VOC dataset.',
         epilog='Example: python pascal_voc.py --download-dir ~/VOCdevkit',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--download-dir', type=str, default='/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets', help='dataset directory on disk')
+    parser.add_argument('--download-dir', type=str, default='/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets', help='dataset directory on disk')
     parser.add_argument('--no-download', action='store_true', help='disable automatic download if set')
     parser.add_argument('--overwrite', action='store_true', help='overwrite downloaded files if set, in case they are corrupted')
     args = parser.parse_args()

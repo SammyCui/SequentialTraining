@@ -10,9 +10,9 @@ from typing import Optional, List
 import numpy as np
 from utils import metrics
 import torch
-from SequentialTrainingCNN.regimens import get_regimen_dataloaders
-from SequentialTrainingCNN.helpers import get_dataset
-from SequentialTrainingCNN.utils.miscs import none_or_str, Config
+from SequentialTraining.regimens import get_regimen_dataloaders
+from SequentialTraining.helpers import get_dataset
+from SequentialTraining.utils.miscs import none_or_str, Config
 from trainer import Trainer
 from torch.utils.data import DataLoader
 import pandas as pd
@@ -71,12 +71,12 @@ args = parser.parse_args()
 
 # some default configurations
 dataset_VOC = {
-    'train_annotation_path': ['/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/train/annotations',
-                              '/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/val/annotations'],
-    'train_image_path': ['/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/train/root',
-                         '/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/val/root'],
-    'test_annotation_path': '/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/test/annotations',
-    'test_image_path': '/u/erdos/students/xcui32/cnslab/datasets/VOC2012/VOC2012_filtered/test/root'}
+    'train_annotation_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/annotations',
+                              '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/annotations'],
+    'train_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/root',
+                         '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/root'],
+    'test_annotation_path': '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations',
+    'test_image_path': '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/root'}
 
 dataset_CIFAR10 = {'train_annotation_path': None,
                    'train_image_path': '/u/erdos/students/xcui32/cnslab/datasets/cifar10/train',

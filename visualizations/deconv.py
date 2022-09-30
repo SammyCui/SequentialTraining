@@ -192,13 +192,13 @@ if __name__ == '__main__':
     #     )
     # ])
     # img1 = Image.open(str(
-    #     '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/VOC2012_filtered/test/root/car/2008_000105.jpg'))
+    #     '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012_filtered/test/root/car/2008_000105.jpg'))
     # img1_T = transform(img1).unsqueeze(0)
-    # anno_root = '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/VOC2012_filtered/test/annotations'
+    # anno_root = '/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012_filtered/test/annotations'
     # background_generator = GenerateBackground(bg_type='color')
     # imgloader = ResizeImageLoader((150, 150), 0.8, anno_root, background_generator=background_generator)
     # img_loaded = imgloader(
-    #     "/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTrainingCNN/datasets/VOC2012_filtered/test/root/car/2008_000105.jpg")
+    #     "/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012_filtered/test/root/car/2008_000105.jpg")
     # img_loaded_t = transform(img_loaded)
     # image = img_loaded_t.unsqueeze(0)
     #
