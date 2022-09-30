@@ -7,6 +7,7 @@ import os
 import numpy as np
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
+import argparse
 
 
 class COCOTools:
@@ -84,3 +85,13 @@ class COCOTools:
             id2class_dict[cat['id']] = cat['name']
 
         return id2class_dict
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Main module to run')
+    parser.add_argument('--path_to_json', type=str, help="path to coco annotation json file")
+    parser.add_argument('--image_root', type=str, help="path to the dir of all images")
+    parser.add_argument('--save_path', type=str, help="path to the file for saving the json obj")
+    args = parser.parse_args()
+    cocotool = COCOTools(args.path_to_json)
+    cocotool.build_classification_json(args.image_root, args.save_path)
