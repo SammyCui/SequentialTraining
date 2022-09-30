@@ -14,7 +14,7 @@ from utils import metrics
 import torch
 from SequentialTraining.regimens import get_regimen_dataloaders
 from SequentialTraining.helpers import get_dataset
-from SequentialTraining.utils.miscs import none_or_str, Config
+from config import none_or_str, Config
 from trainer import Trainer
 from torch.utils.data import DataLoader
 import pandas as pd
@@ -46,35 +46,44 @@ parser.add_argument('--cls_to_use', type=none_or_str, nargs='?', const=None, def
 
 # image args
 default_sizes = '0.2, 0.4, 0.6, 0.8, 1'
-parser.add_argument('--input_size', default=150, type=int,
+parser.add_argument('--input_size', default=150, type=int, nargs='?',
                     help='width/height of input image size. Default 150 -- (150, 150)')
-parser.add_argument('--sizes', default=default_sizes, type=str, const=default_sizes,
+parser.add_argument('--sizes', default=default_sizes, type=str, const=default_sizes, nargs='?',
                     help='sizes group for each regimens, separated by comma')
-parser.add_argument('--resize_method', default='long', type=str, const='long', help='How to resize images. '
-                                                                                    'Either "long": resize with longer side of the image to input_size * sizes and add padding or '
-                                                                                    '       "adjust": resize to input_size * input_size without padding')
+parser.add_argument('--resize_method', default='long', type=str, const='long', nargs='?',
+                    help='Method to resize images. Either "long": resize with longer side of the image to input_size * sizes and add padding or '
+                         '"adjust": resize to input_size * input_size without padding')
 # training args
 parser.add_argument('--lr', default=0.1, const=0.1, nargs='?', type=float, help='learning rate')
 parser.add_argument('--epoch', default=200, const=200, nargs='?', type=int, help='num of epochs')
 parser.add_argument('--model', type=str, help='model name from pytorch')
 parser.add_argument('--num_workers', default=16, const=16, type=int, nargs='?', help='number of workers for dataloader')
 parser.add_argument('--batch_size', default=128, const=128, type=int, nargs='?', help='batch size')
+parser.add_argument('--max_norm', default=None, const=None, nargs='?', type=int, help='max norm for gradient clipping')
+parser.add_argument('--reset_lr', default=None, const=None, nargs='?', type=float,
+                    help='if not None, lr will be reset to =reset_lr at the start of each size group')
+parser.add_argument('--early_stop_patience', default=20, const=20, nargs='?', type=int,
+                    help='number of patience to wait before early stop')
 parser.add_argument('--lr_patience', default=3, const=3, nargs='?', type=int,
                     help='number of epochs to wait before decreasing lr')
 parser.add_argument('--min_lr', default=0.00001, const=0.00001, nargs='?', type=float, help='minimum learning rate')
 parser.add_argument('--n_folds', default=5, const=5, nargs='?', type=int, help='number of folds')
 parser.add_argument('--n_folds_to_use', default=5, const=5, nargs='?', type=int, help='number of folds to use')
+parser.add_argument('--device', default=None, const=None, nargs='?', type=str, help='number of folds to use')
 
 # result
-parser.add_argument('--save_progress_ckpt', type=str, default=False, const=False, help='whether to save all checkpoints during training process')
-parser.add_argument('--save_result_ckpt', type=str, default=False, const=False, help='whether to save all checkpoints for each regimen')
+parser.add_argument('--save_progress_ckpt', type=str, default=False, const=False, nargs='?',
+                    help='whether to save all checkpoints during training process')
+parser.add_argument('--save_result_ckpt', type=str, default=False, const=False, nargs='?',
+                    help='whether to save all checkpoints for each regimen')
 parser.add_argument('--result_path', type=str, help='path to result directory')
 args = parser.parse_args()
 
 # some default configurations
 dataset_VOC = {
-    'train_annotation_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/annotations',
-                              '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/annotations'],
+    'train_annotation_path': [
+        '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/annotations',
+        '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/annotations'],
     'train_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/root',
                          '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/root'],
     'test_annotation_path': '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations',
@@ -119,23 +128,21 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 sizes=[eval(x.strip()) for x in args.sizes.split(',')],
                 input_size=(args.input_size, args.input_size),
                 resize_method=args.resize_method,
-                background=args.background, model=args.model,
+                model=args.model,
                 epoch=args.epoch, min_lr=args.min_lr,
                 n_folds=args.n_folds, n_folds_to_use=args.n_folds_to_use,
-                early_stop=args.early_stop, max_norm=args.max_norm,
+                early_stop_patience=args.early_stop_patience, max_norm=args.max_norm,
                 reset_lr=args.reset_lr,
-                optim_kwargs=args.optim_kwargs, scheduler_kwargs=args.scheduler_kwargs,
+                optim_kwargs=optimizer_kwargs, scheduler_kwargs=scheduler_kwargs,
                 device=args.device if args.device else device,
                 batch_size=args.batch_size, num_workers=args.num_workers,
-                result_path=args.result_path, save_progress_ckpt=eval(args.save_progress_ckpt) if args.save_progress_ckpt else False,
+                result_path=args.result_path,
+                save_progress_ckpt=eval(args.save_progress_ckpt) if args.save_progress_ckpt else False,
                 save_result_ckpt=eval(args.save_result_ckpt) if args.save_result_ckpt else False)
 
 optimizer_object = torch.optim.SGD
 criterion_object = torch.nn.CrossEntropyLoss
 scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
-
-for name, value in config:
-    print(f'{name}: {value}')
 
 
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
@@ -150,7 +157,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                                    image_roots=[config.test_image_path],
                                    indices=test_indices, annotation_roots=config.test_annotation_path,
                                    resize_method=config.resize_method,
-                                   cls_to_use=config.cls_to_use, n_classes=config.num_classes)
+                                   cls_to_use=config.cls_to_use, num_classes=config.num_classes)
         test_dataloader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=True,
                                      num_workers=config.num_workers, pin_memory=True)
         test_dataloaders.append(test_dataloader)
@@ -174,7 +181,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                 model = eval(
                     'torchvision.models.' + config.model + f'(num_classes={config.num_classes}, aux_logits=False)')
             else:
-                model = eval('torchvision.models.' + config.model + f'(num_classes={config.model})')
+                model = eval('torchvision.models.' + config.model + f'(num_classes={config.num_classes})')
             model = model.to(device)
             epochs_per_size = int(np.ceil(config.epoch / len(sequence_dataloaders)))
             sequence_list = eval(sequence_name)  # [0.6, 0.8, 1]
@@ -206,7 +213,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                             "dict...")
 
                     print(f'==> Current group: {sequence_list[seq_idx]}')
-                    trainer = Trainer(criterion=criterion, device=config.device)
+                    trainer = Trainer(criterion=criterion, patience=config.early_stop_patience, device=config.device)
                     for epoch in range(epochs_per_size):
 
                         train_loss, train_acc, val_loss, val_acc, lr = trainer.train(epoch, model, train_dataloader,
@@ -275,28 +282,38 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
 
 
 def main():
-
     if not os.path.isdir(config.result_path):
         os.mkdir(config.result_path)
 
+    train_dataset, dataset_classes = get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=1,
+                                                 image_roots=config.train_image_path, cls_to_use=config.cls_to_use,
+                                                 num_classes=config.num_classes,
+                                                 annotation_roots=config.train_annotation_path, return_classes=True)
+    num_samples = len(train_dataset)
+    config.num_classes = len(dataset_classes)
+    print('Number of samples: ', num_samples)
+    print('Number of classes: ', config.num_classes)
+
+    for name, value in config:
+        print(f'{name}: {value}')
+
     # for datasets that don't have separate train/test
     if config.dataset_name == 'Imagenet':
-        num_samples = len(get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=1,
-                                      image_roots=config.train_image_path, cls_to_use=config.cls_to_use,
-                                      n_classes=config.num_classes,
-                                      annotation_roots=config.train_annotation_path))
+
         np.random.seed(config.random_seed)
         indices = list(range(num_samples))
         train_indices = indices[:int((1 - config.test_size) * len(indices))]
         test_indices = indices[int((1 - config.test_size) * len(indices)):]
         for regimen in config.regimens:
-            print(f'==>Training {regimen}')
+            print(f'==>Training {regimen}\n')
             train_regimen(regimen=regimen, train_indices=train_indices, test_indices=test_indices)
+            print('\n')
 
     else:
         for regimen in config.regimens:
-            print(f'==>Training {regimen}')
+            print(f'==>Training {regimen}\n')
             train_regimen(regimen=regimen)
+            print('\n')
 
 
 if __name__ == '__main__':

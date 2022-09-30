@@ -1,5 +1,4 @@
 from typing import List, Optional, Tuple
-
 from pydantic import BaseModel
 
 
@@ -34,7 +33,7 @@ class Config(BaseModel):
     min_lr: float
     n_folds: int
     n_folds_to_use: int
-    early_stop: bool = True
+    early_stop_patience: int = 20
     max_norm: Optional[int] = None
     reset_lr: Optional[bool] = False
     optim_kwargs: dict
