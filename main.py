@@ -64,8 +64,8 @@ parser.add_argument('--n_folds', default=5, const=5, nargs='?', type=int, help='
 parser.add_argument('--n_folds_to_use', default=5, const=5, nargs='?', type=int, help='number of folds to use')
 
 # result
-parser.add_argument('--save_progress_ckpt', type=str, help='path to save all checkpoints during training process')
-parser.add_argument('--save_result_ckpt', type=str, help='path to save all checkpoints for each regimen')
+parser.add_argument('--save_progress_ckpt', type=str, default=False, const=False, help='whether to save all checkpoints during training process')
+parser.add_argument('--save_result_ckpt', type=str, default=False, const=False, help='whether to save all checkpoints for each regimen')
 parser.add_argument('--result_path', type=str, help='path to result directory')
 args = parser.parse_args()
 
@@ -125,8 +125,8 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 optim_kwargs=args.optim_kwargs, scheduler_kwargs=args.scheduler_kwargs,
                 device=args.device if args.device else device,
                 batch_size=args.batch_size, num_workers=args.num_workers,
-                result_path=args.result_path, save_progress_ckpt=args.save_progress_ckpt,
-                save_result_ckpt=args.save_result_ckpt)
+                result_path=args.result_path, save_progress_ckpt=eval(args.save_progress_ckpt) if args.save_progress_ckpt else False,
+                save_result_ckpt=eval(args.save_result_ckpt) if args.save_result_ckpt else False)
 
 optimizer_object = torch.optim.SGD
 criterion_object = torch.nn.CrossEntropyLoss
@@ -273,6 +273,10 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
 
 
 def main():
+
+    if not os.path.isdir(config.result_path):
+        os.mkdir(config.result_path)
+
     # for datasets that don't have separate train/test
     if config.dataset_name == 'Imagenet':
         num_samples = len(get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=1,
