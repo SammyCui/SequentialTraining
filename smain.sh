@@ -8,7 +8,7 @@
 #SBATCH --job-name=VOCR18
 #SBATCH --mail-user=xcui32@fordham.edu
 #SBATCH --mail-type=ALL
-#SBATCH --output=/u/erdos/students/xcui32/SequentialTraining/results/VOCR18/console.out
+#SBATCH --output=/u/erdos/students/xcui32/SequentialTraining/results/VOCR18.out
 
 module purg
 module load gcc5 cuda10.1

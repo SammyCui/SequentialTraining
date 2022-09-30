@@ -1,5 +1,7 @@
 import sys
 
+sys.path.append('/u/erdos/students/xcui32/SequentialTraining')
+sys.path.append('/u/erdos/students/xcui32')
 sys.path.append('/usr/local/lib/python3.6/site-packages')
 sys.path.append('/usr/lib64/python3.6/site-packages')
 sys.path.append('/u/erdos/students/xcui32/.local/lib/python3.6/site-packages')
