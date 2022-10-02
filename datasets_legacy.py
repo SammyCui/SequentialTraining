@@ -1,3 +1,4 @@
+import json
 import os
 from typing import Tuple, Optional, Callable, Any, List, Dict, Iterable, cast
 
@@ -6,6 +7,7 @@ from torchvision.datasets.folder import default_loader, has_file_allowed_extensi
 from torchvision.datasets.cifar import CIFAR10
 import torchvision
 import re
+from torch.utils.data import Dataset
 
 IMG_EXTENSIONS = (".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp")
 
@@ -308,3 +310,35 @@ class CIFAR10Dataset(CIFAR10):
             target = self.target_transform(target)
 
         return img, target
+
+
+class COCODataset(Dataset):
+    def __init__(self,
+                 root: str,
+                 path_to_json: str,
+                 transform,
+                 num_classes,
+                 size_threshold,
+                 min_image_per_class,
+                 max_image_per_class):
+
+        self.root = root
+        self.transform = transform
+        with open(path_to_json) as json_file:
+            img_dict = json.load(json_file)
+
+        self.classes = []
+        for key, val in img_dict.items():
+            big_objs = [x for x in val if (x['bbox'][2] >= size_threshold) or (x['bbox'][3] >= size_threshold)]
+            if len(big_objs) > min_image_per_class:
+                self.classes.append(key)
+        self.classes = sorted(self.classes)
+        self.img_dict = img_dict
+        if num_classes:
+            self.classes = self.classes[:num_classes]
+
+
+        for cls in self.classes:
+
+
+

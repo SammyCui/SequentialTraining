@@ -1,6 +1,6 @@
 import json
 from typing import List
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 import requests
 from pycocotools.coco import COCO
 import os
@@ -55,16 +55,19 @@ class COCOTools:
     def build_classification_json(self, image_root: str, save_path: str):
         class_dict = {}
         id2class_dict = self.get_id2class_dict(self.coco)
-        for filename in os.listdir('/content/sample_data/image'):
-            # get annotation ids from the filename, which is also its id
-            annIDs = self.coco.getAnnIds(int(filename.split('.')[0].lstrip('0')))
-            anns = self.coco.loadAnns(annIDs)
-            for ann in anns:
-                category_name = id2class_dict[(ann['category_id'])]
-                if category_name not in class_dict:
-                    class_dict[category_name] = []
-                class_dict[category_name].append({'path': os.path.join(image_root, filename),
-                                                  'bbox': ann['bbox']})
+        n_files = len(os.listdir(image_root))
+        with tqdm(total=n_files) as pbar:
+            for filename in os.listdir(image_root):
+                # get annotation ids from the filename, which is also its id
+                annIDs = self.coco.getAnnIds(int(filename.split('.')[0].lstrip('0')))
+                anns = self.coco.loadAnns(annIDs)
+                for ann in anns:
+                    category_name = id2class_dict[(ann['category_id'])]
+                    if category_name not in class_dict:
+                        class_dict[category_name] = []
+                    class_dict[category_name].append({'path': os.path.join(image_root, filename),
+                                                      'bbox': ann['bbox']})
+                pbar.update(1)
 
         num_objects = 0
         for key, val in class_dict.items():
@@ -87,11 +90,13 @@ class COCOTools:
         return id2class_dict
 
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Main module to run')
     parser.add_argument('--path_to_json', type=str, help="path to coco annotation json file")
-    parser.add_argument('--image_root', type=str, help="path to the dir of all images")
-    parser.add_argument('--save_path', type=str, help="path to the file for saving the json obj")
+    parser.add_argument('--image_root', type=str, const=None, default=None, nargs='?', help="path to the dir of all images")
+    parser.add_argument('--save_path', type=str, const=None, default=None, nargs='?', help="path to the file for saving the json obj")
     args = parser.parse_args()
-    cocotool = COCOTools(args.path_to_json)
-    cocotool.build_classification_json(args.image_root, args.save_path)
+    cocotool = COCOTools('/Users/xuanmingcui/Downloads/instances_val2017.json')
+    cocotool.coco_downloader(img_root='../datasets/coco', classes=['sandwich', 'tv', 'book'], images_per_class=1)
+    #cocotool.build_classification_json(image_root=args.image_root, save_path=args.save_path)

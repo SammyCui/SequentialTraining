@@ -35,7 +35,7 @@ parser.add_argument('--train_image_path', default=None, type=none_or_str, nargs=
 parser.add_argument('--test_annotation_path', default=None, nargs='?', const=None, type=none_or_str,
                     help='test annotation root path')
 parser.add_argument('--test_image_path', type=none_or_str, nargs='?', const=None, help='test images root path')
-parser.add_argument('--train_size', type=int, nargs='?', const=None, default=None,
+parser.add_argument('--num_samples_to_use', type=int, nargs='?', const=None, default=None,
                     help='# of images to use for training')
 parser.add_argument('--test_size', type=float, nargs='?', const=0.3, default=0.3,
                     help='Ratio for how many data to split from the given data for test set'
@@ -123,7 +123,7 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 train_annotation_path=dataset_paths['train_annotation_path'],
                 test_annotation_path=dataset_paths['test_annotation_path'],
                 test_image_path=dataset_paths['test_image_path'],
-                train_size=args.train_size, test_size=args.test_size,
+                num_samples_to_use=args.num_samples_to_use, test_size=args.test_size,
                 num_classes=args.num_classes, cls_to_use=args.cls_to_use,
                 sizes=[eval(x.strip()) for x in args.sizes.split(',')],
                 input_size=(args.input_size, args.input_size),
@@ -154,7 +154,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
     test_dataloaders = []
     for size in sorted(config.sizes):
         test_dataset = get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=size,
-                                   image_roots=[config.test_image_path],
+                                   image_roots=[config.test_image_path], num_samples_to_use=config.num_samples_to_use,
                                    indices=test_indices, annotation_roots=config.test_annotation_path,
                                    resize_method=config.resize_method,
                                    cls_to_use=config.cls_to_use, num_classes=config.num_classes)
@@ -291,7 +291,7 @@ def main():
                                                  annotation_roots=config.train_annotation_path, return_classes=True)
     num_samples = len(train_dataset)
     config.num_classes = len(dataset_classes)
-    print('Number of samples: ', num_samples)
+    print('Number of total train (before train-val split) samples: ', num_samples)
     print('Number of classes: ', config.num_classes)
 
     for name, value in config:

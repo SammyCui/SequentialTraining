@@ -14,7 +14,7 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
                 resize_method: str = 'long',
                 cls_to_use: List['str'] = None,
                 num_classes: int = None,
-                train_size: int = None,
+                num_samples_to_use: int = None,
                 random_seed: int = 40, return_classes: bool = False):
     if dataset_name not in available_datasets:
         raise Exception('Provided dataset name not available. Either check spelling or implement that dataset.')
@@ -62,11 +62,11 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
             dataset_list.append(dataset)
     dataset_classes = dataset_list[0].classes
     concat_dataset = ConcatDataset(dataset_list)
-    if train_size:
+    if num_samples_to_use:
         subset_indices = list(range(len(concat_dataset)))
         np.random.seed(random_seed)
         np.random.shuffle(subset_indices)
-        subset_indices = subset_indices[:train_size]
+        subset_indices = subset_indices[:num_samples_to_use]
         if return_classes:
             return Subset(concat_dataset, subset_indices), dataset_classes
         else:
@@ -78,14 +78,12 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
             return concat_dataset
 
 
-def get_cv_indices(num_samples: int, num_samples_to_use: int = None, n_folds: int = 5, n_folds_to_use: int = 5, random_seed: int = 40):
+def get_cv_indices(num_samples: int, n_folds: int = 5, n_folds_to_use: int = 5, random_seed: int = 40):
     val_size = 1 / n_folds
     cv_indices = list(range(num_samples))
     np.random.seed(random_seed)
     np.random.shuffle(cv_indices)
-    num_samples_to_use = num_samples if num_samples_to_use is None else min(num_samples_to_use, num_samples)
-    cv_indices = cv_indices[:num_samples_to_use]
-    split = int(np.floor(val_size * num_samples_to_use))
+    split = int(np.floor(val_size * num_samples))
 
     for fold in range(n_folds_to_use):
         split1 = int(np.floor(fold * split))

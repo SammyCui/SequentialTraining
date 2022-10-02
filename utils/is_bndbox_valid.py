@@ -1,3 +1,4 @@
+import json
 import os
 import argparse
 from typing import Tuple
@@ -209,6 +210,15 @@ def remove_bad_images(image_root: str, remove: bool = False):
                 print('Bad image: ', img_path)
                 if remove:
                     os.remove(img_path)
+
+
+def coco_count_big_bbox(path:str, threshold: int = 150):
+    with open(path) as json_file:
+        img_dict = json.load(json_file)
+    for key, val in img_dict.items():
+        big_objs = [x for x in val if (x['bbox'][2] >= int(threshold)) or (x['bbox'][3] >= int(threshold))]
+        print(key, ': ', len(val), len(big_objs))
+
 
 if __name__ == '__main__':
     args = sys.argv
