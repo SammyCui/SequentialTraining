@@ -336,9 +336,19 @@ class COCODataset(Dataset):
         self.img_dict = img_dict
         if num_classes:
             self.classes = self.classes[:num_classes]
-
-
+        self.img_dict = {}
+        self.data = []
         for cls in self.classes:
+            if max_image_per_class:
+                self.img_dict[cls] = img_dict[cls][:max_image_per_class]
+                self.data.extend(img_dict[cls][:max_image_per_class])
+            else:
+                self.img_dict[cls] = img_dict[cls]
+                self.data.extend(img_dict[cls])
+
+
+
+
 
 
 

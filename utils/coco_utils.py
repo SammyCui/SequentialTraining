@@ -66,7 +66,8 @@ class COCOTools:
                     if category_name not in class_dict:
                         class_dict[category_name] = []
                     class_dict[category_name].append({'path': os.path.join(image_root, filename),
-                                                      'bbox': ann['bbox']})
+                                                      'bbox': ann['bbox'],
+                                                      'category': category_name})
                 pbar.update(1)
 
         num_objects = 0
