@@ -18,7 +18,8 @@ class Trainer:
     def __init__(self, criterion: Callable,
                  accuracy: Tuple[int, ...] = (1, 5),
                  device: str = 'cpu',
-                 patience: int = 20
+                 patience: int = 20,
+                 stop_on_acc: bool = True
                  ):
         self.criterion = criterion
         self.accuracy = accuracy
@@ -57,6 +58,8 @@ class Trainer:
             batch_acc = metrics.accuracy(outputs, targets, (1, 5))
             train_acc += batch_acc[0]
 
+        train_acc /= len(train_dataloader)
+        train_acc = float(train_acc.cpu().numpy()[0])
         model.eval()
         val_loss = 0
         val_acc = 0
@@ -81,7 +84,7 @@ class Trainer:
                         'val_loss': val_loss, 'val_acc': val_acc, 'lr': lr}
         epoch_record = dict(epoch_record)
         self.training_records.append(epoch_record, ignore_index=True)
-        if val_loss < self.best_val_loss:
+        if val_acc > self.best_val_acc:
             self.patience_count = 0
             self.best_val_loss = val_loss
             self.best_val_acc = val_acc

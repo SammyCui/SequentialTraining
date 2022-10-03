@@ -15,6 +15,7 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
                 cls_to_use: List['str'] = None,
                 num_classes: int = None,
                 num_samples_to_use: int = None,
+                train: bool = True,
                 random_seed: int = 40, return_classes: bool = False):
     if dataset_name not in available_datasets:
         raise Exception('Provided dataset name not available. Either check spelling or implement that dataset.')
@@ -38,11 +39,11 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
             loader = NoAnnotationImageLoader(size, p, background, resize_method)
         for image_root in image_roots:
             if 'CIFAR' in dataset_name:
-                dataset = ImageDataset(root=image_root, loader=loader, transform=transform)
+                dataset = ImageDataset(root=image_root, loader=loader, transform=transform, train=train, download=True)
             else:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes)
-
+            dataset_classes = dataset.classes
             if indices:
                 dataset = Subset(dataset, indices=indices)
             dataset_list.append(dataset)
@@ -57,10 +58,11 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
             else:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes)
+            dataset_classes = dataset.classes
             if indices:
                 dataset = Subset(dataset, indices=indices)
             dataset_list.append(dataset)
-    dataset_classes = dataset_list[0].classes
+
     concat_dataset = ConcatDataset(dataset_list)
     if num_samples_to_use:
         subset_indices = list(range(len(concat_dataset)))

@@ -67,7 +67,8 @@ class COCOTools:
                         class_dict[category_name] = []
                     class_dict[category_name].append({'path': os.path.join(image_root, filename),
                                                       'bbox': ann['bbox'],
-                                                      'category': category_name})
+                                                      'category': category_name,
+                                                      'category_id': int(ann['category_id'])})
                 pbar.update(1)
 
         num_objects = 0
@@ -98,6 +99,6 @@ if __name__ == '__main__':
     parser.add_argument('--image_root', type=str, const=None, default=None, nargs='?', help="path to the dir of all images")
     parser.add_argument('--save_path', type=str, const=None, default=None, nargs='?', help="path to the file for saving the json obj")
     args = parser.parse_args()
-    cocotool = COCOTools('/Users/xuanmingcui/Downloads/instances_val2017.json')
-    cocotool.coco_downloader(img_root='../datasets/coco', classes=['sandwich', 'tv', 'book'], images_per_class=1)
-    #cocotool.build_classification_json(image_root=args.image_root, save_path=args.save_path)
+    cocotool = COCOTools(args.path_to_json)
+    #cocotool.coco_downloader(img_root='../datasets/coco', classes=['sandwich', 'tv', 'book'], images_per_class=1)
+    cocotool.build_classification_json(image_root=args.image_root, save_path=args.save_path)

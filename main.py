@@ -19,6 +19,9 @@ from trainer import Trainer
 from torch.utils.data import DataLoader
 import pandas as pd
 import pickle
+import torchvision
+
+pd.set_option('display.max_columns', None)
 
 parser = argparse.ArgumentParser(description='Main module to run')
 parser.add_argument('--regimens', type=none_or_str, nargs='?', const=None,
@@ -86,18 +89,18 @@ dataset_VOC = {
         '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/annotations'],
     'train_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/root',
                          '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/root'],
-    'test_annotation_path': '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations',
-    'test_image_path': '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/root'}
+    'test_annotation_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations'],
+    'test_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/root']}
 
 dataset_CIFAR10 = {'train_annotation_path': None,
-                   'train_image_path': '/u/erdos/students/xcui32/cnslab/datasets/cifar10/train',
+                   'train_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/cifar10/train'],
                    'test_annotation_path': None,
-                   'test_image_path': '/u/erdos/students/xcui32/cnslab/datasets/cifar10/test'}
+                   'test_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/cifar10/test']}
 
-dataset_Imagenet = {'train_annotation_path': ['/u/erdos/cnslab/imagenet-distinct'],
-                    'train_image_path': ['/u/erdos/cnslab/imagenet-bndbox/bndbox'],
-                    'test_annotation_path': '/u/erdos/cnslab/imagenet-bndbox/bndbox',
-                    'test_image_path': '/u/erdos/cnslab/imagenet-distinct'}
+dataset_Imagenet = {'train_annotation_path': ['/u/erdos/cnslab/imagenet-bndbox/bndbox'],
+                    'train_image_path': ['/u/erdos/cnslab/imagenet-distinct'],
+                    'test_annotation_path': ['/u/erdos/cnslab/imagenet-bndbox/bndbox'],
+                    'test_image_path': ['/u/erdos/cnslab/imagenet-distinct']}
 
 if args.dataset_name == 'VOC':
     dataset_paths = dataset_VOC
@@ -146,7 +149,7 @@ scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
 
 
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
-    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen,
+    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen, num_samples_to_use=config.num_samples_to_use,
                                       dataset_name=config.dataset_name, image_roots=config.train_image_path,
                                       train_indices=train_indices)
 
@@ -154,9 +157,9 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
     test_dataloaders = []
     for size in sorted(config.sizes):
         test_dataset = get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=size,
-                                   image_roots=[config.test_image_path], num_samples_to_use=config.num_samples_to_use,
+                                   image_roots=config.test_image_path, num_samples_to_use=config.num_samples_to_use,
                                    indices=test_indices, annotation_roots=config.test_annotation_path,
-                                   resize_method=config.resize_method,
+                                   resize_method=config.resize_method, train=False,
                                    cls_to_use=config.cls_to_use, num_classes=config.num_classes)
         test_dataloader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=True,
                                      num_workers=config.num_workers, pin_memory=True)
@@ -187,7 +190,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
             sequence_list = eval(sequence_name)  # [0.6, 0.8, 1]
             record_list = []
             for seq_idx, (train_dataloader, val_dataloader) in enumerate(sequence_dataloaders):
-
+                print(f'# of trains: {len(train_dataloader) * config.batch_size} # of vals: {len(val_dataloader) * config.batch_size}')
                 if str(sequence_list[:seq_idx + 1]) in model_best_states:
                     model.load_state_dict(model_best_states[str(sequence_list[:seq_idx + 1])])
                     record_list = record_list + record_dict[str(sequence_list[:seq_idx + 1])]
@@ -318,3 +321,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

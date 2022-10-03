@@ -14,8 +14,8 @@ class Config(BaseModel):
     dataset_name: str
     train_image_path: List[str]
     train_annotation_path: Optional[List[str]] = None
-    test_annotation_path: Optional[str] = None
-    test_image_path: str
+    test_annotation_path: Optional[List[str]] = None
+    test_image_path: List[str]
     num_samples_to_use: Optional[int] = None
     test_size: Optional[int] = None
     num_classes: Optional[int] = None
