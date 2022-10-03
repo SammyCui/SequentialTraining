@@ -346,6 +346,24 @@ class COCODataset(Dataset):
                 self.img_dict[cls] = img_dict[cls]
                 self.data.extend(img_dict[cls])
 
+        self.class_idx = list(range(len(self.classes)))
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        meta_info = self.data[idx]
+        img = Image.open(meta_info['path'])
+        if self.transform is not None:
+            img = self.transform(img)
+
+        target = meta_info['category_id']
+
+        return img, target
+
+
+
+
 
 
 
