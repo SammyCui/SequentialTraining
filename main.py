@@ -42,8 +42,10 @@ parser.add_argument('--test_image_path', type=none_or_str, nargs='?', const=None
 
 # coco specific
 
-parser.add_argument('--min_image_per_class', type=int, nargs='?', default=None, const=None, help='minimum number of valid images required for COCO per class')
-parser.add_argument('--max_image_per_class', type=int, nargs='?', default=None, const=None, help='max number of valid images for COCO per class')
+parser.add_argument('--min_image_per_class', type=int, nargs='?', default=None, const=None,
+                    help='minimum number of valid images required for COCO per class')
+parser.add_argument('--max_image_per_class', type=int, nargs='?', default=None, const=None,
+                    help='max number of valid images for COCO per class')
 
 parser.add_argument('--num_samples_to_use', type=int, nargs='?', const=None, default=None,
                     help='# of images to use for training')
@@ -96,7 +98,8 @@ dataset_VOC = {
         '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/annotations'],
     'train_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/train/root',
                          '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/val/root'],
-    'test_annotation_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations'],
+    'test_annotation_path': [
+        '/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/annotations'],
     'test_image_path': ['/u/erdos/students/xcui32/SequentialTraining/datasets/VOC2012/VOC2012_filtered/test/root']}
 
 dataset_CIFAR10 = {'train_annotation_path': None,
@@ -113,7 +116,6 @@ dataset_COCO = {'train_annotation_path': ['/u/erdos/cnslab/coco/annotations/clas
                 'train_image_path': ['/u/erdos/cnslab/coco/train'],
                 'test_annotation_path': ['/u/erdos/cnslab/coco/annotations/classification_test2017.json'],
                 'test_image_path': ['/u/erdos/cnslab/coco/test']}
-
 
 if args.dataset_name == 'VOC':
     dataset_paths = dataset_VOC
@@ -132,11 +134,11 @@ optimizer_kwargs = {'lr': args.lr, 'momentum': 0.9}
 scheduler_kwargs = {'mode': 'min', 'factor': 0.1, 'patience': args.lr_patience, 'min_lr': args.min_lr}
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
-
 if 'COCO' in args.dataset_name:
     cls_to_use = args.cls_to_use if args.cls_to_use else \
-                    get_big_coco_classes(args.input_size, path_to_json=args.path_to_train_json if args.path_to_train_json else dataset_COCO['train_annotation_path'],
-                                         min_image_per_class=args.min_image_per_class, num_classes=args.num_classes)
+        get_big_coco_classes(args.input_size, path_to_json=args.train_annotation_path if args.train_annotation_path
+        else dataset_COCO['train_annotation_path'][0],
+        min_image_per_class=args.min_image_per_class, num_classes=args.num_classes)
 else:
     cls_to_use = args.cls_to_use
 config = Config(regimens=all_regimens if (args.regimens is None) or (args.regimens == 'all') else [x.strip() for x in
@@ -170,8 +172,10 @@ scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
 
 
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
-    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen, num_samples_to_use=config.num_samples_to_use,
-                                      dataset_name=config.dataset_name, image_roots=config.train_image_path, annotation_roots=config.train_annotation_path,
+    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen,
+                                      num_samples_to_use=config.num_samples_to_use,
+                                      dataset_name=config.dataset_name, image_roots=config.train_image_path,
+                                      annotation_roots=config.train_annotation_path,
                                       min_image_per_class=config.min_image_per_class,
                                       cls_to_use=config.cls_to_use, num_classes=config.num_classes,
                                       train_indices=train_indices)
@@ -216,7 +220,8 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
             sequence_list = eval(sequence_name)  # [0.6, 0.8, 1]
             record_list = []
             for seq_idx, (train_dataloader, val_dataloader) in enumerate(sequence_dataloaders):
-                print(f'# of trains: {len(train_dataloader) * config.batch_size} # of vals: {len(val_dataloader) * config.batch_size}')
+                print(
+                    f'# of trains: {len(train_dataloader) * config.batch_size} # of vals: {len(val_dataloader) * config.batch_size}')
                 if str(sequence_list[:seq_idx + 1]) in model_best_states:
                     model.load_state_dict(model_best_states[str(sequence_list[:seq_idx + 1])])
                     record_list = record_list + record_dict[str(sequence_list[:seq_idx + 1])]
@@ -353,4 +358,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

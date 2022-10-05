@@ -15,8 +15,8 @@ class Config(BaseModel):
     train_image_path: List[str]
     train_annotation_path: Optional[List[str]] = None
     test_annotation_path: Optional[List[str]] = None
-    min_image_per_class: Optional[int] = None,
-    max_image_per_class: Optional[int] = None,
+    min_image_per_class: Optional[int] = None
+    max_image_per_class: Optional[int] = None
     test_image_path: List[str]
     num_samples_to_use: Optional[int] = None
     test_size: Optional[float] = None

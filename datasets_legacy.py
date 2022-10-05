@@ -8,8 +8,8 @@ from torchvision.datasets.cifar import CIFAR10
 import torchvision
 import re
 from torch.utils.data import Dataset
-from .utils.data_utils import GenerateBackground
-from .utils.coco_utils import get_big_coco_classes
+from utils.data_utils import GenerateBackground
+from utils.coco_utils import get_big_coco_classes
 import numpy as np
 
 IMG_EXTENSIONS = (".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp")
@@ -321,7 +321,7 @@ class COCODataset(Dataset):
                  path_to_json: str,
                  transform,
                  num_classes,
-                 input_size,
+                 input_size: Tuple,
                  size,
                  resize_method,
                  cls_to_use,
@@ -344,6 +344,7 @@ class COCODataset(Dataset):
         self.root = root
         self.transform = transform
         self.input_size = input_size
+        self.H_final, self.W_final = input_size
         self.resize_method = resize_method
         self.size = size
         with open(path_to_json) as json_file:
@@ -353,7 +354,7 @@ class COCODataset(Dataset):
         if cls_to_use:
             self.classes = cls_to_use
         else:
-            self.classes = get_big_coco_classes(input_size=input_size, path_to_json=path_to_json, min_image_per_class=min_image_per_class,
+            self.classes = get_big_coco_classes(input_size=self.H_final, path_to_json=path_to_json, min_image_per_class=min_image_per_class,
                                                 num_classes=num_classes)
         self.img_dict = {}
         self.data = []
@@ -390,19 +391,19 @@ class COCODataset(Dataset):
 
             H, W = img.size[1], img.size[0]
             background_callable = GenerateBackground(bg_type='color', bg_color=(0, 0, 0))
-            background = background_callable((self.input_size, self.input_size), img)
+            background = background_callable(self.input_size, img)
             print(meta_info)
             H_bb, W_bb = meta_info['bbox'][3], meta_info['bbox'][2]
             # longer_side = 'H_bb' if H_bb > W_bb else 'W_bb'
 
             if H_bb > W_bb:
                 # get the size of resized bndbox
-                H_bb_target = self.input_size * self.size
+                H_bb_target = self.H_final * self.size
                 assert H_bb_target <= H_bb, 'This bndbox longest side is smaller than the target side. Cannot resize the target bigger'
                 W_bb_target = H_bb_target * W_bb / H_bb
             else:
                 # get the size of resized bndbox
-                W_bb_target = self.input_size * self.size
+                W_bb_target = self.W_final * self.size
                 assert W_bb_target <= W_bb, 'This bndbox longest side is smaller than the target side. Cannot resize the target bigger'
                 H_bb_target = W_bb_target * H_bb / W_bb
 
@@ -420,29 +421,29 @@ class COCODataset(Dataset):
             # from the resized orig image (to place in the final image)
 
             # if it goes out of the left bound of the resized image, let it be 0
-            x_min_orig = max(0, int(np.floor(x_min_resized - (self.input_size - W_bb_target) / 2)))
+            x_min_orig = max(0, int(np.floor(x_min_resized - (self.W_final - W_bb_target) / 2)))
             # if it goes out of the right bound, let it be the right bound
-            x_max_orig = min(W_target, int(np.floor(x_max_resized + (self.input_size - W_bb_target) / 2)))
+            x_max_orig = min(W_target, int(np.floor(x_max_resized + (self.W_final - W_bb_target) / 2)))
 
             # if it goes out of the top bound of the resized image, let it be 0
-            y_min_orig = max(0, int(np.floor(y_min_resized - (self.input_size - H_bb_target) / 2)))
+            y_min_orig = max(0, int(np.floor(y_min_resized - (self.H_final - H_bb_target) / 2)))
             # if it goes out of the bottom bound, let it be the bottom bound
-            y_max_orig = min(H_target, int(np.floor(y_max_resized + (self.input_size - H_bb_target) / 2)))
-            if y_max_orig - y_min_orig - self.input_size > 1:
-                raise Exception("Sth. went wrong during resizing for path: ", meta_info['path'])
-            elif 0 < y_max_orig - y_min_orig - self.input_size <= 1:
-                y_max_orig -= y_max_orig - y_min_orig - self.input_size
-            if x_max_orig - x_min_orig - self.input_size > 1:
-                raise Exception("Sth. went wrong during resizing for path: ", meta_info['path'])
-            elif 0 < x_max_orig - x_min_orig - self.input_size <= 1:
-                x_max_orig -= x_max_orig - x_min_orig - self.input_size
+            y_max_orig = min(H_target, int(np.floor(y_max_resized + (self.H_final - H_bb_target) / 2)))
+            if y_max_orig - y_min_orig - self.H_final > 1:
+                raise Exception(f"Sth. went wrong during resizing for path: {meta_info['path']}" )
+            elif 0 < y_max_orig - y_min_orig - self.H_final <= 1:
+                y_max_orig -= y_max_orig - y_min_orig - self.H_final
+            if x_max_orig - x_min_orig - self.W_final > 1:
+                raise Exception(f"Sth. went wrong during resizing for path: {meta_info['path']}")
+            elif 0 < x_max_orig - x_min_orig - self.W_final <= 1:
+                x_max_orig -= x_max_orig - x_min_orig - self.W_final
             # get coordinates to place the above cropped resized image in the final image
 
             # 1. get coordinates of resized bndbox in the final image
-            x_min_final_bb, x_max_final_bb = int(np.floor((self.input_size - W_bb_target) / 2)), int(
-                np.round(self.input_size / 2 + W_bb_target / 2))
-            y_min_final_bb, y_max_final_bb = int(np.floor((self.input_size - H_bb_target) / 2)), int(
-                np.round(self.input_size / 2 + H_bb_target / 2))
+            x_min_final_bb, x_max_final_bb = int(np.floor((self.W_final - W_bb_target) / 2)), int(
+                np.round(self.W_final / 2 + W_bb_target / 2))
+            y_min_final_bb, y_max_final_bb = int(np.floor((self.H_final - H_bb_target) / 2)), int(
+                np.round(self.H_final / 2 + H_bb_target / 2))
 
             # 2. Add/subtract surrounding distances of resized-bndbox-in-resized-orig-image to
             # each coordinates of resized bndbox in the final image
@@ -451,9 +452,9 @@ class COCODataset(Dataset):
                     y_min_resized - y_min_orig))
 
             x_max_final, y_max_final = x_min_final + x_max_orig - x_min_orig, y_min_final + y_max_orig - y_min_orig
-            if x_max_final - 1 == self.input_size:
+            if x_max_final - 1 == self.W_final:
                 x_min_final, x_max_final = x_min_final - 1, x_max_final - 1
-            if y_max_final - 1 == self.input_size:
+            if y_max_final - 1 == self.W_final:
                 y_min_final, y_max_final = y_min_final - 1, y_max_final - 1
 
             # place the resized-orig-image onto the final image, which has only background right now
@@ -483,7 +484,7 @@ if __name__ == '__main__':
         torchvision.transforms.ToTensor(),
         torchvision.transforms.Normalize(mean, std),
     ])
-    dataset = COCODataset(root='./datasets/coco', path_to_json='./datasets/classification_val2017.json',transform=None,
-                          num_classes=3, input_size=150, size=1, resize_method='long', min_image_per_class=1, max_image_per_class=5)
+    dataset = COCODataset(root='./datasets/coco', path_to_json='./datasets/classification_val2017.json',transform=None, cls_to_use=None,
+                          num_classes=3, input_size=(150,150), size=1, resize_method='long', min_image_per_class=1, max_image_per_class=5)
     s, target = dataset[0]
     s.show()
