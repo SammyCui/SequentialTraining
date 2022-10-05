@@ -17,7 +17,7 @@ class Config(BaseModel):
     test_annotation_path: Optional[List[str]] = None
     test_image_path: List[str]
     num_samples_to_use: Optional[int] = None
-    test_size: Optional[int] = None
+    test_size: Optional[float] = None
     num_classes: Optional[int] = None
     cls_to_use: Optional[List[str]] = None
 

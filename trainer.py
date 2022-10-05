@@ -60,11 +60,11 @@ class Trainer:
 
         train_acc /= len(train_dataloader)
         train_acc = float(train_acc.cpu().numpy()[0])
+
+        # validation
         model.eval()
         val_loss = 0
         val_acc = 0
-
-        # validation
         with torch.no_grad():
             for batch_idx, (inputs, targets) in enumerate(val_dataloader):
                 inputs, targets = inputs.to(self.device), targets.to(self.device)

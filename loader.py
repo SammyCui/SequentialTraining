@@ -5,8 +5,8 @@ from PIL import Image
 import torchvision
 import numpy as np
 from typing import Tuple, Callable, Optional
-
-from .utils.data_utils import get_bndbox
+from utils.data_utils import GenerateBackground
+from utils.data_utils import get_bndbox
 
 
 class ResizeImageLoader:
@@ -235,3 +235,9 @@ class CIFARLoader(NoAnnotationImageLoader):
             return Image.fromarray(final_img_array)
 
 
+if __name__ == '__main__':
+    background_callable = GenerateBackground(bg_type='color', bg_color=(0, 0, 0))
+    loader = ResizeImageLoader(size=(150,150), p=0.5, annotation_root_path='/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012_filtered/train/annotations',
+                               background_generator=background_callable)
+    img = loader('/Users/xuanmingcui/Documents/projects/cnslab/cnslab/SequentialTraining/datasets/VOC2012_filtered/train/root/aeroplane/2008_000037.jpg')
+    img.show()

@@ -38,6 +38,12 @@ parser.add_argument('--train_image_path', default=None, type=none_or_str, nargs=
 parser.add_argument('--test_annotation_path', default=None, nargs='?', const=None, type=none_or_str,
                     help='test annotation root path')
 parser.add_argument('--test_image_path', type=none_or_str, nargs='?', const=None, help='test images root path')
+
+# coco specific
+parser.add_argument('--path_to_json', type=none_or_str, nargs='?', default=None, const=None, help='path to classification json for only coco')
+parser.add_argument('--min_image_per_class', type=int, nargs='?', default=None, const=None, help='minimum number of valid images required for COCO per class')
+parser.add_argument('--max_image_per_class', type=int, nargs='?', default=None, const=None, help='max number of valid images for COCO per class')
+
 parser.add_argument('--num_samples_to_use', type=int, nargs='?', const=None, default=None,
                     help='# of images to use for training')
 parser.add_argument('--test_size', type=float, nargs='?', const=0.3, default=0.3,
@@ -150,14 +156,15 @@ scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
 
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
     regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen, num_samples_to_use=config.num_samples_to_use,
-                                      dataset_name=config.dataset_name, image_roots=config.train_image_path,
+                                      dataset_name=config.dataset_name, image_roots=config.train_image_path, annotation_roots=config.train_annotation_path,
+                                      cls_to_use=config.cls_to_use, num_classes=config.num_classes,
                                       train_indices=train_indices)
 
     # get all test dataloaders
     test_dataloaders = []
     for size in sorted(config.sizes):
         test_dataset = get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=size,
-                                   image_roots=config.test_image_path, num_samples_to_use=config.num_samples_to_use,
+                                   image_roots=config.test_image_path,
                                    indices=test_indices, annotation_roots=config.test_annotation_path,
                                    resize_method=config.resize_method, train=False,
                                    cls_to_use=config.cls_to_use, num_classes=config.num_classes)
@@ -175,6 +182,9 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
         model_best_states = {}
         record_dict = {}
         test_df = pd.DataFrame(index=sorted(config.sizes))
+        if config.n_folds_to_use:
+            if fold >= config.n_folds_to_use:
+                break
         print(f'Fold: {fold}')
         for sequence_name, sequence_dataloaders in sequence:
             # e.g. sequence_name: "[0.8, 1]"
@@ -251,8 +261,11 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
             record_dict[sequence_name] = record_list
 
             # testing
+            model.eval()
             test_list = []
+            test_target = set()
             for test_dataloader in test_dataloaders:
+                print(f'# of tests: {len(test_dataloader) * config.batch_size}')
                 acc_1 = 0
                 with torch.no_grad():
                     for images, labels in test_dataloader:
@@ -263,6 +276,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
 
                         acc = metrics.accuracy(outputs, labels, (1,))
                         acc_1 += acc[0]
+                        test_target.update(list(labels.cpu().numpy()))
 
                     acc_1 = acc_1 / len(test_dataloader)
                     acc_1 = float(acc_1.cpu().numpy()[0])
@@ -301,12 +315,14 @@ def main():
         print(f'{name}: {value}')
 
     # for datasets that don't have separate train/test
-    if config.dataset_name == 'Imagenet':
+    if 'Imagenet' in config.dataset_name:
 
         np.random.seed(config.random_seed)
         indices = list(range(num_samples))
+        np.random.shuffle(indices)
         train_indices = indices[:int((1 - config.test_size) * len(indices))]
         test_indices = indices[int((1 - config.test_size) * len(indices)):]
+
         for regimen in config.regimens:
             print(f'==>Training {regimen}\n')
             train_regimen(regimen=regimen, train_indices=train_indices, test_indices=test_indices)

@@ -5,7 +5,7 @@ import torchvision
 import numpy as np
 from .loader import ResizeImageLoader, NoAnnotationImageLoader, CIFARLoader
 from .utils.data_utils import GenerateBackground, IsValidFileImagenet
-from .datasets_legacy import VOCDataset, ImagenetDataset, CIFAR10Dataset, available_datasets
+from .datasets_legacy import VOCDataset, ImagenetDataset, CIFAR10Dataset, available_datasets, COCODataset
 from torch.utils.data import Dataset, SubsetRandomSampler, ConcatDataset, DataLoader, Subset
 
 
@@ -15,6 +15,9 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
                 cls_to_use: List['str'] = None,
                 num_classes: int = None,
                 num_samples_to_use: int = None,
+                path_to_json: str = None,
+                min_image_per_class: int = None,
+                max_image_per_class: int = None,
                 train: bool = True,
                 random_seed: int = 40, return_classes: bool = False):
     if dataset_name not in available_datasets:
@@ -40,6 +43,10 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
         for image_root in image_roots:
             if 'CIFAR' in dataset_name:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, train=train, download=True)
+            elif 'COCO' in dataset_name:
+                dataset = COCODataset(root=image_root, path_to_json=path_to_json, num_classes=num_classes,
+                                      input_size=size, size=p, resize_method=resize_method, transform=transform,
+                                      min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class)
             else:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes)
@@ -47,6 +54,7 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
             if indices:
                 dataset = Subset(dataset, indices=indices)
             dataset_list.append(dataset)
+
     else:
 
         for anno_root, image_root in zip(annotation_roots, image_roots):
@@ -55,6 +63,7 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
                 is_valid_file = IsValidFileImagenet(anno_root=anno_root, threshold=size[0])
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes, is_valid_file=is_valid_file)
+
             else:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes)
