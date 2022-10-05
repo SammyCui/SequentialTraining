@@ -8,6 +8,7 @@ import numpy as np
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 import argparse
+import pickle
 
 
 class COCOTools:
@@ -90,6 +91,23 @@ class COCOTools:
             id2class_dict[cat['id']] = cat['name']
 
         return id2class_dict
+
+
+def get_big_coco_classes(input_size, path_to_json, min_image_per_class, num_classes=None, save_path=None):
+    classes = []
+    with open(path_to_json) as json_file:
+        img_dict = json.load(json_file)
+    for key, val in img_dict.items():
+        big_objs = [x for x in val if (x['bbox'][2] >= input_size) or (x['bbox'][3] >= input_size)]
+        if len(big_objs) > min_image_per_class:
+            classes.append(key)
+    classes = sorted(classes)
+    if num_classes:
+        classes = classes[:num_classes]
+    if save_path:
+        with open(save_path, "wb") as fp:
+            pickle.dump(classes, fp)
+    return classes
 
 
 

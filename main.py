@@ -20,6 +20,7 @@ from torch.utils.data import DataLoader
 import pandas as pd
 import pickle
 import torchvision
+from SequentialTraining.utils.coco_utils import get_big_coco_classes
 
 pd.set_option('display.max_columns', None)
 
@@ -40,7 +41,7 @@ parser.add_argument('--test_annotation_path', default=None, nargs='?', const=Non
 parser.add_argument('--test_image_path', type=none_or_str, nargs='?', const=None, help='test images root path')
 
 # coco specific
-parser.add_argument('--path_to_json', type=none_or_str, nargs='?', default=None, const=None, help='path to classification json for only coco')
+
 parser.add_argument('--min_image_per_class', type=int, nargs='?', default=None, const=None, help='minimum number of valid images required for COCO per class')
 parser.add_argument('--max_image_per_class', type=int, nargs='?', default=None, const=None, help='max number of valid images for COCO per class')
 
@@ -108,6 +109,12 @@ dataset_Imagenet = {'train_annotation_path': ['/u/erdos/cnslab/imagenet-bndbox/b
                     'test_annotation_path': ['/u/erdos/cnslab/imagenet-bndbox/bndbox'],
                     'test_image_path': ['/u/erdos/cnslab/imagenet-distinct']}
 
+dataset_COCO = {'train_annotation_path': ['/u/erdos/cnslab/coco/annotations/classification_train2017.json'],
+                'train_image_path': ['/u/erdos/cnslab/coco/train'],
+                'test_annotation_path': ['/u/erdos/cnslab/coco/annotations/classification_test2017.json'],
+                'test_image_path': ['/u/erdos/cnslab/coco/test']}
+
+
 if args.dataset_name == 'VOC':
     dataset_paths = dataset_VOC
 elif args.dataset_name == 'Imagenet':
@@ -115,7 +122,7 @@ elif args.dataset_name == 'Imagenet':
 elif args.dataset_name == 'CIFAR10':
     dataset_paths = dataset_CIFAR10
 elif args.dataset_name == 'COCO':
-    raise Exception(f"{args.dataset_name} has not been implemented")
+    dataset_paths = dataset_COCO
 else:
     raise Exception(f"{args.dataset_name} has not been implemented")
 
@@ -124,6 +131,14 @@ all_regimens = ['stb_endsame', 'bts_startsame', 'llo', 'random_oneseq', 'random1
 optimizer_kwargs = {'lr': args.lr, 'momentum': 0.9}
 scheduler_kwargs = {'mode': 'min', 'factor': 0.1, 'patience': args.lr_patience, 'min_lr': args.min_lr}
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
+
+
+if 'COCO' in args.dataset_name:
+    cls_to_use = args.cls_to_use if args.cls_to_use else \
+                    get_big_coco_classes(args.input_size, path_to_json=args.path_to_train_json if args.path_to_train_json else dataset_COCO['train_annotation_path'],
+                                         min_image_per_class=args.min_image_per_class, num_classes=args.num_classes)
+else:
+    cls_to_use = args.cls_to_use
 config = Config(regimens=all_regimens if (args.regimens is None) or (args.regimens == 'all') else [x.strip() for x in
                                                                                                    args.regimens.split(
                                                                                                        ',')],
@@ -133,7 +148,7 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 test_annotation_path=dataset_paths['test_annotation_path'],
                 test_image_path=dataset_paths['test_image_path'],
                 num_samples_to_use=args.num_samples_to_use, test_size=args.test_size,
-                num_classes=args.num_classes, cls_to_use=args.cls_to_use,
+                num_classes=args.num_classes, cls_to_use=cls_to_use,
                 sizes=[eval(x.strip()) for x in args.sizes.split(',')],
                 input_size=(args.input_size, args.input_size),
                 resize_method=args.resize_method,
@@ -157,6 +172,7 @@ scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
 def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
     regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen, num_samples_to_use=config.num_samples_to_use,
                                       dataset_name=config.dataset_name, image_roots=config.train_image_path, annotation_roots=config.train_annotation_path,
+                                      min_image_per_class=config.min_image_per_class,
                                       cls_to_use=config.cls_to_use, num_classes=config.num_classes,
                                       train_indices=train_indices)
 

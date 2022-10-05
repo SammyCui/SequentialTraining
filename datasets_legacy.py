@@ -8,7 +8,8 @@ from torchvision.datasets.cifar import CIFAR10
 import torchvision
 import re
 from torch.utils.data import Dataset
-from utils.data_utils import GenerateBackground
+from .utils.data_utils import GenerateBackground
+from .utils.coco_utils import get_big_coco_classes
 import numpy as np
 
 IMG_EXTENSIONS = (".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp")
@@ -323,6 +324,7 @@ class COCODataset(Dataset):
                  input_size,
                  size,
                  resize_method,
+                 cls_to_use,
                  min_image_per_class,
                  max_image_per_class):
 
@@ -348,14 +350,11 @@ class COCODataset(Dataset):
             img_dict = json.load(json_file)
 
         self.classes = []
-        for key, val in img_dict.items():
-            big_objs = [x for x in val if (x['bbox'][2] >= input_size) or (x['bbox'][3] >= input_size)]
-            if len(big_objs) > min_image_per_class:
-                self.classes.append(key)
-        self.classes = sorted(self.classes)
-        self.img_dict = img_dict
-        if num_classes:
-            self.classes = self.classes[:num_classes]
+        if cls_to_use:
+            self.classes = cls_to_use
+        else:
+            self.classes = get_big_coco_classes(input_size=input_size, path_to_json=path_to_json, min_image_per_class=min_image_per_class,
+                                                num_classes=num_classes)
         self.img_dict = {}
         self.data = []
         for cls in self.classes:
