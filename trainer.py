@@ -12,6 +12,7 @@ import torch.optim as optim
 import pandas as pd
 from torch.utils.data import DataLoader
 import torchvision
+import pickle
 
 
 class Trainer:
@@ -41,7 +42,8 @@ class Trainer:
               model: torchvision.models,
               train_dataloader: DataLoader,
               val_dataloader: DataLoader,
-              optimizer: torch.optim):
+              optimizer: torch.optim,
+              max_norm: int = None):
         model.train()
         train_loss = 0
         train_acc = 0
@@ -51,10 +53,12 @@ class Trainer:
             outputs = model(inputs)
             loss = self.criterion(outputs, targets)
             loss.backward()
+
+            if max_norm:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
 
             train_loss += loss.item()
-
             batch_acc = metrics.accuracy(outputs, targets, (1, 5))
             train_acc += batch_acc[0]
 
@@ -65,16 +69,19 @@ class Trainer:
         model.eval()
         val_loss = 0
         val_acc = 0
+
         with torch.no_grad():
             for batch_idx, (inputs, targets) in enumerate(val_dataloader):
                 inputs, targets = inputs.to(self.device), targets.to(self.device)
                 outputs = model(inputs)
+
                 loss = self.criterion(outputs, targets)
 
                 val_loss += loss.item()
                 _, predicted = outputs.max(1)
                 batch_acc = metrics.accuracy(outputs, targets, (1, 5))
                 val_acc += batch_acc[0]
+
         val_acc /= len(val_dataloader)
         val_acc = float(val_acc.cpu().numpy()[0])
 

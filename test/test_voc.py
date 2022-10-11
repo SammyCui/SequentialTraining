@@ -9,23 +9,10 @@ import torchvision.transforms as transforms
 
 from utils.data_utils import GenerateBackground
 from loader import ResizeImageLoader
-from datasets_legacy import VOCDataset
+from datasets_legacy import COCODataset
 from utils import metrics
 
-parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Test')
-parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
-parser.add_argument('--epoch', default=80, type=int, help='num of epochs')
-parser.add_argument('--model', default='resnet50', type=str, help='model name from pytorch')
-parser.add_argument('--num_workers', default=16, type=int, help='number of workers for dataloader')
-parser.add_argument('--lr_patience', default=3, type=int, help='number of epochs to wait before decreasing lr')
-parser.add_argument('--min_lr', default=0.00001, type=float, help='minimum learning rate')
-parser.add_argument('--n_folds', default=5, type=int, help='number of folds')
-parser.add_argument('--n_folds_to_use', default=1, type=int, help='number of folds to use')
 
-# data path
-parser.add_argument('--path', default='./datasets/VOC2012/VOC2012_filtered', help='path to cifar dataset')
-
-args = parser.parse_args()
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 print('Device: ', device)

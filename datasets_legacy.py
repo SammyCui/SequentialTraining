@@ -3,6 +3,7 @@ import os
 from typing import Tuple, Optional, Callable, Any, List, Dict, Iterable, cast
 
 from PIL import Image
+from pycocotools.coco import COCO
 from torchvision.datasets.folder import default_loader, has_file_allowed_extension
 from torchvision.datasets.cifar import CIFAR10
 import torchvision
@@ -351,33 +352,54 @@ class COCODataset(Dataset):
             img_dict = json.load(json_file)
 
         self.classes = []
+        self.class_to_idx = {cls: i for cls, i in enumerate(self.classes)}
+
         if cls_to_use:
             self.classes = cls_to_use
         else:
             self.classes = get_big_coco_classes(input_size=self.H_final, path_to_json=path_to_json, min_image_per_class=min_image_per_class,
                                                 num_classes=num_classes)
-        self.img_dict = {}
+
+        self.class_to_idx = {cls: i for i, cls in enumerate(self.classes)}
         self.data = []
         for cls in self.classes:
+            big_pictures = [x for x in img_dict[cls] if (x['bbox'][2] >= self.H_final) or (x['bbox'][3] >= self.H_final)]
             if max_image_per_class:
-                self.img_dict[cls] = img_dict[cls][:max_image_per_class]
-                self.data.extend(img_dict[cls][:max_image_per_class])
+                self.data.extend(big_pictures[:max_image_per_class])
             else:
-                self.img_dict[cls] = img_dict[cls]
-                self.data.extend(img_dict[cls])
-
-        self.class_idx = list(range(len(self.classes)))
+                self.data.extend(big_pictures)
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
         meta_info = self.data[idx]
-        img = Image.open(meta_info['path'])
+        # coco = COCO('/Users/xuanmingcui/Downloads/instances_train2017.json')
+        # annIDs = coco.getAnnIds(77709)
+        # anns = coco.loadAnns(annIDs)
+        #
+        # def get_id2class_dict(coco_obj) -> dict:
+        #     cats = coco_obj.loadCats(coco_obj.getCatIds())
+        #     id2class_dict = {}
+        #     for cat in cats:
+        #         id2class_dict[cat['id']] = cat['name']
+        #
+        #     return id2class_dict
+        # id2class_dict = get_id2class_dict(coco)
+        # ann_list = []
+        # for ann in anns:
+        #     category_name = id2class_dict[(ann['category_id'])]
+        #     if ann['bbox'][2] >= 150 or ann['bbox'][3] >= 150:
+        #         ann_list.append({'path': os.path.join(self.root, '000000077709.jpg'),
+        #                                           'bbox': ann['bbox'],
+        #                                           'category': category_name,
+        #                                           'category_id': int(ann['category_id'])})
+        # meta_info = ann_list[0]
+        img = Image.open(meta_info['path']).convert('RGB')
         # bbox
         x_min, y_min, x_max, y_max = meta_info['bbox'][0], meta_info['bbox'][1], \
                                      meta_info['bbox'][0] + meta_info['bbox'][2], meta_info['bbox'][1] + meta_info['bbox'][3]
-        target = meta_info['category_id']
+        target = meta_info['category']
         if self.resize_method == 'adjust':
             bnd_box_img = img.crop((x_min, y_min, x_max, y_max))
             h_resized, w_resized = int(self.input_size * self.size), int(self.input_size * self.size)
@@ -392,7 +414,6 @@ class COCODataset(Dataset):
             H, W = img.size[1], img.size[0]
             background_callable = GenerateBackground(bg_type='color', bg_color=(0, 0, 0))
             background = background_callable(self.input_size, img)
-            print(meta_info)
             H_bb, W_bb = meta_info['bbox'][3], meta_info['bbox'][2]
             # longer_side = 'H_bb' if H_bb > W_bb else 'W_bb'
 
@@ -474,7 +495,7 @@ class COCODataset(Dataset):
 
             if self.transform is not None:
                 img = self.transform(img)
-            return img, target
+            return img, self.class_to_idx[target]
 
 
 if __name__ == '__main__':
@@ -487,4 +508,5 @@ if __name__ == '__main__':
     dataset = COCODataset(root='./datasets/coco', path_to_json='./datasets/classification_val2017.json',transform=None, cls_to_use=None,
                           num_classes=3, input_size=(150,150), size=1, resize_method='long', min_image_per_class=1, max_image_per_class=5)
     s, target = dataset[0]
+    model = torchvision.models.resnet18(num_classes = 3)
     s.show()

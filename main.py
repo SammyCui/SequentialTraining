@@ -128,9 +128,9 @@ elif args.dataset_name == 'COCO':
 else:
     raise Exception(f"{args.dataset_name} has not been implemented")
 
-all_regimens = ['stb_endsame', 'bts_startsame', 'llo', 'random_oneseq', 'random1', 'single']
+all_regimens = ['stb_endsame', 'bts_startsame', 'random-single', 'random_1group', 'random', 'single']
 
-optimizer_kwargs = {'lr': args.lr, 'momentum': 0.9}
+optimizer_kwargs = {'lr': args.lr, 'momentum': 0.9, 'weight_decay': 0.0001}
 scheduler_kwargs = {'mode': 'min', 'factor': 0.1, 'patience': args.lr_patience, 'min_lr': args.min_lr}
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
@@ -251,7 +251,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                     for epoch in range(epochs_per_size):
 
                         train_loss, train_acc, val_loss, val_acc, lr = trainer.train(epoch, model, train_dataloader,
-                                                                                     val_dataloader, optimizer)
+                                                                                     val_dataloader, optimizer, config.max_norm)
 
                         print(
                             'Epoch [{}/{}] Training Loss: {:.4f} Training Acc: {:.3f} Val Loss: {:.4f} Val Acc: {:.3f} lr: {:.4f}'

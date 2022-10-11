@@ -9,6 +9,7 @@ from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 import argparse
 import pickle
+from PIL import Image
 
 
 class COCOTools:
@@ -66,10 +67,15 @@ class COCOTools:
                     category_name = id2class_dict[(ann['category_id'])]
                     if category_name not in class_dict:
                         class_dict[category_name] = []
-                    class_dict[category_name].append({'path': os.path.join(image_root, filename),
-                                                      'bbox': ann['bbox'],
-                                                      'category': category_name,
-                                                      'category_id': int(ann['category_id'])})
+                    try:
+                        Image.open(os.path.join(image_root, filename))
+                        class_dict[category_name].append({'path': os.path.join(image_root, filename),
+                                                          'bbox': ann['bbox'],
+                                                          'category': category_name,
+                                                          'category_id': int(ann['category_id'])})
+                    except:
+                        continue
+
                 pbar.update(1)
 
         num_objects = 0
@@ -110,13 +116,14 @@ def get_big_coco_classes(input_size, path_to_json, min_image_per_class, num_clas
     return classes
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Main module to run')
     parser.add_argument('--path_to_json', type=str, help="path to coco annotation json file")
-    parser.add_argument('--image_root', type=str, const=None, default=None, nargs='?', help="path to the dir of all images")
-    parser.add_argument('--save_path', type=str, const=None, default=None, nargs='?', help="path to the file for saving the json obj")
+    parser.add_argument('--image_root', type=str, const=None, default=None, nargs='?',
+                        help="path to the dir of all images")
+    parser.add_argument('--save_path', type=str, const=None, default=None, nargs='?',
+                        help="path to the file for saving the json obj")
     args = parser.parse_args()
     cocotool = COCOTools(args.path_to_json)
-    #cocotool.coco_downloader(img_root='../datasets/coco', classes=['sandwich', 'tv', 'book'], images_per_class=1)
+    # cocotool.coco_downloader(img_root='../datasets/coco', classes=['sandwich', 'tv', 'book'], images_per_class=1)
     cocotool.build_classification_json(image_root=args.image_root, save_path=args.save_path)
