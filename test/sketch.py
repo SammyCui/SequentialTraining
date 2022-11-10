@@ -1,16 +1,16 @@
-import torch
-import torchvision
-import pickle
+def solution(a):
+    largest_num_in_input = max(a)
+    all_fib_nums = [1, 1]
+    while all_fib_nums[-1] < largest_num_in_input:
+        all_fib_nums.append(all_fib_nums[-1] + all_fib_nums[-2])
 
-with open('/Users/xuanmingcui/Downloads/outputs_target.pickle', 'rb') as file:
-    data = pickle.load(file)
+    def check_sum(x):
+        for fib in all_fib_nums:
+            if x - fib in all_fib_nums:
+                return True
+        return False
 
-print(data['outputs'])
-print(data['targets'])
+    return [check_sum(x) for x in a]
 
-criterion = torch.nn.CrossEntropyLoss()
-
-outputs = data['outputs']
-targets = data['targets']
-
-print(criterion(torch.tensor(outputs), torch.tensor(targets)))
+if __name__ == '__main__':
+    print(solution([1,2,3,6]))

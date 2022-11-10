@@ -21,6 +21,7 @@ import pandas as pd
 import pickle
 import torchvision
 from SequentialTraining.utils.coco_utils import get_big_coco_classes
+from SequentialTraining.performance import get_avg_std
 
 pd.set_option('display.max_columns', None)
 
@@ -67,6 +68,7 @@ parser.add_argument('--resize_method', default='long', type=str, const='long', n
                          '"adjust": resize to input_size * input_size without padding')
 # training args
 parser.add_argument('--lr', default=0.1, const=0.1, nargs='?', type=float, help='learning rate')
+parser.add_argument('--epoch_schedule', default=None, const=None, nargs='?', type=str, help='a list of epochs for each training size group')
 parser.add_argument('--epoch', default=200, const=200, nargs='?', type=int, help='num of epochs')
 parser.add_argument('--model', type=str, help='model name from pytorch')
 parser.add_argument('--num_workers', default=16, const=16, type=int, nargs='?', help='number of workers for dataloader')
@@ -141,6 +143,12 @@ if 'COCO' in args.dataset_name:
         min_image_per_class=args.min_image_per_class, num_classes=args.num_classes)
 else:
     cls_to_use = args.cls_to_use
+
+if args.epoch_schedule:
+    epoch_schedule = eval(args.epoch_schedule)
+else:
+    epoch_schedule = None
+
 config = Config(regimens=all_regimens if (args.regimens is None) or (args.regimens == 'all') else [x.strip() for x in
                                                                                                    args.regimens.split(
                                                                                                        ',')],
@@ -154,7 +162,7 @@ config = Config(regimens=all_regimens if (args.regimens is None) or (args.regime
                 sizes=[eval(x.strip()) for x in args.sizes.split(',')],
                 input_size=(args.input_size, args.input_size),
                 resize_method=args.resize_method,
-                model=args.model,
+                model=args.model, epoch_schedule=epoch_schedule,
                 epoch=args.epoch, min_lr=args.min_lr,
                 n_folds=args.n_folds, n_folds_to_use=args.n_folds_to_use,
                 early_stop_patience=args.early_stop_patience, max_norm=args.max_norm,
@@ -171,8 +179,8 @@ criterion_object = torch.nn.CrossEntropyLoss
 scheduler_object = torch.optim.lr_scheduler.ReduceLROnPlateau
 
 
-def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
-    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen,
+def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, test_indices: Optional[List[int]] = None):
+    regimen = get_regimen_dataloaders(input_size=config.input_size, sizes=config.sizes, regimen=regimen_name,
                                       num_samples_to_use=config.num_samples_to_use,
                                       dataset_name=config.dataset_name, image_roots=config.train_image_path,
                                       annotation_roots=config.train_annotation_path,
@@ -201,7 +209,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
 
         model_best_states = {}
         record_dict = {}
-        test_df = pd.DataFrame(index=sorted(config.sizes))
+        test_df = pd.DataFrame(index=sorted(config.sizes) + ['origin'])
         if config.n_folds_to_use:
             if fold >= config.n_folds_to_use:
                 break
@@ -215,7 +223,7 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                     'torchvision.models.' + config.model + f'(num_classes={config.num_classes}, aux_logits=False)')
             else:
                 model = eval('torchvision.models.' + config.model + f'(num_classes={config.num_classes})')
-            model = model.to(device)
+            model = model.to(config.device)
             epochs_per_size = int(np.ceil(config.epoch / len(sequence_dataloaders)))
             sequence_list = eval(sequence_name)  # [0.6, 0.8, 1]
             record_list = []
@@ -246,9 +254,14 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
                             "Uh Something went wrong... the previous sequence is not in the state "
                             "dict...")
 
-                    print(f'==> Current group: {sequence_list[seq_idx]}')
                     trainer = Trainer(criterion=criterion, patience=config.early_stop_patience, device=config.device)
-                    for epoch in range(epochs_per_size):
+                    if regimen_name.startswith(('bts', 'stb', 'as_is')) and config.epoch_schedule:
+                        num_epoch = config.epoch_schedule[seq_idx]
+                    else:
+                        num_epoch = epochs_per_size
+
+                    print(f'==> Current group: {sequence_list[seq_idx]} num_epoch: {num_epoch}')
+                    for epoch in range(num_epoch):
 
                         train_loss, train_acc, val_loss, val_acc, lr = trainer.train(epoch, model, train_dataloader,
                                                                                      val_dataloader, optimizer, config.max_norm)
@@ -282,16 +295,31 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
             record_dict[sequence_name] = record_list
 
             # testing
+
+            # append the original image with the last size in the sequence
+
+            if config.dataset_name != 'COCO':
+                original_testset = get_dataset(dataset_name=config.dataset_name, size=config.input_size, p=float(sequence_list[-1]),
+                                               image_roots=config.test_image_path,
+                                               indices=test_indices, annotation_roots=config.test_annotation_path,
+                                               resize_method=config.resize_method, train=False,
+                                               cls_to_use=config.cls_to_use, num_classes=config.num_classes,
+                                               origin=True)
+                original_dataloader = DataLoader(original_testset, batch_size=config.batch_size, shuffle=True,
+                                                 num_workers=config.num_workers, pin_memory=True)
+                test_dataloaders_with_origin = test_dataloaders + [original_dataloader]
+            else:
+                test_dataloaders_with_origin = test_dataloaders
+
             model.eval()
             test_list = []
             test_target = set()
-            for test_dataloader in test_dataloaders:
-                print(f'# of tests: {len(test_dataloader) * config.batch_size}')
+            for test_dataloader in test_dataloaders_with_origin:
                 acc_1 = 0
                 with torch.no_grad():
                     for images, labels in test_dataloader:
-                        images = images.to(device)
-                        labels = labels.to(device)
+                        images = images.to(config.device)
+                        labels = labels.to(config.device)
                         outputs = model(images)
                         _, predicted = torch.max(outputs.data, 1)
 
@@ -309,13 +337,11 @@ def train_regimen(regimen: str, train_indices: Optional[List[int]] = None, test_
         records.append(record_dict)
 
     print("Test results:")
-    for fold, df in enumerate(test_result):
-        print(f"Fold {fold}")
-        print(df)
+    print(get_avg_std(test_result))
     result = {'config': config,
               'train': records,
               'test': test_result}
-    with open(os.path.join(config.result_path, 'result'), 'wb') as handle:
+    with open(os.path.join(config.result_path, regimen_name), 'wb') as handle:
         pickle.dump(result, handle)
 
 
@@ -346,13 +372,13 @@ def main():
 
         for regimen in config.regimens:
             print(f'==>Training {regimen}\n')
-            train_regimen(regimen=regimen, train_indices=train_indices, test_indices=test_indices)
+            train_regimen(regimen_name=regimen, train_indices=train_indices, test_indices=test_indices)
             print('\n')
 
     else:
         for regimen in config.regimens:
             print(f'==>Training {regimen}\n')
-            train_regimen(regimen=regimen)
+            train_regimen(regimen_name=regimen)
             print('\n')
 
 

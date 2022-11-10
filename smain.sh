@@ -18,3 +18,5 @@ module load ml-pythondeps-py36-cuda10.1-gcc
 
 
 python3 /u/erdos/students/xcui32/SequentialTraining/main.py --regimens as_is --dataset_name Imagenet --num_samples_to_use  --test_size 0.2 --num_classes --cls_to_use --sizes '1' --input_size 150 --resize_method long --lr 0.1 --epoch 400 --model resnet18 --lr_patience 5 --early_stop_patience 20 --min_lr 0.00001 --n_folds 5 --n_folds_to_use 1 --save_progress_ckpt False --save_result_ckpt False --result_path ./results/ImagenetR18
+
+

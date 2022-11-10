@@ -88,7 +88,18 @@ class Evaluate:
         plt.show()
 
 
+def get_avg_std(list_dfs, round_to: int = 3):
+    """
+    get element-wise mean and sgd over a list of dfs
+    :param list_dfs:
+    :param round_to:
+    :return:
+    """
 
+    avg = sum(list_dfs)/len(list_dfs)
+    std = [(result-avg).pow(2)/len(list_dfs) for result in list_dfs]
+    std = np.sqrt(sum(std)/len(std))# np.sqrt(np.mean(std))
+    return avg.round(round_to), std.round(round_to)
 
 """
 test_acc_top1

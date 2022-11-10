@@ -57,9 +57,11 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
     if regimen == 'random_1group':
         dataset_list = []
         for size in sizes:
-            d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots, num_samples_to_use=num_samples_to_use,
+            d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots,
+                            num_samples_to_use=num_samples_to_use,
                             min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class,
-                            resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices, cls_to_use=cls_to_use, num_classes=num_classes)
+                            resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices,
+                            cls_to_use=cls_to_use, num_classes=num_classes)
             dataset_list.append(d)
         dataset_all_size = torch.utils.data.ConcatDataset(dataset_list)
 
@@ -67,7 +69,6 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
 
         for train_idx, val_idx in get_cv_indices(num_samples=len(dataset_all_size), n_folds=n_folds,
                                                  n_folds_to_use=n_folds_to_use, random_seed=random_seed):
-            print(f'# of train: {len(train_idx)}, # of val: {len(val_idx)}')
             train_dataloader = DataLoader(dataset_all_size, batch_size=batch_size,
                                           sampler=SubsetRandomSampler(train_idx),
                                           num_workers=num_workers, pin_memory=True)
@@ -78,9 +79,11 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
     elif regimen == 'random':
         dataset_list = []
         for size in sizes:
-            d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots, num_samples_to_use=num_samples_to_use,
+            d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots,
+                            num_samples_to_use=num_samples_to_use,
                             min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class,
-                            resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices, cls_to_use=cls_to_use, num_classes=num_classes)
+                            resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices,
+                            cls_to_use=cls_to_use, num_classes=num_classes)
             dataset_list.append(d)
         dataset_all_size = torch.utils.data.ConcatDataset(dataset_list)
         indices = np.arange(len(dataset_all_size))
@@ -89,7 +92,6 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
         indices_sequence = np.array_split(indices, len(sizes))
         for train_idx, val_idx in get_cv_indices(num_samples=len(indices_sequence[0]), n_folds=n_folds,
                                                  n_folds_to_use=n_folds_to_use, random_seed=random_seed):
-            print(f'# of train: {len(train_idx)}, # of val: {len(val_idx)}')
             sequence = []
             for indices in indices_sequence:
                 dataset = Subset(dataset_all_size, indices)
@@ -108,9 +110,11 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
             mixed_sizes = sizes[:i] + sizes[i + 1:]
             dataset_list = []
             for size in mixed_sizes:
-                d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots, num_samples_to_use=num_samples_to_use,
+                d = get_dataset(dataset_name=dataset_name, size=input_size, p=size, image_roots=image_roots,
+                                num_samples_to_use=num_samples_to_use,
                                 min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class,
-                                resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices, cls_to_use=cls_to_use, num_classes=num_classes)
+                                resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices,
+                                cls_to_use=cls_to_use, num_classes=num_classes)
                 dataset_list.append(d)
             dataset_all_size = torch.utils.data.ConcatDataset(dataset_list)
             indices = np.arange(len(dataset_all_size))
@@ -129,7 +133,6 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
         for train_idx, val_idx in get_cv_indices(num_samples=len(dataset_sequence_list[0][0]), n_folds=n_folds,
                                                  n_folds_to_use=n_folds_to_use, random_seed=random_seed):
             fold_sequence = []
-            print(f'# of train: {len(train_idx)}, # of val: {len(val_idx)}')
             for size_idx, dataset_sequence in enumerate(dataset_sequence_list):
                 dataloader_sequence = []
                 for dataset in dataset_sequence:
@@ -145,6 +148,23 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
             fold_list.append(fold_sequence)
 
     else:
+        if regimen == 'origin':
+            d = get_dataset(dataset_name=dataset_name, size=input_size, p=1, image_roots=image_roots,
+                            num_samples_to_use=num_samples_to_use,
+                            min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class,
+                            resize_method=resize_method, annotation_roots=annotation_roots, indices=train_indices,
+                            cls_to_use=cls_to_use, num_classes=num_classes, origin=True)
+            for train_idx, val_idx in get_cv_indices(num_samples=len(d), n_folds=n_folds,
+                                                     n_folds_to_use=n_folds_to_use, random_seed=random_seed):
+                train_dataloader = DataLoader(d, batch_size=batch_size,
+                                              sampler=SubsetRandomSampler(train_idx),
+                                              num_workers=num_workers, pin_memory=True)
+                val_dataloader = DataLoader(d, batch_size=batch_size, sampler=SubsetRandomSampler(val_idx),
+                                            num_workers=num_workers, pin_memory=True)
+                dataloader_sequence = [(train_dataloader, val_dataloader)]
+                fold_list.append([(str(['origin']), dataloader_sequence)])
+
+            return fold_list
 
         if regimen == 'stb_endsame':
             sizes = sorted(sizes)
@@ -174,19 +194,24 @@ def get_regimen_dataloaders(input_size: Tuple[int, int], sizes: List[float], reg
         if train_indices:
             num_samples = len(train_indices)
         else:
-            num_samples = len(get_dataset(dataset_name=dataset_name, size=input_size, p=1, image_roots=image_roots, num_samples_to_use=num_samples_to_use,
-                                          resize_method=resize_method, annotation_roots=annotation_roots, cls_to_use=cls_to_use, num_classes=num_classes,
-                                          indices=train_indices, min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class))
+            num_samples = len(get_dataset(dataset_name=dataset_name, size=input_size, p=1, image_roots=image_roots,
+                                          num_samples_to_use=num_samples_to_use,
+                                          resize_method=resize_method, annotation_roots=annotation_roots,
+                                          cls_to_use=cls_to_use, num_classes=num_classes,
+                                          indices=train_indices, min_image_per_class=min_image_per_class,
+                                          max_image_per_class=max_image_per_class))
         for train_idx, val_idx in get_cv_indices(num_samples=num_samples, n_folds=n_folds,
                                                  n_folds_to_use=n_folds_to_use, random_seed=random_seed):
             fold_sequence = []
             for sequence in sequences:
                 dataloader_sequence = []
                 for size_group in sequence:
-                    dataset = get_dataset(dataset_name=dataset_name, size=input_size, p=size_group, num_samples_to_use=num_samples_to_use,
+                    dataset = get_dataset(dataset_name=dataset_name, size=input_size, p=size_group,
+                                          num_samples_to_use=num_samples_to_use,
                                           image_roots=image_roots, annotation_roots=annotation_roots,
                                           indices=train_indices, cls_to_use=cls_to_use, num_classes=num_classes,
-                                          min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class)
+                                          min_image_per_class=min_image_per_class,
+                                          max_image_per_class=max_image_per_class)
                     train_dataloader = DataLoader(dataset, batch_size=batch_size,
                                                   sampler=SubsetRandomSampler(train_idx),
                                                   num_workers=num_workers, pin_memory=True)

@@ -91,7 +91,7 @@ class Trainer:
                         'val_loss': val_loss, 'val_acc': val_acc, 'lr': lr}
         epoch_record = dict(epoch_record)
         self.training_records.append(epoch_record, ignore_index=True)
-        if val_acc > self.best_val_acc:
+        if val_loss < self.best_val_loss:
             self.patience_count = 0
             self.best_val_loss = val_loss
             self.best_val_acc = val_acc

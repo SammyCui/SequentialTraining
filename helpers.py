@@ -7,9 +7,20 @@ from .loader import ResizeImageLoader, NoAnnotationImageLoader, CIFARLoader
 from .utils.data_utils import GenerateBackground, IsValidFileImagenet
 from .datasets_legacy import VOCDataset, ImagenetDataset, CIFAR10Dataset, available_datasets, COCODataset
 from torch.utils.data import Dataset, SubsetRandomSampler, ConcatDataset, DataLoader, Subset
+import torchvision.transforms.functional as F
 
 
-def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots: Optional[List[str]],
+class SquarePad:
+    def __call__(self, image):
+        w, h = image.size
+        max_wh = np.max([w, h])
+        hp = int((max_wh - w) / 2)
+        vp = int((max_wh - h) / 2)
+        padding = [hp, vp, hp, vp]
+        return F.pad(image, padding, 0, 'constant')
+
+
+def get_dataset(dataset_name, size: Tuple[int, int], p, image_roots: List[str], annotation_roots: Optional[List[str]],
                 indices: List[int] = None,
                 resize_method: str = 'long',
                 cls_to_use: List['str'] = None,
@@ -18,6 +29,7 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
                 min_image_per_class: int = None,
                 max_image_per_class: int = None,
                 train: bool = True,
+                origin: bool = False,
                 random_seed: int = 40, return_classes: bool = False):
     if dataset_name not in available_datasets:
         raise Exception('Provided dataset name not available. Either check spelling or implement that dataset.')
@@ -29,20 +41,36 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
     else:
         mean, std = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)  # For all others, adopt Imagenet mean & std
 
-    transform = torchvision.transforms.Compose([
-        torchvision.transforms.ToTensor(),
-        torchvision.transforms.Normalize(mean, std),
-    ])
+    if (size[0] - int(size[0] * p)) % 2 == 0:
+        padding_0, padding_1 = int((size[0] - int(size[0] * p)) / 2), int((size[0] - int(size[0] * p)) / 2)
+    else:
+        padding_0, padding_1 = int((size[0] - int(size[0] * p)) / 2), int((size[0] - int(size[0] * p)) / 2) + 1
+    if origin:
+        transform = torchvision.transforms.Compose([
+            torchvision.transforms.Resize((int(size[0] * p), int(size[0] * p))),
+            torchvision.transforms.Pad((padding_0, padding_0, padding_1, padding_1)),
+            torchvision.transforms.ToTensor(),
+            torchvision.transforms.Normalize(mean, std),
+        ])
+    else:
+        transform = torchvision.transforms.Compose([
+            torchvision.transforms.ToTensor(),
+            torchvision.transforms.Normalize(mean, std),
+        ])
 
     if annotation_roots is None:
-        if 'CIFAR' in dataset_name:
-            loader = CIFARLoader(size, p, background, resize_method)
+        if origin:
+            loader = None
         else:
-            loader = NoAnnotationImageLoader(size, p, background, resize_method)
+            if 'CIFAR' in dataset_name:
+                loader = CIFARLoader(size, p, background, resize_method)
+            else:
+                loader = NoAnnotationImageLoader(size, p, background, resize_method)
         for image_root in image_roots:
             if 'CIFAR' in dataset_name:
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, train=train, download=True)
             else:
+
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes)
             dataset_classes = dataset.classes
@@ -53,13 +81,16 @@ def get_dataset(dataset_name, size, p, image_roots: List[str], annotation_roots:
     else:
 
         for anno_root, image_root in zip(annotation_roots, image_roots):
-            loader = ResizeImageLoader(size, p, anno_root, background, dataset_name)
+            loader = None if origin else ResizeImageLoader(size, p, anno_root, background, dataset_name)
             if 'Imagenet' in dataset_name:
                 is_valid_file = IsValidFileImagenet(anno_root=anno_root, threshold=size[0])
                 dataset = ImageDataset(root=image_root, loader=loader, transform=transform, cls_to_use=cls_to_use,
                                        num_classes=num_classes, is_valid_file=is_valid_file)
             elif 'COCO' in dataset_name:
-                dataset = COCODataset(root=image_root, path_to_json=anno_root, num_classes=num_classes, cls_to_use=cls_to_use,
+                if origin:
+                    raise Exception('origin does not support coco dataset')
+                dataset = COCODataset(root=image_root, path_to_json=anno_root, num_classes=num_classes,
+                                      cls_to_use=cls_to_use,
                                       input_size=size, size=p, resize_method=resize_method, transform=transform,
                                       min_image_per_class=min_image_per_class, max_image_per_class=max_image_per_class)
 
@@ -102,4 +133,3 @@ def get_cv_indices(num_samples: int, n_folds: int = 5, n_folds_to_use: int = 5, 
         train_idx = np.append(cv_indices[:split1], cv_indices[split2:])
         train_idx = train_idx.astype('int32')
         yield train_idx, val_idx
-

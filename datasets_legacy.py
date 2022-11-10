@@ -62,7 +62,10 @@ class VOCDataset(torchvision.datasets.VisionDataset):
             tuple: (sample, target) where target is class_index of the target class.
         """
         path, target = self.samples[index]
-        sample = self.loader(path)
+        if self.loader:
+            sample = self.loader(path)
+        else:
+            sample = Image.open(path)
         if self.transform is not None:
             sample = self.transform(sample)
         if self.target_transform is not None:
@@ -272,7 +275,10 @@ class ImagenetDataset(torchvision.datasets.VisionDataset):
             tuple: (sample, target) where target is class_index of the target class.
         """
         path, target = self.samples[index]
-        sample = self.loader(path)
+        if self.loader:
+            sample = self.loader(path)
+        else:
+            sample = Image.open(path)
         if self.transform is not None:
             sample = self.transform(sample)
         if self.target_transform is not None:

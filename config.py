@@ -32,6 +32,7 @@ class Config(BaseModel):
     # training
     model: str
     epoch: int
+    epoch_schedule: List[int] = None
     min_lr: float
     n_folds: int
     n_folds_to_use: int
