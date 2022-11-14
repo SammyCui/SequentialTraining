@@ -22,6 +22,7 @@ import pickle
 import torchvision
 from SequentialTraining.utils.coco_utils import get_big_coco_classes
 from SequentialTraining.performance import get_avg_std
+from tabulate import tabulate
 
 pd.set_option('display.max_columns', None)
 
@@ -205,6 +206,8 @@ def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, 
 
     test_result = []
 
+    best_epoch = {}
+
     for fold, sequence in enumerate(regimen):
 
         model_best_states = {}
@@ -226,7 +229,10 @@ def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, 
             model = model.to(config.device)
             epochs_per_size = int(np.ceil(config.epoch / len(sequence_dataloaders)))
             sequence_list = eval(sequence_name)  # [0.6, 0.8, 1]
+
             record_list = []
+            best_epoch_list = []
+
             for seq_idx, (train_dataloader, val_dataloader) in enumerate(sequence_dataloaders):
                 print(
                     f'# of trains: {len(train_dataloader) * config.batch_size} # of vals: {len(val_dataloader) * config.batch_size}')
@@ -255,7 +261,7 @@ def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, 
                             "dict...")
 
                     trainer = Trainer(criterion=criterion, patience=config.early_stop_patience, device=config.device)
-                    if regimen_name.startswith(('bts', 'stb', 'as_is')) and config.epoch_schedule:
+                    if regimen_name.startswith(('bts', 'stb', 'as_is', 'random-single')) and config.epoch_schedule:
                         num_epoch = config.epoch_schedule[seq_idx]
                     else:
                         num_epoch = epochs_per_size
@@ -287,12 +293,17 @@ def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, 
                             scheduler.step(val_loss)
 
                     record_list.append(trainer)
+                    best_epoch_list.append(trainer.best_epoch + 1)
                     model.load_state_dict(model_best_states[str(sequence_list[:seq_idx + 1])])
                     print(
                         f"Group: {sequence_list[seq_idx]} finished training. Best epoch: {trainer.best_epoch + 1} "
                         f"Best val accuracy: {trainer.best_val_acc} Best val loss: {trainer.best_val_loss}")
                     print('\n')
             record_dict[sequence_name] = record_list
+            if sequence_name not in best_epoch:
+                best_epoch[sequence_name] = []
+            else:
+                best_epoch[sequence_name].append(best_epoch_list)
 
             # testing
 
@@ -337,7 +348,15 @@ def train_regimen(regimen_name: str, train_indices: Optional[List[int]] = None, 
         records.append(record_dict)
 
     print("Test results:")
-    print(get_avg_std(test_result))
+    avg, std = get_avg_std(test_result)
+    print('Accuracy: ')
+    print(tabulate(avg, headers='keys', tablefmt='psql'))
+    print('std: ')
+    print(tabulate(std, headers='keys', tablefmt='psql'))
+    print('Average best epochs: ')
+    for k,v in best_epoch.items():
+        print(k, np.mean(v, axis=0))
+
     result = {'config': config,
               'train': records,
               'test': test_result}
